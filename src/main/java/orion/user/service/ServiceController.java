@@ -1,9 +1,23 @@
+/**
+ * @License
+ * Copyright 2020 Orion Services
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 package orion.user.service;
 
-// import java.util.Collection;
-// import java.util.HashMap;
-// import java.util.Map;
-// import javax.ws.rs.GET;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,7 +32,6 @@ import orion.user.model.User;
 import java.util.List;
 
 import javax.inject.Inject;
-//import javax.persistence.Id;
 import javax.transaction.Transactional;
 
 
@@ -44,7 +57,7 @@ public class ServiceController {
         usr.setName(name);
         usr.setEmail(email);
         userDAO.create(usr);
-        return usr;
+        return usr; //return a User objetct
         
      }
 
@@ -63,11 +76,11 @@ public class ServiceController {
     @Transactional
     public void delete(@PathParam("id") final long id) {
 
-        userDAO.delete(id);
+        userDAO.delete(id); // find the id and delete it
         
     }
 
-    @GET
+    @GET // update the user
     @Path("/update/{id}/{name}/{email}")
     @Transactional
     public void update(@PathParam("id") final Long id, @PathParam("name") final String name
