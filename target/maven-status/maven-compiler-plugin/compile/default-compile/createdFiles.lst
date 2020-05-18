@@ -1,0 +1,6 @@
+orion/user/data/Repository.class
+orion/user/model/User.class
+orion/user/data/UserDAO.class
+orion/user/OrionUserRestApplication.class
+orion/user/secure/ProtectedController.class
+orion/user/service/ServiceController.class

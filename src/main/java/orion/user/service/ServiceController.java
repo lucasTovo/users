@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-
 package orion.user.service;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,13 +32,14 @@ import orion.user.model.User;
 
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 
 
-
-@Path("/service")
+@RequestScoped
+@Path("/api/v1.0/")
 public class ServiceController {
 
     @Inject
@@ -45,12 +47,13 @@ public class ServiceController {
 
 
     @POST // create the user with name and email
-    @Path("/create/{name}/{email}")
+    @Path("/createuser/")
+    @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User create(
-        @PathParam("name") final String name,
-        @PathParam("email") final String email) {
+        @FormParam("name") final String name,
+        @FormParam("email") final String email) {
 
 
         final User usr = new User();
