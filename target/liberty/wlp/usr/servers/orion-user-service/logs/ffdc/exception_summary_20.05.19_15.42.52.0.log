@@ -1,0 +1,6 @@
+
+ Index  Count  Time of first Occurrence    Time of last Occurrence     Exception SourceId ProbeId
+------+------+---------------------------+---------------------------+---------------------------
+     0      7 19/05/2020 15:42:52:509 BRT 19/05/2020 16:04:15:376 BRT java.lang.IllegalArgumentException com.ibm.ws.uow.UOWManagerImpl.runUnderCurrentUOW 1130
+                                                                            - /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-user-service/logs/ffdc/ffdc_20.05.19_15.42.52.0.log
+------+------+---------------------------+---------------------------+---------------------------

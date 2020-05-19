@@ -18,7 +18,6 @@
 package orion.user.service;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -54,44 +53,58 @@ public class ServiceController {
     public User create(
         @FormParam("name") final String name,
         @FormParam("email") final String email) {
-
-
         final User usr = new User();
-        usr.setName(name);
-        usr.setEmail(email);
-        userDAO.create(usr);
-        return usr; //return a User objetct
+            usr.setName(name);
+            usr.setEmail(email);
+            userDAO.create(usr);
+            return usr; //return a User objetct
         
      }
 
-    @GET //List all users
-    @Path("/read/{id}")
+    //  @GET // list users
+    //  @Path("/listusers")
+    //  @Consumes("application/x-www-form-urlencoded")
+    //  @Produces(MediaType.APPLICATION_JSON)
+    //  @Transactional
+    //     public List<User> read(@PathParam("id") final long id) {
+    //         return userDAO.read();
+    // }
+
+    @GET
+    @Path("/listusers/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public List<User> read(@PathParam("id") final long id) {
-        return userDAO.read();
+    public User read(@PathParam("id") final long id) {
+        final User usr = new User();
+        return userDAO.find(id);
     }
 
      
 
-    @DELETE // delete the user
-    @Path("/delete/{id}")
+    @POST // delete user
+    @Path("/deleteuser")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void delete(@PathParam("id") final long id) {
-
-        userDAO.delete(id); // find the id and delete it
+    public void delete(@FormParam("id") final long id) {
+        userDAO.delete(id); // find the id and delete the user data
         
     }
 
-    @GET // update the user
-    @Path("/update/{id}/{name}/{email}")
+    @POST // update user
+    @Path("/updateuser")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void update(@PathParam("id") final Long id, @PathParam("name") final String name
-    , @PathParam("email") final String email) {
-        User usr = userDAO.find(id);
-        usr.setName(name);
-        usr.setEmail(email);
-        userDAO.update(usr);
+    public User update(
+        @FormParam("id") final long id,
+        @FormParam("name") final String name,
+        @FormParam("email") final String email) {
+            User usr = userDAO.find(id);
+            usr.setName(name);
+            usr.setEmail(email);
+            userDAO.update(usr);
+            return usr;
     }
 
 
