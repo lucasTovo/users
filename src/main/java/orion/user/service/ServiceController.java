@@ -46,7 +46,7 @@ public class ServiceController {
 
 
     @POST // create the user with name and email
-    @Path("/createuser/")
+    @Path("/createusers/")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -70,19 +70,18 @@ public class ServiceController {
     //         return userDAO.read();
     // }
 
-    @GET
+    @GET //list a user
     @Path("/listusers/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User read(@PathParam("id") final long id) {
-        final User usr = new User();
         return userDAO.find(id);
     }
 
      
 
-    @POST // delete user
-    @Path("/deleteuser")
+    @POST // delete a user
+    @Path("/deleteusers")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -91,8 +90,8 @@ public class ServiceController {
         
     }
 
-    @POST // update user
-    @Path("/updateuser")
+    @POST // update a user
+    @Path("/updateusers")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

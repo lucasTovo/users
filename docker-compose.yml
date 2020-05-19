@@ -4,19 +4,19 @@ volumes:
 services:
     db:
         image: mysql:latest
-        container_name: user-mysql
+        container_name: users-mysql
         ports:
             - 3306:3306
         volumes:
             - database:/var/lib/mysql
         environment:
-            - MYSQL_ROOT_PASSWORD=orion-user-service
-            - MYSQL_DATABASE=orion-user-service
-            - MYSQL_USER=orion-user-service
-            - MYSQL_PASSWORD=orion-user-service
+            - MYSQL_ROOT_PASSWORD=orion-users-service
+            - MYSQL_DATABASE=orion-users-service
+            - MYSQL_USER=orion-users-service
+            - MYSQL_PASSWORD=orion-users-service
     phpMyAdmin:
             image: phpmyadmin/phpmyadmin:latest
-            container_name: user-phpmyadmin
+            container_name: users-phpmyadmin
             environment:
                 - PMA_ARBITRARY=1
             links:
@@ -29,7 +29,7 @@ services:
     service:
             # image: rodrigoprestesmachado/orion-talk-image:version-0.1
             build: .
-            container_name: user-service
+            container_name: users-service
             ports:
                 - 9080:9080
                 - 9443:9443

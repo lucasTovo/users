@@ -4,21 +4,21 @@
         <profileId>liberty</profileId>
     </activeBuildProfiles>
     <installDirectory>/home/gui/devs/user/target/liberty/wlp</installDirectory>
-    <serverDirectory>/home/gui/devs/user/target/liberty/wlp/usr/servers/orion-user-service</serverDirectory>
+    <serverDirectory>/home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service</serverDirectory>
     <userDirectory>/home/gui/devs/user/target/liberty/wlp/usr</userDirectory>
-    <serverOutputDirectory>/home/gui/devs/user/target/wlp-package/orion-user-service</serverOutputDirectory>
-    <serverName>orion-user-service</serverName>
+    <serverOutputDirectory>/home/gui/devs/user/target/wlp-package/orion-users-service</serverOutputDirectory>
+    <serverName>orion-users-service</serverName>
     <configDirectory>/home/gui/devs/user/src/main/liberty/config</configDirectory>
     <configFile>/home/gui/devs/user/src/main/liberty/config/server.xml</configFile>
     <bootstrapProperties>
         <jwt.issuer>https://server.example.com</jwt.issuer>
-        <project.name>orion-user-service</project.name>
+        <project.name>orion-users-service</project.name>
     </bootstrapProperties>
     <appsDirectory>apps</appsDirectory>
     <looseApplication>true</looseApplication>
     <stripVersion>false</stripVersion>
     <installAppPackages>project</installAppPackages>
-    <applicationFilename>orion-user-service.war.xml</applicationFilename>
+    <applicationFilename>orion-users-service.war.xml</applicationFilename>
     <assemblyArtifact>
         <groupId>io.openliberty</groupId>
         <artifactId>openliberty-kernel</artifactId>
@@ -28,7 +28,7 @@
     <assemblyArchive>/home/gui/.m2/repository/io/openliberty/openliberty-kernel/20.0.0.5/openliberty-kernel-20.0.0.5.zip</assemblyArchive>
     <assemblyInstallDirectory>/home/gui/devs/user/target/liberty</assemblyInstallDirectory>
     <refresh>false</refresh>
-    <installAppsConfigDropins>/home/gui/devs/user/target/liberty/wlp/usr/servers/orion-user-service/configDropins/defaults/install_apps_configuration_1491924271.xml</installAppsConfigDropins>
+    <installAppsConfigDropins>/home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/configDropins/defaults/install_apps_configuration_1491924271.xml</installAppsConfigDropins>
     <projectType>war</projectType>
     <projectCompileDependency>io.jaegertracing:jaeger-client:0.34.0</projectCompileDependency>
     <projectCompileDependency>io.jaegertracing:jaeger-thrift:0.34.0</projectCompileDependency>

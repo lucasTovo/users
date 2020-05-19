@@ -1,0 +1,120 @@
+********************************************************************************
+product = Open Liberty 20.0.0.5 (wlp-1.0.40.cl200520200429-1655)
+wlp.install.dir = /home/gui/devs/user/target/liberty/wlp/
+java.home = /usr/lib/jvm/java-11-openjdk-amd64
+java.version = 11.0.7
+java.runtime = OpenJDK Runtime Environment (11.0.7+10-post-Ubuntu-3ubuntu1)
+os = Linux (5.4.0-29-generic; amd64) (pt_BR)
+process = 60101@gui-Aspire-A315-51
+********************************************************************************
+[19/05/2020 20:37:39:263 BRT] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           A CWWKE0001I: O servidor orion-users-service foi ativado.
+[19/05/2020 20:37:40:434 BRT] 00000001 com.ibm.ws.kernel.launch.internal.FrameworkManager           I CWWKE0002I: O kernel foi iniciado após 1,394 segundos
+[19/05/2020 20:37:40:487 BRT] 00000022 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0007I: Atualização do recurso iniciada.
+[19/05/2020 20:37:42:156 BRT] 0000001a .apache.cxf.cxf.core.3.2:1.0.40.cl200520200429-1655(id=187)] I Aries Blueprint packages not available. So namespaces will not be registered
+[19/05/2020 20:37:42:159 BRT] 0000001a .apache.cxf.cxf.core.3.2:1.0.40.cl200520200429-1655(id=187)] I Aries Blueprint packages not available. So namespaces will not be registered
+[19/05/2020 20:37:42:199 BRT] 00000016 com.ibm.ws.security.ready.internal.SecurityReadyServiceImpl  I CWWKS0007I: O serviço de segurança está iniciando...
+[19/05/2020 20:37:42:755 BRT] 00000017 com.ibm.ws.app.manager.internal.monitor.DropinMonitor        A CWWKZ0058I: Monitorando dropins para aplicativos.
+[19/05/2020 20:37:43:040 BRT] 00000017 com.ibm.ws.cache.ServerCache                                 I DYNA1001I: A instância de Cache Dinâmico do WebSphere denominada baseCache foi inicializada com êxito.
+[19/05/2020 20:37:43:044 BRT] 00000017 com.ibm.ws.cache.ServerCache                                 I DYNA1071I: O provedor de cache default está sendo usado.
+[19/05/2020 20:37:43:044 BRT] 00000017 com.ibm.ws.cache.CacheServiceImpl                            I DYNA1056I: Cache Dinâmico (cache de objeto) inicializado com êxito.
+[19/05/2020 20:37:43:598 BRT] 00000026 com.ibm.ws.security.token.ltpa.internal.LTPAKeyInfoManager   I CWWKS4103I: Criando as chaves LTPA. Isso pode levar alguns segundos.
+[19/05/2020 20:37:43:669 BRT] 00000016 ibm.ws.security.authentication.internal.jaas.JAASServiceImpl I CWWKS1123I:  O plug-in de autenticação coletivo com o nome de classe NullCollectiveAuthenticationPlugin foi ativado. 
+[19/05/2020 20:37:44:058 BRT] 00000016 com.ibm.ws.security.jwt.internal.ConsumerImpl                I CWWKS6012I: O serviço do consumidor JSON Web Token (JWT) está disponível.
+[19/05/2020 20:37:44:118 BRT] 00000016 com.ibm.ws.security.jwt.web.JwtEndpointServices              I CWWKS6002I: O trabalho de terminal JSON Web Token (JWT) está disponível.
+[19/05/2020 20:37:44:150 BRT] 00000016 .ws.security.mp.jwt.v11.config.impl.MpConfigProxyServiceImpl I CWWKS5775I: O mpConfigProxy do MicroProfile JWT versão 1.1 foi processado com sucesso.
+[19/05/2020 20:37:44:163 BRT] 00000016 com.ibm.ws.security.mp.jwt.impl.MicroProfileJwtConfigImpl    I CWWKS5500I: A configuração do MicroProfile JWT [jwtUserConsumer] foi processada com sucesso.
+[19/05/2020 20:37:44:166 BRT] 00000016 com.ibm.ws.security.mp.jwt.impl.MicroProfileJwtConfigImpl    I CWWKS5500I: A configuração do MicroProfile JWT [defaultMpJwt] foi processada com sucesso.
+[19/05/2020 20:37:44:168 BRT] 00000016 com.ibm.ws.security.mp.jwt.impl.MicroProfileJwtServiceImpl   I CWWKS5500I: A configuração do MicroProfile JWT [MicroProfileJwtService] foi processada com sucesso.
+[19/05/2020 20:37:44:464 BRT] 00000016 com.ibm.ws.session.WASSessionCore                            I SESN8501I: O gerenciador de sessões não localizou um local de armazenamento persistente; objetos HttpSession serão armazenados na memória do servidor de aplicativos local.
+[19/05/2020 20:37:44:495 BRT] 0000001e com.ibm.ws.ssl.config.WSKeyStore                             I Successfully loaded default keystore: /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/resources/security/public.jks of type: JKS
+[19/05/2020 20:37:44:818 BRT] 00000026 com.ibm.ws.security.token.ltpa.internal.LTPAKeyInfoManager   A CWWKS4104A: Chaves LTPA criadas em 1,220 segundos. Arquivo-chave LTPA: /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/resources/security/ltpa.keys
+[19/05/2020 20:37:44:829 BRT] 00000026 com.ibm.ws.security.token.ltpa.internal.LTPAKeyCreateTask    I CWWKS4105I: A configuração de LTPA fica pronta após 1,236 segundos.
+[19/05/2020 20:37:45:088 BRT] 00000026 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Iniciando o aplicativo orion-users-service.
+[19/05/2020 20:37:45:088 BRT] 00000026 bm.ws.app.manager.war.internal.WARDeployedAppInfoFactoryImpl I CWWKZ0134I: O aplicativo orion-users-service está usando a definição de aplicativo indefinido no local /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/apps/orion-users-service.war.xml.
+[19/05/2020 20:37:45:543 BRT] 00000029 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: OpenAPIUI.
+[19/05/2020 20:37:45:544 BRT] 0000002a com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: health.
+[19/05/2020 20:37:45:544 BRT] 0000002e com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: ibm/api.
+[19/05/2020 20:37:45:545 BRT] 0000002a com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web health foi ligado ao default_host.
+[19/05/2020 20:37:45:545 BRT] 00000029 com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web OpenAPIUI foi ligado ao default_host.
+[19/05/2020 20:37:45:535 BRT] 00000025 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: PublicMicroProfileMetrics.
+[19/05/2020 20:37:45:547 BRT] 00000025 com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web PublicMicroProfileMetrics foi ligado ao default_host.
+[19/05/2020 20:37:45:546 BRT] 0000002a com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/health/
+[19/05/2020 20:37:45:544 BRT] 00000035 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: com.ibm.ws.security.jwt.
+[19/05/2020 20:37:45:549 BRT] 00000035 com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web com.ibm.ws.security.jwt foi ligado ao default_host.
+[19/05/2020 20:37:45:545 BRT] 0000002e com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web ibm/api foi ligado ao default_host.
+[19/05/2020 20:37:45:561 BRT] 00000025 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/metrics/
+[19/05/2020 20:37:45:580 BRT] 00000029 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/openapi/ui/
+[19/05/2020 20:37:45:580 BRT] 0000002e com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/ibm/api/
+[19/05/2020 20:37:45:580 BRT] 00000035 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/jwt/
+[19/05/2020 20:37:45:776 BRT] 00000036 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: MicroProfileOpenAPI.
+[19/05/2020 20:37:45:778 BRT] 00000036 com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web MicroProfileOpenAPI foi ligado ao default_host.
+[19/05/2020 20:37:45:778 BRT] 00000036 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/openapi/
+[19/05/2020 20:37:45:811 BRT] 00000034 com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/openapi/ui
+[19/05/2020 20:37:45:811 BRT] 00000033 com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/metrics
+[19/05/2020 20:37:45:811 BRT] 00000027 com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/health
+[19/05/2020 20:37:45:812 BRT] 00000029 com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/jwt
+[19/05/2020 20:37:45:812 BRT] 0000002a com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/ibm/api
+[19/05/2020 20:37:45:841 BRT] 00000034 com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:45:835 BRT] 00000035 com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/openapi
+[19/05/2020 20:37:45:900 BRT] 00000035 com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:45:904 BRT] 0000002a com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:45:905 BRT] 00000029 com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:45:905 BRT] 00000027 com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:45:906 BRT] 00000033 com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:45:934 BRT] 00000034 com.ibm.ws.cache.CacheServiceImpl                            I DYNA1056I: Cache Dinâmico (cache de objeto) inicializado com êxito.
+[19/05/2020 20:37:46:178 BRT] 00000033 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [com.ibm.ws.microprofile.metrics.public] [/metrics] [PublicMetricsRESTProxyServlet]: Inicialização bem sucedida.
+[19/05/2020 20:37:46:186 BRT] 00000035 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [com.ibm.ws.microprofile.openapi] [/openapi] [OpenAPIServlet]: Inicialização bem sucedida.
+[19/05/2020 20:37:46:200 BRT] 00000027 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [com.ibm.ws.microprofile.health.2.0] [/health] [HealthCheckReadinessServlet]: Inicialização bem sucedida.
+[19/05/2020 20:37:46:202 BRT] 00000027 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [com.ibm.ws.microprofile.health.2.0] [/health] [HealthCheckServlet]: Inicialização bem sucedida.
+[19/05/2020 20:37:46:203 BRT] 00000027 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [com.ibm.ws.microprofile.health.2.0] [/health] [HealthCheckLivenessServlet]: Inicialização bem sucedida.
+[19/05/2020 20:37:46:329 BRT] 00000025 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Um arquivo de configuração para um plug-in de servidor da web foi automaticamente gerado para este servidor em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/logs/state/plugin-cfg.xml.
+[19/05/2020 20:37:46:381 BRT] 0000002e com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Um arquivo de configuração para um plug-in de servidor da web foi automaticamente gerado para este servidor em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/logs/state/plugin-cfg.xml.
+[19/05/2020 20:37:46:704 BRT] 00000026 com.ibm.ws.jca.cm.ConnectorService                           I J2CA8050I: Um alias de autenticação deveria ser usado em vez de definir um nome de usuário e senha em dataSource[default-0].
+[19/05/2020 20:37:46:907 BRT] 00000026 com.ibm.ws.recoverylog.spi.RecoveryDirectorImpl              I CWRLS0010I: Realizando processamento de recuperação para o servidor WebSphere local (orion-users-service).
+[19/05/2020 20:37:46:938 BRT] 0000003b com.ibm.ws.recoverylog.spi.LogHandle                         I CWRLS0007I: Nenhum arquivo de registro de recuperação existente localizado em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/tranlog/tranlog. Inicialização a frio do log de recuperação.
+[19/05/2020 20:37:46:941 BRT] 0000003b com.ibm.ws.recoverylog.spi.LogFileHandle                     I CWRLS0006I: Criando o novo arquivo de registro de recuperação /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/tranlog/tranlog/log1.
+[19/05/2020 20:37:46:946 BRT] 0000003b com.ibm.ws.recoverylog.spi.LogFileHandle                     I CWRLS0006I: Criando o novo arquivo de registro de recuperação /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/tranlog/tranlog/log2.
+[19/05/2020 20:37:46:982 BRT] 0000003b com.ibm.ws.recoverylog.spi.LogHandle                         I CWRLS0007I: Nenhum arquivo de registro de recuperação existente localizado em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/tranlog/partnerlog. Inicialização a frio do log de recuperação.
+[19/05/2020 20:37:46:983 BRT] 0000003b com.ibm.ws.recoverylog.spi.LogFileHandle                     I CWRLS0006I: Criando o novo arquivo de registro de recuperação /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/tranlog/partnerlog/log1.
+[19/05/2020 20:37:46:985 BRT] 0000003b com.ibm.ws.recoverylog.spi.LogFileHandle                     I CWRLS0006I: Criando o novo arquivo de registro de recuperação /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/tranlog/partnerlog/log2.
+[19/05/2020 20:37:47:031 BRT] 00000026 com.ibm.ws.recoverylog.spi.RecoveryDirectorImpl              I CWRLS0012I: Todos os serviços persistentes foram direcionados para realizar o processamento de recuperação para este servidor WebSphere (orion-users-service).
+[19/05/2020 20:37:47:031 BRT] 0000003b com.ibm.tx.jta.impl.RecoveryManager                          I WTRN0135I: O serviço de transações não está recuperando nenhuma transação.
+[19/05/2020 20:37:47:678 BRT] 00000026 com.ibm.ws.microprofile.openapi.ApplicationProcessor         I CWWKO1660I: O aplicativo orion-users-service foi processado e um documento OpenAPI foi produzido.
+[19/05/2020 20:37:47:783 BRT] 00000026 org.jboss.weld.Version                                       I WELD-000900: 3.1.4 (Final)
+[19/05/2020 20:37:49:736 BRT] 00000026 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: orion-users-service.
+[19/05/2020 20:37:49:737 BRT] 00000026 com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web orion-users-service foi ligado ao default_host.
+[19/05/2020 20:37:49:737 BRT] 00000026 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/
+[19/05/2020 20:37:49:740 BRT] 00000026 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0001I: O aplicativo orion-users-service foi iniciado em 4,653 segundos.
+[19/05/2020 20:37:49:754 BRT] 0000002a com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/
+[19/05/2020 20:37:49:754 BRT] 0000002a com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:49:784 BRT] 00000022 com.ibm.ws.tcpchannel.internal.TCPPort                       I CWWKO0219I: O Canal TCP defaultHttpEndpoint foi iniciado e agora está atendendo solicitações no host localhost  (IPv4: 127.0.0.1) porta 9081.
+[19/05/2020 20:37:49:788 BRT] 00000022 com.ibm.ws.tcpchannel.internal.TCPPort                       I CWWKO0219I: O Canal TCP defaultHttpEndpoint-ssl foi iniciado e agora está atendendo solicitações no host localhost  (IPv4: 127.0.0.1) porta 9444.
+[19/05/2020 20:37:49:819 BRT] 00000027 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Um arquivo de configuração para um plug-in de servidor da web foi automaticamente gerado para este servidor em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/logs/state/plugin-cfg.xml.
+[19/05/2020 20:37:49:822 BRT] 00000022 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0012I: O servidor instalou os recursos a seguir: [appSecurity-2.0, cdi-2.0, concurrent-1.0, distributedMap-1.0, jaxrs-2.1, jaxrsClient-2.1, jdbc-4.2, jndi-1.0, jpa-2.2, jpaContainer-2.2, json-1.0, jsonb-1.0, jsonp-1.1, jwt-1.0, microProfile-3.2, mpConfig-1.3, mpFaultTolerance-2.0, mpHealth-2.1, mpJwt-1.1, mpMetrics-2.2, mpOpenAPI-1.1, mpOpenTracing-1.3, mpRestClient-1.3, opentracing-1.3, servlet-4.0, ssl-1.0].
+[19/05/2020 20:37:49:826 BRT] 00000022 com.ibm.ws.kernel.feature.internal.FeatureManager            I CWWKF0008I: Atualização do recurso concluída em 9,394 segundos.
+[19/05/2020 20:37:49:827 BRT] 00000022 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0011I: O servidor orion-users-service está pronto para gerenciar um planeta mais inteligente. O servidor orion-users-service foi iniciado em 10,788 segundos.
+[19/05/2020 20:37:52:382 BRT] 00000047 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0017I: Aplicativo da Web removido (default_host): http://localhost:9081/
+[19/05/2020 20:37:52:444 BRT] 00000047 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0009I: O aplicativo orion-users-service foi interrompido com sucesso.
+[19/05/2020 20:37:52:450 BRT] 00000047 com.ibm.ws.app.manager.AppMessageHelper                      I CWWKZ0018I: Iniciando o aplicativo orion-users-service.
+[19/05/2020 20:37:52:451 BRT] 00000047 bm.ws.app.manager.war.internal.WARDeployedAppInfoFactoryImpl I CWWKZ0134I: O aplicativo orion-users-service está usando a definição de aplicativo indefinido no local /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/apps/orion-users-service.war.xml.
+[19/05/2020 20:37:52:482 BRT] 0000004a com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Um arquivo de configuração para um plug-in de servidor da web foi automaticamente gerado para este servidor em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/logs/state/plugin-cfg.xml.
+[19/05/2020 20:37:52:621 BRT] 00000047 com.ibm.ws.microprofile.openapi.ApplicationProcessor         I CWWKO1660I: O aplicativo orion-users-service foi processado e um documento OpenAPI foi produzido.
+[19/05/2020 20:37:53:175 BRT] 00000047 com.ibm.ws.webcontainer.osgi.webapp.WebGroup                 I SRVE0169I: Carregando o Módulo da Web: orion-users-service.
+[19/05/2020 20:37:53:176 BRT] 00000047 com.ibm.ws.webcontainer                                      I SRVE0250I: O Módulo da Web orion-users-service foi ligado ao default_host.
+[19/05/2020 20:37:53:178 BRT] 00000047 com.ibm.ws.http.internal.VirtualHostImpl                     A CWWKT0016I: Aplicativo da Web disponível (default_host): http://localhost:9081/
+[19/05/2020 20:37:53:181 BRT] 00000036 com.ibm.ws.session.WASSessionCore                            I SESN0176I: Um novo contexto de sessão será criado para a chave do aplicativo default_host/
+[19/05/2020 20:37:53:182 BRT] 00000036 com.ibm.ws.util                                              I SESN0172I: O gerenciador de sessões está usando a implementação SecureRandom padrão Java para geração do ID de sessão.
+[19/05/2020 20:37:53:189 BRT] 00000047 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0003I: O aplicativo orion-users-service foi atualizado em 0,739 segundos.
+[19/05/2020 20:37:53:208 BRT] 00000042 com.ibm.ws.webcontainer.osgi.mbeans.PluginGenerator          I SRVE9103I: Um arquivo de configuração para um plug-in de servidor da web foi automaticamente gerado para este servidor em /home/gui/devs/user/target/liberty/wlp/usr/servers/orion-users-service/logs/state/plugin-cfg.xml.
+[19/05/2020 20:45:10:024 BRT] 00000141 .apache.cxf.cxf.core.3.2:1.0.40.cl200520200429-1655(id=187)] I Setting the server's publish address to be /user/
+[19/05/2020 20:45:10:182 BRT] 00000141 com.ibm.ws.webcontainer.servlet                              I SRVE0242I: [orion-users-service] [/] [orion.user.OrionUserRestApplication]: Inicialização bem sucedida.
+[19/05/2020 20:45:10:286 BRT] 00000141 SystemErr                                                    R SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+[19/05/2020 20:45:10:287 BRT] 00000141 SystemErr                                                    R SLF4J: Defaulting to no-operation (NOP) logger implementation
+[19/05/2020 20:45:10:288 BRT] 00000141 SystemErr                                                    R SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[19/05/2020 20:45:10:461 BRT] 00000141 m.ibm.ws.microprofile.opentracing.jaeger.JaegerTracerFactory I CWMOT1001I: Uma instância de JaegerTracer foi criada para o aplicativo orion-users-service. As informações de rastreio são enviadas para localhost:6831.
+[19/05/2020 20:45:10:567 BRT] 00000141 eclipselink                                                  I CWWJP9990I: [eclipselink] EclipseLink, versão: Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f
+[19/05/2020 20:45:10:982 BRT] 00000141 com.ibm.ws.rsadapter.impl.DatabaseHelper                     I DSRA8203I: Nome do produto de banco de dados: MySQL
+[19/05/2020 20:45:10:985 BRT] 00000141 com.ibm.ws.rsadapter.impl.DatabaseHelper                     I DSRA8204I: Versão do produto Banco de Dados: 8.0.20
+[19/05/2020 20:45:10:985 BRT] 00000141 com.ibm.ws.rsadapter.impl.DatabaseHelper                     I DSRA8205I: Nome do driver JDBC: MySQL Connector/J
+[19/05/2020 20:45:10:985 BRT] 00000141 com.ibm.ws.rsadapter.impl.DatabaseHelper                     I DSRA8206I: Versão do driver JDBC: mysql-connector-java-8.0.19 (Revision: a0ca826f5cdf51a98356fdfb1bf251eb042f80bf)
+[19/05/2020 20:45:11:060 BRT] 00000141 eclipselink.connection                                       I CWWJP9990I: [eclipselink.connection] orion-users-service/file:/home/gui/devs/user/target/classes/_OrionUsersDS login bem-sucedido
