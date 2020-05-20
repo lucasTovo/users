@@ -1,6 +1,6 @@
 
  Index  Count  Time of first Occurrence    Time of last Occurrence     Exception SourceId ProbeId
 ------+------+---------------------------+---------------------------+---------------------------
-     0      4 19/05/2020 22:12:11:404 BRT 19/05/2020 22:27:47:902 BRT java.lang.NullPointerException com.ibm.ws.uow.UOWManagerImpl.runUnderCurrentUOW 1130
+     0      7 19/05/2020 22:12:11:404 BRT 19/05/2020 23:06:49:215 BRT java.lang.NullPointerException com.ibm.ws.uow.UOWManagerImpl.runUnderCurrentUOW 1130
                                                                             - /home/gui/devs/users/target/liberty/wlp/usr/servers/orion-users-service/logs/ffdc/ffdc_20.05.19_22.12.11.0.log
 ------+------+---------------------------+---------------------------+---------------------------
