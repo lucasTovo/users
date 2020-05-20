@@ -1,0 +1,6 @@
+/home/gui/devs/users/src/main/java/orion/user/data/UserDAO.java
+/home/gui/devs/users/src/main/java/orion/user/data/Repository.java
+/home/gui/devs/users/src/main/java/orion/user/model/User.java
+/home/gui/devs/users/src/main/java/orion/user/service/ServiceController.java
+/home/gui/devs/users/src/main/java/orion/user/OrionUserRestApplication.java
+/home/gui/devs/users/src/main/java/orion/user/secure/ProtectedController.java
