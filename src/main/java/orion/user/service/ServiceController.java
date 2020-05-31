@@ -30,12 +30,11 @@ import orion.user.data.UserDAO;
 import orion.user.model.User;
 
 import java.util.List;
-
+import org.eclipse.microprofile.jwt.JsonWebToken;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-
-
 
 @RequestScoped
 @Path("/api/v1.0/")
@@ -43,6 +42,23 @@ public class ServiceController {
 
     @Inject
     private UserDAO userDAO;
+
+        // The JWT of the current caller. Since this is a request scoped resource, the
+    // JWT will be injected for each JAX-RS request. The injection is performed by
+    // the mpJwt-1.0 feature.
+    @Inject
+    private JsonWebToken jwt;
+
+    @POST
+    @Path("/jwt")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    @RolesAllowed({ "users" })
+    public void testJwt() {
+        System.out.println("jwt " + this.jwt.getClaim("upn"));
+        System.out.println("jwt " + this.jwt.getClaim("pass"));
+    }
+
 
 
     @POST // create the user with name and email
@@ -61,14 +77,7 @@ public class ServiceController {
         
      }
 
-    //  @GET // list users
-    //  @Path("/listusers")
-    //  @Consumes("application/x-www-form-urlencoded")
-    //  @Produces(MediaType.APPLICATION_JSON)
-    //  @Transactional
-    //     public List<User> read(@PathParam("id") final long id) {
-    //         return userDAO.read();
-    // }
+
 
     @GET //list a user
     @Path("/listusers/{id}")
