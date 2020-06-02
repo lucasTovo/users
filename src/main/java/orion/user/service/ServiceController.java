@@ -36,6 +36,21 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.ibm.websphere.security.jwt.Claims;
+import com.ibm.websphere.security.jwt.InvalidBuilderException;
+import com.ibm.websphere.security.jwt.InvalidClaimException;
+import com.ibm.websphere.security.jwt.JwtBuilder;
+import com.ibm.websphere.security.jwt.JwtException;
+
+import org.jsoup.Jsoup;
+
 @RequestScoped
 @Path("/api/v1.0/")
 public class ServiceController {
@@ -49,15 +64,52 @@ public class ServiceController {
     @Inject
     private JsonWebToken jwt;
 
-    @POST
-    @Path("/jwt")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    @RolesAllowed({ "users" })
-    public void testJwt() {
-        System.out.println("jwt " + this.jwt.getClaim("upn"));
-        System.out.println("jwt " + this.jwt.getClaim("pass"));
+    // @POST
+    // @Path("/jwt")
+    // @Produces(MediaType.APPLICATION_JSON)
+    // @Transactional
+    // @RolesAllowed({ "users" })
+    // public void testJwt() {
+    //     System.out.println("jwt " + this.jwt.getClaim("upn"));
+    //     System.out.println("jwt " + this.jwt.getClaim("pass"));
+    // }
+
+@POST
+@Path("/jwt")
+@Consumes("application/x-www-form-urlencoded")
+@Produces(MediaType.TEXT_PLAIN)
+@Transactional
+public String login(
+    @FormParam("email") final String email, 
+    @FormParam("password") final String password) {
+// 2 - check if the users exists in the data base
+
+// 3 - if yes, generates the token
+    String jwt = null;
+    User usr;
+    try {   
+        usr = userDAO.find("email",email);
+        usr = userDAO.find("password",password);
+        if(usr.getEmail() == email) {
+            jwt = JwtBuilder.create("jwtBuilder")
+            .jwtId(true)
+            .claim(Claims.SUBJECT, email)
+            .claim("email", email)
+            .claim("password", password)
+            .claim("groups", "users")
+            .buildJwt().compact();
+            System.out.println(jwt);
+            }
+            
+    } catch (JwtException | InvalidBuilderException | InvalidClaimException e) {
+        e.printStackTrace();
     }
+    return jwt;
+
+ 
+}
+
+
 
 
 
@@ -68,10 +120,12 @@ public class ServiceController {
     @Transactional
     public User create(
         @FormParam("name") final String name,
-        @FormParam("email") final String email) {
+        @FormParam("email") final String email,
+        @FormParam("password") final String password) {
         final User usr = new User();
             usr.setName(name);
             usr.setEmail(email);
+            usr.setPassword(password);
             userDAO.create(usr);
             return usr; //return a User objetct
         

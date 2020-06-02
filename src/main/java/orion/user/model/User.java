@@ -34,7 +34,8 @@ public class User {
     @GeneratedValue
     private long id;
 	private String name;
-	private String email;
+    private String email;
+    private String password;
     
 
 

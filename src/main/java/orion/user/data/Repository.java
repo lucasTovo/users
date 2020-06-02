@@ -65,6 +65,14 @@ public abstract class Repository<T> {
         return em.createQuery(criteria).getSingleResult();
     }
 
+    public T find(String column, String value) {
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<T> criteria = builder.createQuery(this.genericClass());
+        Root<T> root = criteria.from(this.genericClass());
+        criteria.select(root).where(builder.equal(root.get(column), value));
+        return em.createQuery(criteria).getSingleResult();
+    }
+
     @SuppressWarnings("unchecked")
     private Class<T> genericClass() {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

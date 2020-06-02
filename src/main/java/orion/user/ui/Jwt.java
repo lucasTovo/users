@@ -38,13 +38,17 @@ public class Jwt extends HttpServlet {
     private void execute(HttpServletRequest request, HttpServletResponse response) {
 
         // Get data from form
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
         try {
             // Generates Json Web Token
-            String jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user).claim("upn", user)
-                    .claim("pass", pass).claim("groups", "users").buildJwt().compact();
+            String jwt = JwtBuilder.create("jwtBuilder")
+            .jwtId(true)
+            .claim(Claims.SUBJECT, email)
+            .claim("email", email)
+            .claim("password", password)
+            .claim("groups", "users").buildJwt().compact();
 
             // send to REST API
             Jsoup.connect("http://localhost:9081/user/api/v1.0/jwt").header("Authorization", "Bearer " + jwt).post();
