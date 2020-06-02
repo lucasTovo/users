@@ -90,7 +90,7 @@ public String login(
     try {   
         usr = userDAO.find("email",email);
         usr = userDAO.find("password",password);
-        if(usr.getEmail() == email) {
+        if(usr.getEmail() == email && usr.getPassword() == password) {
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
             .claim(Claims.SUBJECT, email)
