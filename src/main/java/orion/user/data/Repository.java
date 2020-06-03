@@ -69,8 +69,8 @@ public abstract class Repository<T> {
         final CriteriaBuilder builder = em.getCriteriaBuilder();
         final CriteriaQuery<T> criteria = builder.createQuery(this.genericClass());
         Root<T> root = criteria.from(this.genericClass());
-        criteria.select(root).where(builder.equal(root.get(column1), value1));
-        criteria.select(root).where(builder.equal(root.get(column2), value2));
+        criteria.select(root).where((builder.equal(root.get(column1), value1)),
+                                   (builder.equal(root.get(column2), value2)));
         return em.createQuery(criteria).getSingleResult();
     }
 
