@@ -42,7 +42,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.PasswordView;
 
 import com.ibm.websphere.security.jwt.Claims;
 import com.ibm.websphere.security.jwt.InvalidBuilderException;
@@ -59,19 +58,6 @@ public class ServiceController {
     @Inject
     private UserDAO userDAO;
 
-        // The JWT of the current caller. Since this is a request scoped resource, the
-    // JWT will be injected for each JAX-RS request. The injection is performed by
-    // the mpJwt-1.0 feature.
-
-    // @POST
-    // @Path("/jwt")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // @Transactional
-    // @RolesAllowed({ "users" })
-    // public void testJwt() {
-    //     System.out.println("jwt " + this.jwt.getClaim("upn"));
-    //     System.out.println("jwt " + this.jwt.getClaim("pass"));
-    // }
 
 @POST
 @Path("/jwt")
@@ -81,15 +67,13 @@ public class ServiceController {
 public String login(
     @FormParam("email") final String email, 
     @FormParam("password") final String password) {
-// 2 - check if the users exists in the data base
 
-// 3 - if yes, generates the token
     String jwt = null;
     User usr;
     try {   
+    // if there is a user in the database, it will create the jwt, otherwise not
         usr = userDAO.find("email",email);
         usr = userDAO.find("password",password);
-        
            
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
