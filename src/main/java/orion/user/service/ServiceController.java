@@ -89,7 +89,8 @@ public String login(
     try {   
         usr = userDAO.find("email",email);
         
-        if(((usr.getEmail().equals("email")) && (usr.getPassword()).equals("password"))) {
+        // if (usr.getEmail().equals("email")){
+           
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
             .claim(Claims.SUBJECT, email)
@@ -99,14 +100,11 @@ public String login(
             .buildJwt().compact();
             System.out.println(jwt);
             
-        }
-            
+        // } 
     } catch (JwtException | InvalidBuilderException | InvalidClaimException e) {
         e.printStackTrace();
-    }
+    } 
     return jwt;
-
- 
 }
 
     @POST // create the user with name and email
