@@ -42,6 +42,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.PasswordView;
 
 import com.ibm.websphere.security.jwt.Claims;
 import com.ibm.websphere.security.jwt.InvalidBuilderException;
@@ -61,8 +62,6 @@ public class ServiceController {
         // The JWT of the current caller. Since this is a request scoped resource, the
     // JWT will be injected for each JAX-RS request. The injection is performed by
     // the mpJwt-1.0 feature.
-    @Inject
-    private JsonWebToken jwt;
 
     // @POST
     // @Path("/jwt")
@@ -89,8 +88,8 @@ public String login(
     User usr;
     try {   
         usr = userDAO.find("email",email);
-        usr = userDAO.find("password",password);
-        if(usr.getEmail() == email && usr.getPassword() == password) {
+        
+        if(((usr.getEmail().equals("email")) && (usr.getPassword()).equals("password"))) {
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
             .claim(Claims.SUBJECT, email)
@@ -99,7 +98,8 @@ public String login(
             .claim("groups", "users")
             .buildJwt().compact();
             System.out.println(jwt);
-            }
+            
+        }
             
     } catch (JwtException | InvalidBuilderException | InvalidClaimException e) {
         e.printStackTrace();
@@ -108,10 +108,6 @@ public String login(
 
  
 }
-
-
-
-
 
     @POST // create the user with name and email
     @Path("/createusers/")
