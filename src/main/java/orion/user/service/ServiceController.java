@@ -55,6 +55,7 @@ import org.jsoup.Jsoup;
 @Path("/api/v1.0/")
 public class ServiceController {
 
+
     @Inject
     private UserDAO userDAO;
 
@@ -72,8 +73,7 @@ public String login(
     User usr;
     try {   
     // if there is a user in the database, it will create the jwt, otherwise not
-        usr = userDAO.find("email",email);
-        usr = userDAO.find("password",password);
+        usr = userDAO.find("email",email,"password",password);
            
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
