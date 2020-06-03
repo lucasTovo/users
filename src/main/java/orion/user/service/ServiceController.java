@@ -73,7 +73,7 @@ public String login(
     User usr;
     try {   
     // if there is a user in the database, it will create the jwt, otherwise not
-        usr = userDAO.find("email",email,"password",password);
+        usr = userDAO.find("password",password,"email",email);
            
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
