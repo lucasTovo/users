@@ -88,8 +88,8 @@ public String login(
     User usr;
     try {   
         usr = userDAO.find("email",email);
+        usr = userDAO.find("password",password);
         
-        // if (usr.getEmail().equals("email")){
            
             jwt = JwtBuilder.create("jwtBuilder")
             .jwtId(true)
@@ -99,8 +99,7 @@ public String login(
             .claim("groups", "users")
             .buildJwt().compact();
             System.out.println(jwt);
-            
-        // } 
+
     } catch (JwtException | InvalidBuilderException | InvalidClaimException e) {
         e.printStackTrace();
     } 
