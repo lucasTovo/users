@@ -14,8 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package orion.user;
 
 import org.eclipse.microprofile.auth.LoginConfig;
@@ -25,11 +23,9 @@ import javax.annotation.security.DeclareRoles;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-
 @ApplicationPath("/user")
 
 @LoginConfig(authMethod = "MP-JWT", realmName = "jwt-jaspi")
-@DeclareRoles({"protected"})
-
-public class OrionUserRestApplication extends Application {
+@DeclareRoles({ "protected" })
+public class OrionUserService extends Application {
 }

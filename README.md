@@ -1,11 +1,12 @@
 # Orion Users Service
 
-Orion Users Service is a microservice
+Orion Users Service microservice
 
 ## Run with Docker Compose
 
-The easer way to install and execute the Orion Users Service is to use docker-composer. Once Docker is installed, you can run the bellow command in the  :
+The easer way to install and execute the Orion Users Service is to use docker-composer. Once Docker is installed, you can run the bellow commands:
 
+    mvn clean package
     docker-compose up -d
 
 Note: Default database root and password is: orion-users-service
@@ -14,7 +15,7 @@ Note: Default database root and password is: orion-users-service
 
 To create a Docker image for Orion Users Service:
 
-    mvn clear package
+    mvn clean package
 
     docker build -t orion-users-image .
 
