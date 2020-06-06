@@ -37,19 +37,43 @@ import orion.user.data.UserDAO;
 import orion.user.model.User;
 
 @RequestScoped
-@Path("/api/v1.0/")
+@Path("/api/v1/")
 public class PublicService {
 
     @Inject
     private UserDAO userDAO;
 
     /**
+     * Creates a new user in the database
+     * 
+     * @param name     The name of a user
+     * @param email    The email of a user
+     * @param password The password of a user
+     * 
+     * @return An user object
+     */
+    @POST
+    @Path("/create")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public User create(@FormParam("name") final String name, @FormParam("email") final String email,
+            @FormParam("password") final String password) {
+        final User usr = new User();
+        usr.setName(name);
+        usr.setEmail(email);
+        usr.setPassword(password);
+        userDAO.create(usr);
+        return usr;
+    }
+
+    /**
      * Authenticates the user in the service
      * 
      * @param email    The user's e-mail
-     * @param password The user`s password
-     * @return If correct, generates a JWT (Json Web Token) or a fail message in
-     *         String format
+     * @param password The user's password
+     * 
+     * @return Generates a JWT (Json Web Token) or a fail message
      */
     @POST
     @Path("/login")

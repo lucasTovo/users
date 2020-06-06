@@ -14,11 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package orion.user.model;
-
-
-
 
 import javax.persistence.Entity;
 
@@ -33,11 +29,8 @@ public class User {
     @Id
     @GeneratedValue
     private long id;
-	private String name;
+    private String name;
     private String email;
     private String password;
-    
-
-
 
 }

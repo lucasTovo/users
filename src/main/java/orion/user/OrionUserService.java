@@ -18,14 +18,30 @@ package orion.user;
 
 import org.eclipse.microprofile.auth.LoginConfig;
 
+import orion.user.secure.ProtectedService;
+import orion.user.service.PublicService;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.security.DeclareRoles;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/user")
-
+@ApplicationPath("/users")
 @LoginConfig(authMethod = "MP-JWT", realmName = "jwt-jaspi")
 @DeclareRoles({ "protected" })
 public class OrionUserService extends Application {
+
+    @Override
+    public Set<Class<?>> getClasses() {
+        final Set<Class<?>> resources = new HashSet<Class<?>>();
+
+        resources.add(PublicService.class);
+        resources.add(ProtectedService.class);
+        resources.add(CORSFilter.class);
+
+        return resources;
+    }
 }

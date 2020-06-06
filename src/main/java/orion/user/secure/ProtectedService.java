@@ -34,7 +34,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import orion.user.data.UserDAO;
 import orion.user.model.User;
 
-@Path("/protected")
+@Path("/api/v1/")
 @RequestScoped
 public class ProtectedService {
 
@@ -44,24 +44,14 @@ public class ProtectedService {
     @Inject
     private JsonWebToken jwt;
 
-    @POST // create the user with name and email
-    @Path("/createusers/")
-    @Consumes("application/x-www-form-urlencoded")
-    @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({ "users" })
-    @Transactional
-    public User create(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password) {
-        final User usr = new User();
-        usr.setName(name);
-        usr.setEmail(email);
-        usr.setPassword(password);
-        userDAO.create(usr);
-        return usr; // return a User objetct
-    }
-
-    @GET // list a user
-    @Path("/listusers/{id}")
+    /**
+     * Retrieves a user from the database
+     * 
+     * @param id The user's id
+     * @return An user object
+     */
+    @GET
+    @Path("/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
@@ -69,25 +59,40 @@ public class ProtectedService {
         return userDAO.find(id);
     }
 
-    @POST // delete a user
-    @Path("/deleteusers")
+    /**
+     * Deletes an user from the database
+     * 
+     * @param id The user's id
+     */
+    @POST
+    @Path("/delete")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
     public void delete(@FormParam("id") final long id) {
-        userDAO.delete(id); // find the id and delete the user data
-
+        // find the id and delete the user data
+        userDAO.delete(id);
     }
 
-    @POST // update a user
-    @Path("/updateusers")
+    /**
+     * Updates an user in database
+     * 
+     * @param id       The user's id
+     * @param name     The user's name
+     * @param email    The user's e-mail
+     * @param password The user's password
+     * @return
+     */
+    @POST
+    @Path("/update")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
     public User update(@FormParam("id") final long id, @FormParam("name") final String name,
-            @FormParam("email") final String email) {
+            @FormParam("email") final String email, @FormParam("password") final String password) {
+
         final User usr = userDAO.find(id);
         usr.setName(name);
         usr.setEmail(email);

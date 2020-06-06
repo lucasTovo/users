@@ -41,9 +41,5 @@
         <jdbcDriver libraryRef="MySQLLib" />
         <properties databaseName="orion-users-service" serverName="localhost" portNumber="3306" user="orion-users-service" password="orion-users-service" />
     </dataSource>
-    <!-- 
-        Waiting a new server.xml feature to use a better solution
-        https://github.com/OpenLiberty/ci.maven/issues/705
-    -->
 
 </server>
