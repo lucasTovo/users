@@ -27,12 +27,3 @@ During development, you can use Liberty's development mode (dev mode) to code wh
 
     mvn clear package
     mvn liberty:dev
-<!--
-### JWT Auth
-
-Have a look at the **TestSecureController** class (main application) which calls the protected endpoint on the secondary application.
-The **ProtectedController** contains the protected endpoint since it contains the _@RolesAllowed_ annotation on the JAX-RS endpoint method.
-
-The _TestSecureController_ code creates a JWT based on the private key found within the resource directory.
-However, any method to send a REST request with an appropriate header will work of course. Please feel free to change this code to your needs.
--->
