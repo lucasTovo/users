@@ -28,7 +28,7 @@ import javax.persistence.criteria.Root;
 
 public abstract class Repository<T> {
 
-    @PersistenceContext(name = "OrionUserDS")
+    @PersistenceContext(name = "OrionUsersDS")
     private EntityManager em;
 
     public T create(final T obj) {

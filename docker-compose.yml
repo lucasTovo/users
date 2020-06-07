@@ -31,5 +31,5 @@ services:
             build: .
             container_name: users-service
             ports:
-                - 9080:9080
-                - 9443:9443
+                - 9081:9080
+                - 9444:9443
