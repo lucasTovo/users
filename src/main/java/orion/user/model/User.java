@@ -50,7 +50,7 @@ public class User {
 
 
     @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    @JoinTable(name="email_roles",
+    @JoinTable(name="EMAIL_ROLES",
         joinColumns = {@JoinColumn(name="email_id", referencedColumnName="id")},
         inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
     )
