@@ -86,7 +86,10 @@ public class PublicService {
         try {
             // check if there is a user in the database, it will create the jwt, otherwise
             // not
-            final User user = userDAO.find("password", password, "email", email);
+            
+            
+            final User user = userDAO.find("password", userDAO.MD5(password), "email", email);
+            
 
             // generates the token
             jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
