@@ -60,9 +60,10 @@ public class PublicService {
     public User create(@FormParam("name") final String name, @FormParam("email") final String email,
             @FormParam("password") final String password) {
         final User usr = new User();
+
         usr.setName(name);
         usr.setEmail(email);
-        usr.setPassword(password);
+        usr.setPassword(userDAO.MD5(password));
         userDAO.create(usr);
         return usr;
     }
