@@ -63,9 +63,21 @@ public class PublicService {
 
         usr.setName(name);
         usr.setEmail(email);
-        usr.setPassword(userDAO.MD5(password));
+        usr.setPassword(password);
         userDAO.create(usr);
         return usr;
+    }
+
+    @POST
+    @Path("/forgot")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public void forgot(@FormParam("email") final String email) {
+        final User usr = new User();
+
+        usr.sendEmail(email);
+        
     }
 
     /**
@@ -88,7 +100,7 @@ public class PublicService {
             // not
             
             
-            final User user = userDAO.find("password", userDAO.MD5(password), "email", email);
+            final User user = userDAO.find("password", password, "email", email);
             
 
             // generates the token

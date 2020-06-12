@@ -26,6 +26,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+
+
 public abstract class Repository<T> {
 
     @PersistenceContext(name = "OrionUsersDS")
@@ -87,6 +89,8 @@ public abstract class Repository<T> {
          }
          return null;
      }
+
+
      
 
 

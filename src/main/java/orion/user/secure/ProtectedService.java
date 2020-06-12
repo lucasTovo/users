@@ -96,7 +96,7 @@ public class ProtectedService {
         final User usr = userDAO.find(id);
         usr.setName(name);
         usr.setEmail(email);
-        usr.setPassword(userDAO.MD5(password));
+        usr.setPassword(password);
         userDAO.update(usr);
         return usr;
     }
