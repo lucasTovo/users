@@ -34,6 +34,7 @@ import com.ibm.websphere.security.jwt.JwtBuilder;
 import com.ibm.websphere.security.jwt.JwtException;
 
 import orion.user.data.UserDAO;
+import orion.user.model.JavaMailUtil;
 import orion.user.model.User;
 
 @RequestScoped
@@ -73,10 +74,9 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void forgot(@FormParam("email") final String email) {
-        final User usr = new User();
+    public void forgot(@FormParam("email") final String email) throws Exception {
 
-        usr.sendEmail(email);
+        JavaMailUtil.sendMail(email);
         
     }
 
@@ -87,21 +87,23 @@ public class PublicService {
      * @param password The user's password
      * 
      * @return Generates a JWT (Json Web Token) or a fail message
+     * @throws Exception
      */
     @POST
     @Path("/login")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.TEXT_PLAIN)
     @Transactional
-    public String login(@FormParam("email") final String email, @FormParam("password") final String password) {
+    public String login(@FormParam("email") final String email, @FormParam("password") final String password)
+            throws Exception {
         String jwt = null;
         try {
             // check if there is a user in the database, it will create the jwt, otherwise
             // not
             
-            
+            JavaMailUtil.sendMail(email);
+            // final User user = userDAO.find("password", password, "email", email);
             final User user = userDAO.find("password", password, "email", email);
-            
 
             // generates the token
             jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
