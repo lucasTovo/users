@@ -1,16 +1,18 @@
 package orion.user.model;
 
+import org.apache.commons.io.IOUtils;
+import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -50,7 +52,7 @@ public class JavaMailUtil {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("oi, eu sou Goku");
-            String htmlCode = "<h1> We love java </h1> <br/ <h2><b>Next line </b></h2>";
+            String htmlCode ="<a href='https://orion-test-forgot.netlify.app'>Test.com</a>";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
