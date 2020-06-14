@@ -52,7 +52,7 @@ public class JavaMailUtil {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("oi, eu sou Goku");
-            String htmlCode ="<a href='https://orion-test-forgot.netlify.app'>Test.com</a>";
+            String htmlCode ="<a href='https://orion-test-forgot.netlify.app'>Click here for change password</a>";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
