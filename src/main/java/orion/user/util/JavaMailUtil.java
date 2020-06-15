@@ -1,4 +1,4 @@
-package orion.user.model;
+package orion.user.util;
 
 import org.apache.commons.io.IOUtils;
 import java.io.FileInputStream;

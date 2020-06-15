@@ -34,7 +34,7 @@ import com.ibm.websphere.security.jwt.JwtBuilder;
 import com.ibm.websphere.security.jwt.JwtException;
 
 import orion.user.data.UserDAO;
-import orion.user.model.JavaMailUtil;
+import orion.user.util.JavaMailUtil;
 import orion.user.model.User;
 
 @RequestScoped
