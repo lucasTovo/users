@@ -74,11 +74,26 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void forgot(@FormParam("email") final String email) throws Exception {
+    public String forgot(@FormParam("email") final String email) throws Exception {
+    
+    String mail;
 
-        JavaMailUtil.sendMail(email);
-        
+    try {
+    // check if there is a email in the database
+       
+       final User usr = userDAO.find("email", email);
+       
+       //send email to user
+        usr.getEmail().equals(email);
+            JavaMailUtil.sendMail(email);
+            mail = "connection complete";
+
+        } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
+            mail = "failed";
+        }
+        return mail;
     }
+
 
     /**
      * Authenticates the user in the service
@@ -100,9 +115,6 @@ public class PublicService {
         try {
             // check if there is a user in the database, it will create the jwt, otherwise
             // not
-            
-            JavaMailUtil.sendMail(email);
-            // final User user = userDAO.find("password", password, "email", email);
             final User user = userDAO.find("password", password, "email", email);
 
             // generates the token
