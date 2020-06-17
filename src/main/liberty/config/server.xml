@@ -8,20 +8,6 @@
         <feature>javaMail-1.5</feature>
     </featureManager>
 
-    <mailSession  mailSessionID="defaultMail"  
-        jndiName="mail/default"
-        description="SMTP javax.mail.Session"
-        transportProtocol="smtp"
-        host="smtp.gmail.com"
-        user="guilhermemoreiramex@gmail.com"
-        password="taturanaLOL171"
-        from="orion closed alpha version">
-    <property name="mail.smtp.host" value="smtp.gmail.com" />
-    <property name="mail.smtp.port" value="587" />
-    <property name="mail.smtp.starttls.enable" value="true" />
-    <property name="mail.smtp.auth" value="true" />
-   </mailSession>
-
     <applicationManager autoExpand="true" />
 
     <mpMetrics authentication="false" />
