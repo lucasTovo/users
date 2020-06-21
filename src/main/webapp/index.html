@@ -20,7 +20,7 @@
 					<h3 class="panel-title">Vue.js SignUp Form Validation</h3>
 				</div>
 				<div class="panel-body">
-					<form @submit.prevent='submit'>
+					<form @submit.prevent='submit' method="post" action = "loginServlet">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Email address</label>
 							<input type="text" placeholder="Email" name="email" class="form-control" v-model='email'>

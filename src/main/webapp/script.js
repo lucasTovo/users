@@ -64,7 +64,7 @@ Vue.component('signUpForm',{
 			name = event.target.name;
 		},
 		submit(){
-			alert('Great you have completed this project, keep learning.')
+			window.location.href = "loginServlet";
 		}
 	}
 });
