@@ -1,49 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202006150846">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <script src="script.js"></script>
-
-
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202006150846">
 </head>
 <body>
-    <div class="hero is-fullheight is-info is-bold">
-        <div class="hero-body">
-        <div class="container">
-        
-          <h1 class="title has-text-centered">Vue.js Form Processing</h1>
-          <div class="box">
-        
-            <!-- our signup form ===================== -->
-            <form id="signup-form" @submit.prevent="processForm" action="servlet">
-              <!-- name -->
-              <div class="field">
-                <label class="label">Name</label>
-                <input type="text" class="input" name="name" v-model="name">
-              </div>
-        
-              <!-- email -->
-              <div class="field">
-                <label class="label">Email</label>
-                <input type="email" class="input" name="email" v-model="email">
-              </div>
-        
-              <!-- submit button -->
-              <div class="field has-text-right">
-                <button type="submit" class="button is-danger">Submit</button>
-              </div>
-            </form>
-        
+  <div class="hero is-fullheight is-info is-bold">
+    <div class="hero-body">
+    <div class="container">
+    
+      <h1 class="title has-text-centered">Vue.js Form Processing</h1>
+      <div class="box">
+    
+        <!-- our signup form ===================== -->
+        <form method="POST" id="signUpForm" @submit.prevent="processForm" action="http://localhost:9080/users/api/v1/forgot">
+
+          <!-- name -->
+          <div class="field">
+            <label class="label">Name</label>
+            <input type="text" class="input" name="name" v-model="name">
           </div>
-        
-        </div>
-        </div>
-        </div>
+    
+          <!-- email -->
+          <div class="field">
+            <label class="label">Email</label>
+            <input type="email" class="input" name="email" v-model="email">
+          </div>
+    
+          <!-- submit button -->
+          <div class="field has-text-right">
+            <button type="submit" class="button is-danger">Submit</button>
+          </div>
+        </form>
+    
+      </div>
+    
+    </div>
+    </div>
+    </div>
 </body>
 </html>
-
