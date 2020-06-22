@@ -94,6 +94,33 @@ public class PublicService {
         return mail;
     }
 
+    @POST
+    @Path("/retrieve")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public String retrieve(@FormParam("email") final String email,
+    @FormParam("password") final String password) throws Exception {
+    
+    String mail;
+
+    try {
+    // check if there is a email in the database
+       
+       final User usr = userDAO.find("email", email);
+       
+       //send email to user
+        usr.getEmail().equals(email);
+            usr.setPassword(password);
+            userDAO.update(usr);
+            mail = "complete!";
+
+        } catch (NoResultException e) {
+            mail = "failed";
+        }
+        return mail;
+    }
+
 
     /**
      * Authenticates the user in the service

@@ -15,19 +15,23 @@
       <div class="box">
     
         <!-- our signup form ===================== -->
-        <form method="POST" id="signUpForm" @submit.prevent="processForm" action="http://localhost:9080/users/api/v1/forgot">
+        <form method="POST" id="signUpForm" @submit.prevent="processForm" action="http://localhost:9080/users/api/v1/retrieve">
 
-          <!-- name -->
-          <div class="field">
-            <label class="label">Name</label>
-            <input type="text" class="input" name="name" v-model="name">
-          </div>
+
     
           <!-- email -->
           <div class="field">
             <label class="label">Email</label>
             <input type="email" class="input" name="email" v-model="email">
           </div>
+
+                    <!-- name -->
+          <!-- name -->
+          <div class="field">
+            <label class="label">Password</label>
+            <input type="password" class="input" name="password" v-model="password">
+          </div>
+
     
           <!-- submit button -->
           <div class="field has-text-right">
