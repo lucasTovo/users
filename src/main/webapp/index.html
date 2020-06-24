@@ -1,48 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-  <script src="https://unpkg.com/vue"></script>
-  <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202006150846">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>Password Validator</title>
+
+  
 </head>
-<body>
-  <div class="hero is-fullheight is-info is-bold">
-    <div class="hero-body">
-    <div class="container">
-    
-      <h1 class="title has-text-centered">Vue.js Form Processing</h1>
-      <div class="box">
-    
-        <!-- our signup form ===================== -->
-        <form method="POST" id="signUpForm" @submit.prevent="processForm" action="http://localhost:9080/users/api/v1/retrieve">
+<body>   
+
+<form id="app" action="http://localhost:9080/users/api/v1/retrieve" method="POST">
+          
+    <label>email :
+      <input name="email" id="email" type="email" onkeyup='check(); manage(this)'  required/>
+    </label>
+    <br>     
+    <label>password :
+      <input name="password" id="pw1" type="password" onkeyup='check(); managepw1(this)' required/>
+    </label>
+    <br>
+    <label>confirm password:
+      <input type="password" name="confirm_password" id="pw2"  onkeyup='check(); managepw2(this)' required/> 
+      <span id='message'></span>
+    </label>
+    <button type="submit" class="btn btn-warning" id="btSubmit" disabled>Submit</button>
 
 
-    
-          <!-- email -->
-          <div class="field">
-            <label class="label">Email</label>
-            <input type="email" class="input" name="email" v-model="email">
-          </div>
-
-                    <!-- name -->
-          <!-- name -->
-          <div class="field">
-            <label class="label">Password</label>
-            <input type="password" class="input" name="password" v-model="password">
-          </div>
-
-    
-          <!-- submit button -->
-          <div class="field has-text-right">
-            <button type="submit" class="button is-danger">Submit</button>
-          </div>
-        </form>
-    
-      </div>
-    
-    </div>
-    </div>
-    </div>
+</form>
+        
 </body>
 </html>
