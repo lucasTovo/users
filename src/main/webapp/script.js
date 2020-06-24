@@ -18,15 +18,6 @@ var check = function() {
     }
   }
 
-
-//   function manage(email) {
-//     var bt = document.getElementById('btSubmit');
-//     if (email.value == '') {
-//         bt.disabled = true;
-//     }
-    
-// } 
-
    
 
 const app = new Vue({
