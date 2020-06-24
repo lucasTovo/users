@@ -51,6 +51,9 @@ public class User {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "AUTH")
+    private Boolean auth;
+
 
 
     @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -96,6 +99,16 @@ public class User {
          }
          return null;
      }
+
+    public Boolean setAuth(Boolean check) {
+        
+        return this.auth = check;
+    }
+
+    public Boolean getAuth() {
+        
+        return auth;
+    }
 
    
 }

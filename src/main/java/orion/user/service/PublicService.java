@@ -59,14 +59,18 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User create(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password) {
-        final User usr = new User();
-
-        usr.setName(name);
-        usr.setEmail(email);
-        usr.setPassword(password);
-        userDAO.create(usr);
-        return usr;
+            @FormParam("password") final String password,
+            @FormParam("auth") final boolean auth)
+    {       
+           
+            final User usr = new User();
+            //method in class User, auth, for default is false
+            usr.setAuth(auth);
+            usr.setName(name);
+            usr.setEmail(email);
+            usr.setPassword(password);
+            userDAO.create(usr);
+            return usr;
     }
 
     @POST
@@ -82,6 +86,9 @@ public class PublicService {
     // check if there is a email in the database
        
        final User usr = userDAO.find("email", email);
+       
+       //for default, users's auth is false, so here the atribute auth is changed to true
+       usr.setAuth(true);
        
        //send email to user
         usr.getEmail().equals(email);
@@ -108,12 +115,20 @@ public class PublicService {
     // check if there is a email in the database
        
        final User usr = userDAO.find("email", email);
-       
        //send email to user
+       
+       //if atribute users's auth is false, cancel change
+        if(usr.getAuth().equals(false)){
+            
+            throw new Exception("Email restricted to change password");
+            
+        }
         usr.getEmail().equals(email);
-            usr.setPassword(password);
+            
+        usr.setPassword(password);
             userDAO.update(usr);
             mail = "complete!";
+            usr.setAuth(false);
 
         } catch (NoResultException e) {
             mail = "failed";

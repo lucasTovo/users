@@ -17,15 +17,15 @@
 <form id="app" action="http://localhost:9080/users/api/v1/retrieve" method="POST">
           
     <label>email :
-      <input name="email" id="email" type="email" onkeyup='check(); manage(this)'  required/>
+      <input name="email" id="email" type="email" onkeyup='check();'  required/>
     </label>
     <br>     
     <label>password :
-      <input name="password" id="pw1" type="password" onkeyup='check(); managepw1(this)' required/>
+      <input name="password" id="pw1" type="password" onkeyup='check();' required/>
     </label>
     <br>
     <label>confirm password:
-      <input type="password" name="confirm_password" id="pw2"  onkeyup='check(); managepw2(this)' required/> 
+      <input type="password" name="confirm_password" id="pw2"  onkeyup='check();' required/> 
       <span id='message'></span>
     </label>
     <button type="submit" class="btn btn-warning" id="btSubmit" disabled>Submit</button>
