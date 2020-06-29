@@ -18,7 +18,10 @@
 package orion.user.data;
 
 import java.lang.reflect.ParameterizedType;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -98,6 +101,14 @@ public abstract class Repository<T> {
          return null;
      }
 
+     public String generateHash() {
+        SecureRandom random = new SecureRandom();
+            byte bytes[] = new byte[20];
+            random.nextBytes(bytes);
+            Encoder encoder = Base64.getUrlEncoder().withoutPadding();
+            String hash = encoder.encodeToString(bytes);
+        return hash;
+    }
 
      
 

@@ -59,13 +59,12 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User create(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password,
-            @FormParam("auth") final boolean auth)
+            @FormParam("password") final String password)
     {       
            
             final User usr = new User();
             //method in class User, auth, for default is false
-            usr.setAuth(auth);
+            
             usr.setName(name);
             usr.setEmail(email);
             usr.setPassword(password);
@@ -88,7 +87,7 @@ public class PublicService {
        final User usr = userDAO.find("email", email);
        
        //for default, users's auth is false, so here the atribute auth is changed to true
-       usr.setAuth(true);
+       usr.setAuth(userDAO.generateHash());
        
        //send email to user
         usr.getEmail().equals(email);
@@ -106,7 +105,7 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public String retrieve(@FormParam("email") final String email,
+    public String retrieve(@FormParam("auth") final String auth,
     @FormParam("password") final String password) throws Exception {
     
     String mail;
@@ -114,21 +113,17 @@ public class PublicService {
     try {
     // check if there is a email in the database
        
-       final User usr = userDAO.find("email", email);
+       final User usr = userDAO.find("auth", auth);
        //send email to user
        
        //if atribute users's auth is false, cancel change
-        if(usr.getAuth().equals(false)){
-            
-            throw new Exception("Email restricted to change password");
-            
-        }
-        usr.getEmail().equals(email);
+       
+        usr.getAuth().equals(auth);
             
         usr.setPassword(password);
             userDAO.update(usr);
             mail = "complete!";
-            usr.setAuth(false);
+            usr.setAuth(null);
 
         } catch (NoResultException e) {
             mail = "failed";

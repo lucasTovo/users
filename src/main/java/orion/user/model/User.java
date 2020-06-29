@@ -52,7 +52,7 @@ public class User {
     private String name;
 
     @Column(name = "AUTH")
-    private Boolean auth;
+    private String auth=null;
 
 
 
@@ -100,12 +100,12 @@ public class User {
          return null;
      }
 
-    public Boolean setAuth(Boolean check) {
+    public String setAuth(String check) {
         
         return this.auth = check;
     }
 
-    public Boolean getAuth() {
+    public String getAuth() {
         
         return auth;
     }
