@@ -103,7 +103,7 @@ public abstract class Repository<T> {
 
      public String generateHash() {
         SecureRandom random = new SecureRandom();
-            byte bytes[] = new byte[20];
+            byte bytes[] = new byte[6];
             random.nextBytes(bytes);
             Encoder encoder = Base64.getUrlEncoder().withoutPadding();
             String hash = encoder.encodeToString(bytes);

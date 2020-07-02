@@ -51,7 +51,7 @@ public class User {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "AUTH")
+    @Column(name = "AUTH", unique = true)
     private String auth=null;
 
 
@@ -107,7 +107,7 @@ public class User {
 
     public String getAuth() {
         
-        return auth;
+        return this.auth;
     }
 
    

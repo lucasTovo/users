@@ -17,7 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class JavaMailUtil {
-    public static void sendMail(String recepient) throws Exception {
+    public static void sendMail(String recepient, String hash) throws Exception {
         System.out.println("Preparing to sent");
         Properties properties = new Properties();
 
@@ -38,22 +38,26 @@ public class JavaMailUtil {
             }
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recepient);
+        Message message = prepareMessage(session, myAccountEmail, recepient, hash);
 
         Transport.send(message);
         System.out.println("Message sent");
 
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient) {
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient, String hash) {
         
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("oi, eu sou Goku");
-            String htmlCode ="<a href='http://localhost:9080/'>Click here for change password</a>";
+           
+           
+            String htmlCode ="Your code, don't sent to nobody: ";
+            htmlCode = htmlCode + hash;
             message.setContent(htmlCode, "text/html");
+            
             return message;
         } catch (Exception ex) {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);

@@ -17,14 +17,18 @@ var check = function() {
       
     }
   }
-
    
-
-const app = new Vue({
-	el: '#signup-form',
-	data: {
-	  email: '',
-	  password: ''
+  new Vue({
+    el: "#app",
+    data: {
+      auth: ''
+    },
+    beforeRouteEnter(to, from, next) {
+        if(Object.keys(to.query).length !== null) { //if the url has query (?query)
+          next(vm => {
+           vm.auth = to.query.auth
+         })
+      }
+      next()
     }
-    
-  });
+  })

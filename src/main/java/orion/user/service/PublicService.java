@@ -81,21 +81,22 @@ public class PublicService {
     
     String mail;
 
+
     try {
     // check if there is a email in the database
        
        final User usr = userDAO.find("email", email);
        
        //for default, users's auth is false, so here the atribute auth is changed to true
-       usr.setAuth(userDAO.generateHash());
+       String hash = usr.setAuth(userDAO.generateHash());
        
        //send email to user
         usr.getEmail().equals(email);
-            JavaMailUtil.sendMail(email);
+            JavaMailUtil.sendMail(email, hash);
             mail = "connection complete";
 
         } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
-            mail = "failed";
+            mail = "failed, incorrect email";
         }
         return mail;
     }
@@ -111,7 +112,7 @@ public class PublicService {
     String mail;
 
     try {
-    // check if there is a email in the database
+    // check if there is a auth in the database
        
        final User usr = userDAO.find("auth", auth);
        //send email to user
@@ -126,10 +127,14 @@ public class PublicService {
             usr.setAuth(null);
 
         } catch (NoResultException e) {
-            mail = "failed";
+            mail = "failed, wrong recover code, try again";
         }
         return mail;
     }
+
+
+    
+     
 
 
     /**
