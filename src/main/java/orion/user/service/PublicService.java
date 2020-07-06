@@ -59,18 +59,24 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User create(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password)
+            @FormParam("password") final String password) throws Exception
     {       
-           
-            final User usr = new User();
-            //method in class User, auth, for default is false
-            
+    
+        final User usr = new User();
+
+        if(quickMail(email).equals(false)){
             usr.setName(name);
             usr.setEmail(email);
             usr.setPassword(password);
             userDAO.create(usr);
-            return usr;
-    }
+        } else {
+            System.out.println("have email in db");
+        }
+
+        return usr;
+
+    }   
+                  
 
     @POST
     @Path("/forgot")
@@ -88,11 +94,11 @@ public class PublicService {
        final User usr = userDAO.find("email", email);
        
        //for default, users's auth is false, so here the atribute auth is changed to true
-       String hash = usr.setAuth(userDAO.generateHash());
+       String hashcode = usr.setHash(userDAO.generateHash());
        
        //send email to user
         usr.getEmail().equals(email);
-            JavaMailUtil.sendMail(email, hash);
+            JavaMailUtil.sendMail(email, hashcode);
             mail = "connection complete";
 
         } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
@@ -106,25 +112,25 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public String retrieve(@FormParam("auth") final String auth,
+    public String retrieve(@FormParam("hash") final String hash,
     @FormParam("password") final String password) throws Exception {
     
     String mail;
 
     try {
-    // check if there is a auth in the database
+    // check if there is a hash in the database
        
-       final User usr = userDAO.find("auth", auth);
+       final User usr = userDAO.find("hash", hash);
        //send email to user
        
-       //if atribute users's auth is false, cancel change
+       //if atribute users's hash is false, cancel change
        
-        usr.getAuth().equals(auth);
+        usr.getHash().equals(hash);
             
         usr.setPassword(password);
             userDAO.update(usr);
             mail = "complete!";
-            usr.setAuth(null);
+            usr.setHash(null);
 
         } catch (NoResultException e) {
             mail = "failed, wrong recover code, try again";
@@ -132,10 +138,7 @@ public class PublicService {
         return mail;
     }
 
-
-    
      
-
 
     /**
      * Authenticates the user in the service
@@ -154,20 +157,85 @@ public class PublicService {
     public String login(@FormParam("email") final String email, @FormParam("password") final String password)
             throws Exception {
         String jwt = null;
-        try {
-            // check if there is a user in the database, it will create the jwt, otherwise
-            // not
-            final User user = userDAO.find("password", password, "email", email);
+    
+    try {
+     // check if there is a user in the database, it will create the jwt, otherwise
+     // not
 
-            // generates the token
-            jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
-                    .claim("email", user.getEmail()).claim("password", user.getPassword()).claim("groups", "users")
-                    .buildJwt().compact();
+        //check if password is correct
+        if(quickMailPass(email, userDAO.MD5(password)) == true){
+               // generates the token
 
-        } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
-            jwt = "User authentication fail. Please, check if the provided e-mail and password are correct";
-        }
-        return jwt;
+        final User usr = userDAO.find("email", email);
+            jwt = JwtBuilder.create("jwtBuilder").jwtId(true)
+            .claim(Claims.SUBJECT, usr.getEmail())
+            .claim("email", usr.getEmail())
+            .claim("groups", "users")
+            .buildJwt().compact();
+
+             }
+        
+
+            } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
+                jwt = "User authentication fail. Please, check if the provided e-mail and password are correct";
+            }
+            return jwt;
     }
 
+// the two methods below assist in querying the existence of user data, 
+// specifically in the Create and Login methods
+     
+//quickMail checks if exist email
+    @POST
+    @Path("/quickMail")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Boolean quickMail(@FormParam("email") final String email) throws Exception {
+    
+    Boolean message;
+
+
+    try {
+    // check if there is a email in the database
+       
+       final User usr = userDAO.find("email", email);
+       
+        usr.getEmail().equals(email);
+            
+            message = true;
+
+        } catch (NoResultException e) {
+
+            message = false;
+
+        }
+        return message;
+    }
+
+//quickMailPass checks if email and password are correct
+    @POST
+    @Path("/quickMailPass")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public Boolean quickMailPass(@FormParam("email") final String email,
+                                 @FormParam("password") final String password) throws Exception {
+    Boolean message;
+
+       final User usr = userDAO.find("email", email);
+
+       if (!usr.getPassword().equals(password)) {
+
+            message = true;
+
+       } else {
+
+           message = false;
+
+       }
+            
+       return message;
+
+    }
 }

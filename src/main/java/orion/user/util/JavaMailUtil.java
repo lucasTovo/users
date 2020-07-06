@@ -45,7 +45,7 @@ public class JavaMailUtil {
 
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient, String hash) {
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient, String hashcode) {
         
         try {
             Message message = new MimeMessage(session);
@@ -55,7 +55,7 @@ public class JavaMailUtil {
            
            
             String htmlCode ="Your code, don't sent to nobody: ";
-            htmlCode = htmlCode + hash;
+            htmlCode = htmlCode + hashcode;
             message.setContent(htmlCode, "text/html");
             
             return message;

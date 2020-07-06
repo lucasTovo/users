@@ -29,9 +29,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.Data;
-
-
 
 @Data
 @Entity
@@ -44,23 +46,20 @@ public class User {
 
     @Column(name = "EMAIL", unique = true)
     private String email;
-    
+
     @Column(name = "PASSWORD")
     private String password;
 
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "AUTH", unique = true)
-    private String auth=null;
+    @Column(name = "HASH", unique = true)
+    private String hash = null;
 
-
-
-    @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    @JoinTable(name="EMAIL_ROLES",
-        joinColumns = {@JoinColumn(name="email_id", referencedColumnName="id")},
-        inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
-    )
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "EMAIL_ROLES", joinColumns = {
+            @JoinColumn(name = "email_id", referencedColumnName = "id") }, inverseJoinColumns = {
+                    @JoinColumn(name = "role_id", referencedColumnName = "id") })
 
     private List<Role> roles;
 
@@ -72,20 +71,27 @@ public class User {
         this.roles = roles;
     }
 
+   
     public String setPassword(String md5) {
         try {
-             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-             byte[] array = md.digest(md5.getBytes());
-             StringBuffer sb = new StringBuffer();
-             for (int i = 0; i < array.length; ++i) {
-               sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            byte[] array = md.digest(md5.getBytes());
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < array.length; ++i) {
+                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
             }
-             return this.password = sb.toString();
-         } catch (java.security.NoSuchAlgorithmException e) {
-         }
-         return null;
-     }
-    
+            return this.password = sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+        }
+        return null;
+    }
+
+    public String getPassword() {
+        
+        return this.password;
+    }
+
+   
      public String getPassword(String md5) {
         try {
              java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
@@ -99,15 +105,16 @@ public class User {
          }
          return null;
      }
+     
 
-    public String setAuth(String check) {
+    public String setHash(String check) {
         
-        return this.auth = check;
+        return this.hash = check;
     }
 
-    public String getAuth() {
+    public String getHash() {
         
-        return this.auth;
+        return this.hash;
     }
 
    

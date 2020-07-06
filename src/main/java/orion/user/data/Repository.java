@@ -87,6 +87,16 @@ public abstract class Repository<T> {
         return em.createQuery(criteria).getSingleResult();
     }
 
+
+    public T findUser(String value1, String value2) {
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<T> criteria = builder.createQuery(this.genericClass());
+        Root<T> root = criteria.from(this.genericClass());
+        criteria.select(root).where((builder.equal(root.get("value1"), value1)),
+                                   (builder.equal(root.get("value2"), value2)));
+        return em.createQuery(criteria).getSingleResult();
+    }
+
     public String MD5(String md5) {
         try {
              java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
