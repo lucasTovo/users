@@ -46,7 +46,7 @@ public class User {
 
     @Column(name = "EMAIL", unique = true)
     private String email;
-
+    
     @Column(name = "PASSWORD")
     private String password;
 
@@ -71,7 +71,7 @@ public class User {
         this.roles = roles;
     }
 
-   
+    @JsonIgnore
     public String setPassword(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
@@ -85,13 +85,13 @@ public class User {
         }
         return null;
     }
-
+    
     public String getPassword() {
         
         return this.password;
     }
-
-   
+    
+    
      public String getPassword(String md5) {
         try {
              java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");

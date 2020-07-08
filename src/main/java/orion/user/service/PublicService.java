@@ -60,20 +60,23 @@ public class PublicService {
     @Transactional
     public User create(@FormParam("name") final String name, @FormParam("email") final String email,
             @FormParam("password") final String password) throws Exception
-    {       
-    
+    {           
         final User usr = new User();
-
-        if(quickMail(email).equals(false)){
-            usr.setName(name);
-            usr.setEmail(email);
-            usr.setPassword(password);
-            userDAO.create(usr);
-        } else {
-            System.out.println("have email in db");
-        }
-
-        return usr;
+        
+        try {  
+            if(quickMail(email).equals(false)){
+                usr.setName(name);
+                usr.setEmail(email);
+                usr.setPassword(password);
+                userDAO.create(usr);
+            } 
+                
+            } catch (Exception e) {
+                System.out.println("have email in db");
+            }
+            finally{
+                return usr;
+            }
 
     }   
                   
@@ -163,7 +166,8 @@ public class PublicService {
      // not
 
         //check if password is correct
-        if(quickMailPass(email, userDAO.MD5(password)) == true){
+        if(quickMailPass(email, userDAO.MD5(password)) == true)
+        {
                // generates the token
 
         final User usr = userDAO.find("email", email);
