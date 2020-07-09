@@ -61,9 +61,12 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User createUser(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password) throws WebApplicationException {
-
+                           @FormParam("password") final String password) throws WebApplicationException {
+        
         final User usr = new User();
+
+        //in quickMail method, email is checked, if it is equal to one that already exists in the bank,
+        //it does not create
         if (quickMail(email).equals(false)) {
             usr.setName(name);
             usr.setEmail(email);
@@ -155,7 +158,7 @@ public class PublicService {
             // check if there is a user in the database, it will create the jwt, otherwise
             // not
 
-            // check if password is correct
+            // the private method quickMailPass check if email and password exists
             if (quickMailPass(email, userDAO.MD5(password)) == true) {
                 // generates the token
 
