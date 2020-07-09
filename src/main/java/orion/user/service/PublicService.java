@@ -25,7 +25,9 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.ibm.websphere.security.jwt.Claims;
 import com.ibm.websphere.security.jwt.InvalidBuilderException;
@@ -58,28 +60,21 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User create(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password) throws Exception
-    {           
-        final User usr = new User();
-        
-        try {  
-            if(quickMail(email).equals(false)){
-                usr.setName(name);
-                usr.setEmail(email);
-                usr.setPassword(password);
-                userDAO.create(usr);
-            } 
-                
-            } catch (Exception e) {
-                System.out.println("have email in db");
-            }
-            finally{
-                return usr;
-            }
+    public User createUser(@FormParam("name") final String name, @FormParam("email") final String email,
+            @FormParam("password") final String password) throws WebApplicationException {
 
-    }   
-                  
+        final User usr = new User();
+        if (quickMail(email).equals(false)) {
+            usr.setName(name);
+            usr.setEmail(email);
+            usr.setPassword(password);
+            userDAO.create(usr);
+            return usr;
+        } else {
+            String message = "The informed e-mail already exist in the service";
+            throw new WebApplicationException(message, Response.Status.CONFLICT);
+        }
+    }
 
     @POST
     @Path("/forgot")
@@ -87,20 +82,19 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public String forgot(@FormParam("email") final String email) throws Exception {
-    
-    String mail;
 
+        String mail;
 
-    try {
-    // check if there is a email in the database
-       
-       final User usr = userDAO.find("email", email);
-       
-       //for default, users's auth is false, so here the atribute auth is changed to true
-       String hashcode = usr.setHash(userDAO.generateHash());
-       
-       //send email to user
-        usr.getEmail().equals(email);
+        try {
+            // check if there is a email in the database
+            final User usr = userDAO.find("email", email);
+
+            // for default, users's auth is false, so here the atribute auth is changed to
+            // true
+            String hashcode = usr.setHash(userDAO.generateHash());
+
+            // send email to user
+            usr.getEmail().equals(email);
             JavaMailUtil.sendMail(email, hashcode);
             mail = "connection complete";
 
@@ -115,22 +109,20 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public String retrieve(@FormParam("hash") final String hash,
-    @FormParam("password") final String password) throws Exception {
-    
-    String mail;
+    public String retrieve(@FormParam("hash") final String hash, @FormParam("password") final String password)
+            throws Exception {
 
-    try {
-    // check if there is a hash in the database
-       
-       final User usr = userDAO.find("hash", hash);
-       //send email to user
-       
-       //if atribute users's hash is false, cancel change
-       
-        usr.getHash().equals(hash);
-            
-        usr.setPassword(password);
+        String mail;
+
+        try {
+            // check if there is a hash in the database
+            final User usr = userDAO.find("hash", hash);
+            // send email to user
+
+            // if atribute users's hash is false, cancel change
+            usr.getHash().equals(hash);
+
+            usr.setPassword(password);
             userDAO.update(usr);
             mail = "complete!";
             usr.setHash(null);
@@ -140,8 +132,6 @@ public class PublicService {
         }
         return mail;
     }
-
-     
 
     /**
      * Authenticates the user in the service
@@ -160,86 +150,59 @@ public class PublicService {
     public String login(@FormParam("email") final String email, @FormParam("password") final String password)
             throws Exception {
         String jwt = null;
-    
-    try {
-     // check if there is a user in the database, it will create the jwt, otherwise
-     // not
 
-        //check if password is correct
-        if(quickMailPass(email, userDAO.MD5(password)) == true)
-        {
-               // generates the token
+        try {
+            // check if there is a user in the database, it will create the jwt, otherwise
+            // not
 
-        final User usr = userDAO.find("email", email);
-            jwt = JwtBuilder.create("jwtBuilder").jwtId(true)
-            .claim(Claims.SUBJECT, usr.getEmail())
-            .claim("email", usr.getEmail())
-            .claim("groups", "users")
-            .buildJwt().compact();
+            // check if password is correct
+            if (quickMailPass(email, userDAO.MD5(password)) == true) {
+                // generates the token
 
-             }
-        
+                final User usr = userDAO.find("email", email);
+                jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, usr.getEmail())
+                        .claim("email", usr.getEmail()).claim("groups", "users").buildJwt().compact();
 
-            } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
-                jwt = "User authentication fail. Please, check if the provided e-mail and password are correct";
             }
-            return jwt;
+
+        } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
+            jwt = "User authentication fail. Please, check if the provided e-mail and password are correct";
+        }
+        return jwt;
     }
 
-// the two methods below assist in querying the existence of user data, 
-// specifically in the Create and Login methods
-     
-//quickMail checks if exist email
-    @POST
-    @Path("/quickMail")
-    @Consumes("application/x-www-form-urlencoded")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Boolean quickMail(@FormParam("email") final String email) throws Exception {
-    
-    Boolean message;
+    /**
+     * checks if exist email
+     * 
+     * @param email
+     * @return
+     */
+    private Boolean quickMail(@FormParam("email") final String email) {
 
+        Boolean message;
 
-    try {
-    // check if there is a email in the database
-       
-       final User usr = userDAO.find("email", email);
-       
-        usr.getEmail().equals(email);
-            
+        try {
+            // check if there is a email in the database
+            final User usr = userDAO.find("email", email);
+            usr.getEmail().equals(email);
+
             message = true;
-
         } catch (NoResultException e) {
-
             message = false;
-
         }
         return message;
     }
 
-//quickMailPass checks if email and password are correct
-    @POST
-    @Path("/quickMailPass")
-    @Consumes("application/x-www-form-urlencoded")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public Boolean quickMailPass(@FormParam("email") final String email,
-                                 @FormParam("password") final String password) throws Exception {
-    Boolean message;
+    private Boolean quickMailPass(@FormParam("email") final String email, @FormParam("password") final String password)
+            throws Exception {
+        Boolean message;
+        final User usr = userDAO.find("email", email);
 
-       final User usr = userDAO.find("email", email);
-
-       if (!usr.getPassword().equals(password)) {
-
+        if (!usr.getPassword().equals(password)) {
             message = true;
-
-       } else {
-
-           message = false;
-
-       }
-            
-       return message;
-
+        } else {
+            message = false;
+        }
+        return message;
     }
 }
