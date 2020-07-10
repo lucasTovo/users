@@ -169,6 +169,7 @@ public class PublicService {
 
         } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
             jwt = "User authentication fail. Please, check if the provided e-mail and password are correct";
+            
         }
         return jwt;
     }
