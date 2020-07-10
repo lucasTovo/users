@@ -92,8 +92,7 @@ public class PublicService {
             // check if there is a email in the database
             final User usr = userDAO.find("email", email);
 
-            // for default, users's auth is false, so here the atribute auth is changed to
-            // true
+            // generate the hash
             String hashcode = usr.setHash(userDAO.generateHash());
 
             // send email to user
