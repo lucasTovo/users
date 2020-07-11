@@ -101,7 +101,7 @@ public class PublicService {
             mail = "connection complete";
 
         } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
-            mail = "failed, incorrect email";
+            mail = "failed to recover password, try again";
         }
         return mail;
     }
@@ -130,7 +130,7 @@ public class PublicService {
             usr.setHash(null);
 
         } catch (NoResultException e) {
-            mail = "failed, wrong recover code, try again";
+            mail = "failed to recover password, try again";
         }
         return mail;
     }
