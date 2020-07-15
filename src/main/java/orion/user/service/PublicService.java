@@ -139,7 +139,7 @@ public class PublicService {
      * @param email    The user's e-mail
      * @param password The user's password
      * 
-     * @return Generates a JWT (Json Web Token) or a fail message
+     * @return Generates a JWT (Json Web Token) or HTTP 404 if fail
      * @throws Exception
      */
     @POST
@@ -148,25 +148,24 @@ public class PublicService {
     @Produces(MediaType.TEXT_PLAIN)
     @Transactional
     public String login(@FormParam("email") final String email, @FormParam("password") final String password)
-            throws Exception {
+            throws WebApplicationException {
         String jwt = null;
+        String message = null;
 
         try {
-            // check if there is a user in the database, it will create the jwt, otherwise
-            // not
-
             // check if password is correct
-            if (quickMailPass(email, userDAO.MD5(password)) == true) {
+            final User user = userDAO.find("email", email);
+            if (user != null && user.getPassword().equals(userDAO.MD5(password))) {
                 // generates the token
-
-                final User usr = userDAO.find("email", email);
-                jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, usr.getEmail())
-                        .claim("email", usr.getEmail()).claim("groups", "users").buildJwt().compact();
-
+                jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
+                        .claim("email", user.getEmail()).claim("groups", "users").buildJwt().compact();
+            } else {
+                message = "The user provides a wrong e-mail or password";
+                throw new WebApplicationException("The Wrong password", Response.Status.NOT_FOUND);
             }
-
-        } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
-            jwt = "User authentication fail. Please, check if the provided e-mail and password are correct";
+        } catch (Exception e) {
+            message = "The login method generates a DAO Exception";
+            throw new WebApplicationException(message, Response.Status.NOT_FOUND);
         }
         return jwt;
     }
@@ -178,9 +177,7 @@ public class PublicService {
      * @return
      */
     private Boolean quickMail(@FormParam("email") final String email) {
-
         Boolean message;
-
         try {
             // check if there is a email in the database
             final User usr = userDAO.find("email", email);
@@ -193,16 +190,4 @@ public class PublicService {
         return message;
     }
 
-    private Boolean quickMailPass(@FormParam("email") final String email, @FormParam("password") final String password)
-            throws Exception {
-        Boolean message;
-        final User usr = userDAO.find("email", email);
-
-        if (!usr.getPassword().equals(password)) {
-            message = true;
-        } else {
-            message = false;
-        }
-        return message;
-    }
 }

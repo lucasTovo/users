@@ -27,9 +27,8 @@ services:
                 - /sessions
 
     service:
-            # image: rodrigoprestesmachado/orion-talk-image:version-0.1
             build: .
             container_name: users-service
             ports:
-                - 9081:9080
-                - 9444:9443
+                - 9080:9080
+                - 9443:9443
