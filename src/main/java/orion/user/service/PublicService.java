@@ -64,6 +64,10 @@ public class PublicService {
             @FormParam("password") final String password) throws WebApplicationException {
 
         final User usr = new User();
+
+        // in quickMail method, email is checked, if it is equal to one that already
+        // exists in the bank,
+        // it does not create
         if (quickMail(email).equals(false)) {
             usr.setName(name);
             usr.setEmail(email);
@@ -89,8 +93,7 @@ public class PublicService {
             // check if there is a email in the database
             final User usr = userDAO.find("email", email);
 
-            // for default, users's auth is false, so here the atribute auth is changed to
-            // true
+            // generate the hash
             String hashcode = usr.setHash(userDAO.generateHash());
 
             // send email to user
@@ -99,7 +102,7 @@ public class PublicService {
             mail = "connection complete";
 
         } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {
-            mail = "failed, incorrect email";
+            mail = "failed to recover password, try again";
         }
         return mail;
     }
@@ -128,7 +131,7 @@ public class PublicService {
             usr.setHash(null);
 
         } catch (NoResultException e) {
-            mail = "failed, wrong recover code, try again";
+            mail = "failed to recover password, try again";
         }
         return mail;
     }
