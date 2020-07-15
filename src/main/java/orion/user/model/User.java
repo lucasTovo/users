@@ -18,6 +18,7 @@ package orion.user.model;
 
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,6 +48,7 @@ public class User {
     @Column(name = "EMAIL", unique = true)
     private String email;
     
+    @JsonbTransient
     @Column(name = "PASSWORD")
     private String password;
 
@@ -71,7 +73,7 @@ public class User {
         this.roles = roles;
     }
 
-    @JsonIgnore
+   // @JsonIgnore
     public String setPassword(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
