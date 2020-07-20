@@ -29,10 +29,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Data;
 
@@ -44,14 +42,17 @@ public class User {
     @Id
     @GeneratedValue
     private long id;
-
+    
+    @NotEmpty
     @Column(name = "EMAIL", unique = true)
     private String email;
-    
+  
+    @NotEmpty
     @JsonbTransient
     @Column(name = "PASSWORD")
     private String password;
 
+    @NotEmpty
     @Column(name = "NAME")
     private String name;
 
@@ -73,7 +74,7 @@ public class User {
         this.roles = roles;
     }
 
-   // @JsonIgnore
+   
     public String setPassword(String md5) {
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");

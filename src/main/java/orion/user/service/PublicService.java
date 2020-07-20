@@ -35,6 +35,9 @@ import com.ibm.websphere.security.jwt.InvalidClaimException;
 import com.ibm.websphere.security.jwt.JwtBuilder;
 import com.ibm.websphere.security.jwt.JwtException;
 
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import orion.user.data.UserDAO;
 import orion.user.util.JavaMailUtil;
 import orion.user.model.User;
@@ -56,6 +59,9 @@ public class PublicService {
      * @return An user object
      */
     @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/create")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
@@ -81,6 +87,9 @@ public class PublicService {
     }
 
     @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="FORGOTTEN")
     @Path("/forgot")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
@@ -108,6 +117,9 @@ public class PublicService {
     }
 
     @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="FORGOTTEN")
     @Path("/retrieve")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
@@ -146,6 +158,9 @@ public class PublicService {
      * @throws Exception
      */
     @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/login")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.TEXT_PLAIN)

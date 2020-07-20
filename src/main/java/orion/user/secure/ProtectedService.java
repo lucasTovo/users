@@ -29,13 +29,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import orion.user.data.UserDAO;
 import orion.user.model.User;
 
 @Path("/api/v1/")
 @RequestScoped
+
 public class ProtectedService {
 
     @Inject
@@ -44,6 +48,7 @@ public class ProtectedService {
     @Inject
     private JsonWebToken jwt;
 
+
     /**
      * Retrieves a user from the database
      * 
@@ -51,6 +56,9 @@ public class ProtectedService {
      * @return An user object
      */
     @GET
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
@@ -65,6 +73,9 @@ public class ProtectedService {
      * @param id The user's id
      */
     @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/delete")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
@@ -72,6 +83,7 @@ public class ProtectedService {
     @Transactional
     public void delete(@FormParam("id") final long id) {
         // find the id and delete the user data
+        
         userDAO.delete(id);
     }
 
@@ -85,6 +97,9 @@ public class ProtectedService {
      * @return
      */
     @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/update")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
