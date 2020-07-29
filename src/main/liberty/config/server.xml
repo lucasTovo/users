@@ -8,6 +8,8 @@
         <feature>javaMail-1.5</feature>
     </featureManager>
 
+
+
     <applicationManager autoExpand="true" />
 
     <mpMetrics authentication="false" />

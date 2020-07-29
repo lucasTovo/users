@@ -22,6 +22,7 @@ import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -75,14 +76,21 @@ public class PublicService {
         // exists in the bank,
         // it does not create
         if (quickMail(email).equals(false)) {
-            usr.setName(name);
-            usr.setEmail(email);
-            usr.setPassword(password);
-            userDAO.create(usr);
-            return usr;
+
+            if(name.isEmpty() || email.isEmpty() || password.isEmpty()){
+                String message = "No fields can be left empty";
+                throw new NotFoundException(message);
+            }
+
+                usr.setName(name);
+                usr.setEmail(email);
+                usr.setPassword(password);
+                userDAO.create(usr);
+                    return usr;
+
         } else {
-            String message = "The informed e-mail already exist in the service";
-            throw new WebApplicationException(message, Response.Status.CONFLICT);
+                String message = "The informed e-mail already exist in the service";
+                throw new WebApplicationException(message, Response.Status.CONFLICT);
         }
     }
 

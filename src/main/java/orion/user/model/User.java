@@ -30,7 +30,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -43,16 +43,16 @@ public class User {
     @GeneratedValue
     private long id;
     
-    @NotEmpty
+    @NotEmpty(message = "Email is required.")
     @Column(name = "EMAIL", unique = true)
     private String email;
   
-    @NotEmpty
+    @NotEmpty(message = "Password is required.")
     @JsonbTransient
     @Column(name = "PASSWORD")
     private String password;
 
-    @NotEmpty
+    @NotEmpty(message = "Name is required.")
     @Column(name = "NAME")
     private String name;
 
