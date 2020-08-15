@@ -6,6 +6,8 @@
         <feature>jpa-2.2</feature>
         <feature>mpJwt-1.1</feature>
         <feature>javaMail-1.5</feature>
+        <feature>ejb-3.2</feature>
+        
     </featureManager>
 
 
@@ -15,7 +17,7 @@
     <mpMetrics authentication="false" />
 
     <variable name="default.http.port" defaultValue="9080" />
-    <variable name="default.https.port" defaultValue="9443" />
+    <variable name="default.https.port" defaultValue="9444" />
     <variable name="app.context.root" defaultValue="/" />
 
     <httpEndpoint host="*" httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
@@ -40,12 +42,11 @@
     </library>
 
     <!-- Declare the Worklight Server project database -->
-    <dataSource jndiName="jdbc/OrionUsersDS">
+    <dataSource jndiName="jdbc/OrionUsersServiceDS">
         <jdbcDriver libraryRef="MySQLLib" />
-        <properties databaseName="orion-users-service" serverName="localhost" portNumber="3306" user="orion-users-service" password="orion-users-service" />
+        <!-- Development mode: serverName="localhost" portNumber="3307"  -->
+        <!-- Continuous integration and production: serverName="db" portNumber="3306"  -->
+        <properties serverName="db" portNumber="3306" databaseName="orion-users-service" user="orion-users-service" password="orion-users-service" />
     </dataSource>
-
-
-
 
 </server>

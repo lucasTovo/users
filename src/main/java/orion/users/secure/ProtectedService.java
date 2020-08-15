@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package orion.user.secure;
+package orion.users.secure;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -34,8 +34,8 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import orion.user.data.UserDAO;
-import orion.user.model.User;
+import orion.users.data.UsersDAO;
+import orion.users.model.Users;
 
 @Path("/api/v1/")
 @RequestScoped
@@ -43,7 +43,7 @@ import orion.user.model.User;
 public class ProtectedService {
 
     @Inject
-    private UserDAO userDAO;
+    private UsersDAO userDAO;
 
     @Inject
     private JsonWebToken jwt;
@@ -63,7 +63,7 @@ public class ProtectedService {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
-    public User read(@PathParam("id") final long id) {
+    public Users read(@PathParam("id") final long id) {
         return userDAO.find(id);
     }
 
@@ -105,10 +105,10 @@ public class ProtectedService {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
-    public User update(@FormParam("id") final long id, @FormParam("name") final String name,
+    public Users update(@FormParam("id") final long id, @FormParam("name") final String name,
             @FormParam("email") final String email, @FormParam("password") final String password) {
 
-        final User usr = userDAO.find(id);
+        final Users usr = userDAO.find(id);
         usr.setName(name);
         usr.setEmail(email);
         usr.setPassword(password);

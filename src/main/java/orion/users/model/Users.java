@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package orion.user.model;
+package orion.users.model;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "USERS")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue

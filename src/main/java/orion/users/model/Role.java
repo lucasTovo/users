@@ -1,4 +1,4 @@
-package orion.user.model;
+package orion.users.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

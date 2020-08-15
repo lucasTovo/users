@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package orion.user;
+package orion.users;
 
 import org.eclipse.microprofile.auth.LoginConfig;
 
-import orion.user.secure.ProtectedService;
-import orion.user.service.PublicService;
+import orion.users.secure.ProtectedService;
+import orion.users.service.PublicService;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,7 +32,7 @@ import javax.ws.rs.core.Application;
 @ApplicationPath("/users")
 @LoginConfig(authMethod = "MP-JWT", realmName = "jwt-jaspi")
 @DeclareRoles({ "protected" })
-public class OrionUserService extends Application {
+public class OrionUsersService extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {

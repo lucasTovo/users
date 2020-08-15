@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package orion.user.data;
+package orion.users.data;
 
 import java.lang.reflect.ParameterizedType;
 import java.security.SecureRandom;
@@ -33,7 +33,7 @@ import javax.persistence.criteria.Root;
 
 public abstract class Repository<T> {
 
-    @PersistenceContext(name = "OrionUsersDS")
+    @PersistenceContext(name = "OrionUsersServiceDS")
     private EntityManager em;
 
     public T create(final T obj) {

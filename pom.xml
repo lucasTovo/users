@@ -42,14 +42,6 @@
     <version>2.0.1.Final</version>
   </dependency>
 
-<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-<dependency>
-  <groupId>org.slf4j</groupId>
-  <artifactId>slf4j-simple</artifactId>
-  <version>1.7.30</version>
-</dependency>
-
-
 
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -77,12 +69,10 @@
   <version>2.11.1</version>
 </dependency>
 
-
-
     <dependency>
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
-      <version>3.2</version>
+      <version>3.3</version>
       <type>pom</type>
       <scope>provided</scope>
     </dependency>
@@ -108,6 +98,52 @@
       <artifactId>jsoup</artifactId>
       <version>1.13.1</version>
     </dependency>
+
+
+    <!-- Testing-->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.6.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.microshed</groupId>
+      <artifactId>microshed-testing-testcontainers</artifactId>
+      <version>0.9</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.microshed</groupId>
+      <artifactId>microshed-testing-liberty</artifactId>
+      <version>0.9</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>1.14.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mysql</artifactId>
+      <version>1.14.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.21</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.12</version>
+      <scope>test</scope>
+  </dependency>
+
   </dependencies>
   <build>
     <finalName>orion-users-service</finalName>
@@ -147,7 +183,20 @@
                 <jwt.issuer>https://server.example.com</jwt.issuer>
               </bootstrapProperties>
             </configuration>
-          </plugin>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.22.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+        </plugin>
         </plugins>
       </build>
     </profile>

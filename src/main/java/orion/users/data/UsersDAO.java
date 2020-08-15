@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package orion.user.data;
+package orion.users.data;
 
-import orion.user.model.User;
+import orion.users.model.Users;
 
-public class UserDAO extends Repository<User>  {
+public class UsersDAO extends Repository<Users>  {
     
 }

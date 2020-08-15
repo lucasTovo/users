@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package orion.user.service;
+package orion.users.service;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -39,16 +39,16 @@ import com.ibm.websphere.security.jwt.JwtException;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import orion.user.data.UserDAO;
-import orion.user.util.JavaMailUtil;
-import orion.user.model.User;
+import orion.users.data.UsersDAO;
+import orion.users.model.Users;
+import orion.users.util.JavaMailUtil;
 
 @RequestScoped
 @Path("/api/v1/")
 public class PublicService {
 
     @Inject
-    private UserDAO userDAO;
+    private UsersDAO userDAO;
 
     /**
      * Creates a new user in the database
@@ -67,10 +67,10 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User createUser(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password) throws WebApplicationException {
+    public Users createUser(@FormParam("name") final String name, @FormParam("email") final String email,
+            @FormParam("password") final String password) throws WebApplicationException, NotFoundException {
 
-        final User usr = new User();
+        final Users usr = new Users();
 
         // in quickMail method, email is checked, if it is equal to one that already
         // exists in the bank,
@@ -108,7 +108,7 @@ public class PublicService {
 
         try {
             // check if there is a email in the database
-            final User usr = userDAO.find("email", email);
+            final Users usr = userDAO.find("email", email);
 
             // generate the hash
             String hashcode = usr.setHash(userDAO.generateHash());
@@ -139,7 +139,7 @@ public class PublicService {
 
         try {
             // check if there is a hash in the database
-            final User usr = userDAO.find("hash", hash);
+            final Users usr = userDAO.find("hash", hash);
             // send email to user
 
             // if atribute users's hash is false, cancel change
@@ -180,7 +180,7 @@ public class PublicService {
 
         try {
             // check if password is correct
-            final User user = userDAO.find("email", email);
+            final Users user = userDAO.find("email", email);
             if (user != null && user.getPassword().equals(userDAO.MD5(password))) {
                 // generates the token
                 jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
@@ -206,7 +206,7 @@ public class PublicService {
         Boolean message;
         try {
             // check if there is a email in the database
-            final User usr = userDAO.find("email", email);
+            final Users usr = userDAO.find("email", email);
             usr.getEmail().equals(email);
 
             message = true;
