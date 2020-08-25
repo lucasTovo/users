@@ -65,6 +65,9 @@ public class PublicServiceIT {
         port = DockerCompose.users.getFirstMappedPort();
     }
 
+    //4 correct codes, 4 incorrect codes
+
+    //SHOULD WORK
     @Test
     public void testCreate() {
         try {
@@ -87,7 +90,7 @@ public class PublicServiceIT {
             // Get response body
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
-            System.out.println(">>>>>>>>>>>>" + content);
+            System.out.println("testCreate >>>>>>>>>>>>" + content);
 
             assertEquals(response.getStatusLine().getStatusCode(), 200);
 
@@ -96,6 +99,7 @@ public class PublicServiceIT {
         }
     }
 
+    //SHOULD WORK
     @Test
     public void testUpdate() {
         try {
@@ -118,7 +122,7 @@ public class PublicServiceIT {
             // Get response body
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
-            System.out.println(">>>>>>>>>>>>" + content);
+            System.out.println("testUpdate >>>>>>>>>>>>" + content);
 
             assertEquals(response.getStatusLine().getStatusCode(), 200);
 
@@ -127,13 +131,14 @@ public class PublicServiceIT {
         }
     }
 
+    //SHOULD WORK
     @Test   
      public void testRead() {
         try {
 
             String id = "1";
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "/list/" + id;
+            String url = "http://" + host + ":" + port + API + "/list/" + 1;
 
 
            
@@ -146,7 +151,7 @@ public class PublicServiceIT {
             //Get response body
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
-            System.out.println(">>>>>>>>>>>>" + content);
+            System.out.println("testRead >>>>>>>>>>>>" + content);
 
             assertEquals(response.getStatusLine().getStatusCode(), 200);
             
@@ -155,6 +160,7 @@ public class PublicServiceIT {
         }
     }
 
+    //SHOULD WORK
     @Test   
     public void testDelete() {
        try {
@@ -178,7 +184,7 @@ public class PublicServiceIT {
            //Get response body
            HttpEntity entity = response.getEntity();
            String content = EntityUtils.toString(entity);
-           System.out.println(">>>>>>>>>>>>" + content);
+           System.out.println("testDelete >>>>>>>>>>>>" + content);
 
            assertEquals(response.getStatusLine().getStatusCode(), 200);
            
@@ -187,6 +193,7 @@ public class PublicServiceIT {
        }
    }
 
+   //SHOULD SHOW ERROR
    @Test
    public void testNullCreate() {
        try {
@@ -209,7 +216,7 @@ public class PublicServiceIT {
            // Get response body
            HttpEntity entity = response.getEntity();
            String content = EntityUtils.toString(entity);
-           System.out.println(">>>>>>>>>>>>" + content);
+           System.out.println("testNullCreate >>>>>>>>>>>>" + content);
 
            assertEquals(response.getStatusLine().getStatusCode(), 200);
 
@@ -218,6 +225,7 @@ public class PublicServiceIT {
        }
    }
 
+   //SHOULD SHOW ERROR
    @Test
    public void testWithoutParamsCreate() {
        try {
@@ -239,7 +247,7 @@ public class PublicServiceIT {
            // Get response body
            HttpEntity entity = response.getEntity();
            String content = EntityUtils.toString(entity);
-           System.out.println(">>>>>>>>>>>>" + content);
+           System.out.println("testWithoutParamsCreate >>>>>>>>>>>>" + content);
 
            assertEquals(response.getStatusLine().getStatusCode(), 200);
 
@@ -248,6 +256,7 @@ public class PublicServiceIT {
        }
    }
 
+   //SHOULD SHOW ERROR
    @Test
    public void testSameEmailCreate_A() {
        try {
@@ -270,7 +279,7 @@ public class PublicServiceIT {
            // Get response body
            HttpEntity entity = response.getEntity();
            String content = EntityUtils.toString(entity);
-           System.out.println(">>>>>>>>>>>>" + content);
+           System.out.println("testSameEmailCreate_A >>>>>>>>>>>>" + content);
 
            assertEquals(response.getStatusLine().getStatusCode(), 200);
 
@@ -279,6 +288,7 @@ public class PublicServiceIT {
        }
    }
 
+   //SHOULD SHOW ERROR
    @Test
    public void testSameEmailCreate_B() {
        try {
@@ -301,7 +311,7 @@ public class PublicServiceIT {
            // Get response body
            HttpEntity entity = response.getEntity();
            String content = EntityUtils.toString(entity);
-           System.out.println(">>>>>>>>>>>>" + content);
+           System.out.println("testSameEmailCreate_B >>>>>>>>>>>>" + content);
 
            assertEquals(response.getStatusLine().getStatusCode(), 200);
 
