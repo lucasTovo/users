@@ -34,8 +34,8 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import orion.users.data.UsersDAO;
-import orion.users.model.Users;
+import orion.users.data.UserDAO;
+import orion.users.model.User;
 
 @Path("/api/v1/")
 @RequestScoped
@@ -43,7 +43,7 @@ import orion.users.model.Users;
 public class ProtectedService {
 
     @Inject
-    private UsersDAO userDAO;
+    private UserDAO userDAO;
 
     @Inject
     private JsonWebToken jwt;
@@ -63,7 +63,7 @@ public class ProtectedService {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
-    public Users read(@PathParam("id") final long id) {
+    public User read(@PathParam("id") final long id) {
         return userDAO.find(id);
     }
 
@@ -105,10 +105,10 @@ public class ProtectedService {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({ "users" })
     @Transactional
-    public Users update(@FormParam("id") final long id, @FormParam("name") final String name,
+    public User update(@FormParam("id") final long id, @FormParam("name") final String name,
             @FormParam("email") final String email, @FormParam("password") final String password) {
 
-        final Users usr = userDAO.find(id);
+        final User usr = userDAO.find(id);
         usr.setName(name);
         usr.setEmail(email);
         usr.setPassword(password);

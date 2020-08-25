@@ -16,15 +16,18 @@
  */
 package orion.users.service;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -39,8 +42,8 @@ import com.ibm.websphere.security.jwt.JwtException;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import orion.users.data.UsersDAO;
-import orion.users.model.Users;
+import orion.users.data.UserDAO;
+import orion.users.model.User;
 import orion.users.util.JavaMailUtil;
 
 @RequestScoped
@@ -48,7 +51,7 @@ import orion.users.util.JavaMailUtil;
 public class PublicService {
 
     @Inject
-    private UsersDAO userDAO;
+    private UserDAO userDAO;
 
     /**
      * Creates a new user in the database
@@ -67,10 +70,10 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public Users createUser(@FormParam("name") final String name, @FormParam("email") final String email,
+    public User createUser(@FormParam("id") final Long id, @FormParam("name") final String name, @FormParam("email") final String email,
             @FormParam("password") final String password) throws WebApplicationException, NotFoundException {
 
-        final Users usr = new Users();
+        final User usr = new User();
 
         // in quickMail method, email is checked, if it is equal to one that already
         // exists in the bank,
@@ -81,7 +84,7 @@ public class PublicService {
                 String message = "No fields can be left empty";
                 throw new NotFoundException(message);
             }
-
+                usr.setId(id);
                 usr.setName(name);
                 usr.setEmail(email);
                 usr.setPassword(password);
@@ -108,7 +111,7 @@ public class PublicService {
 
         try {
             // check if there is a email in the database
-            final Users usr = userDAO.find("email", email);
+            final User usr = userDAO.find("email", email);
 
             // generate the hash
             String hashcode = usr.setHash(userDAO.generateHash());
@@ -139,7 +142,7 @@ public class PublicService {
 
         try {
             // check if there is a hash in the database
-            final Users usr = userDAO.find("hash", hash);
+            final User usr = userDAO.find("hash", hash);
             // send email to user
 
             // if atribute users's hash is false, cancel change
@@ -180,7 +183,7 @@ public class PublicService {
 
         try {
             // check if password is correct
-            final Users user = userDAO.find("email", email);
+            final User user = userDAO.find("email", email);
             if (user != null && user.getPassword().equals(userDAO.MD5(password))) {
                 // generates the token
                 jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
@@ -206,7 +209,7 @@ public class PublicService {
         Boolean message;
         try {
             // check if there is a email in the database
-            final Users usr = userDAO.find("email", email);
+            final User usr = userDAO.find("email", email);
             usr.getEmail().equals(email);
 
             message = true;
@@ -214,6 +217,71 @@ public class PublicService {
             message = false;
         }
         return message;
+    }
+///////////////////////////////////////
+    //METHODS from ProtectedService
+///////////////////////////////////////
+    @GET
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
+    @Path("/list/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public User read(@PathParam("id") final long id) {
+        return userDAO.find(id);
+    }
+
+    /**
+     * Deletes an user from the database
+     * 
+     * @param id The user's id
+     */
+    @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
+    @Path("/delete")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public void delete(@FormParam("id") final long id) {
+        // find the id and delete the user data
+
+       
+           userDAO.delete(id);
+       
+            
+        
+        
+    }
+
+    /**
+     * Updates an user in database
+     * 
+     * @param id       The user's id
+     * @param name     The user's name
+     * @param email    The user's e-mail
+     * @param password The user's password
+     * @return
+     */
+    @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="CRUD")
+    @Path("/update")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public User update(@FormParam("id") final long id, @FormParam("name") final String name,
+            @FormParam("email") final String email, @FormParam("password") final String password) {
+
+        final User usr = userDAO.find(id);
+        usr.setName(name);
+        usr.setEmail(email);
+        usr.setPassword(password);
+        userDAO.update(usr);
+        return usr;
     }
 
 }

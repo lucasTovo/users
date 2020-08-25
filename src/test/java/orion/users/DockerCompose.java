@@ -60,9 +60,10 @@ public class DockerCompose implements BeforeAllCallback, AfterAllCallback {
         mysql.withExposedPorts(3306);
         mysql.waitingFor(Wait.forListeningPort());
         
-        //Start the containers
+
         users.start();
         mysql.start();
+        
     }
 
     @Override

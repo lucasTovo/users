@@ -30,14 +30,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "USERS")
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue

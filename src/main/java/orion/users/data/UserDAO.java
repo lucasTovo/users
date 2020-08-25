@@ -17,8 +17,8 @@
 
 package orion.users.data;
 
-import orion.users.model.Users;
+import orion.users.model.User;
 
-public class UsersDAO extends Repository<Users>  {
+public class UserDAO extends Repository<User>  {
     
 }
