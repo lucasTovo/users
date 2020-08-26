@@ -225,7 +225,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/list/{id}")
+    @Path("/public/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User read(@PathParam("id") final long id) {
@@ -241,7 +241,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/delete")
+    @Path("/public/delete")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -269,7 +269,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/update")
+    @Path("/public/update")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

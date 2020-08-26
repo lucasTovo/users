@@ -105,7 +105,7 @@ public class PublicServiceIT {
         try {
 
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "update";
+            String url = "http://" + host + ":" + port + API + "/public/update";
 
             HttpPost post = new HttpPost(url);
 
@@ -138,7 +138,7 @@ public class PublicServiceIT {
 
             String id = "1";
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "/list/" + 1;
+            String url = "http://" + host + ":" + port + API + "/public/list/" + id;
 
 
            
@@ -167,7 +167,7 @@ public class PublicServiceIT {
 
           
            // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "/delete/";
+           String url = "http://" + host + ":" + port + API + "/public/delete/";
 
 
           
