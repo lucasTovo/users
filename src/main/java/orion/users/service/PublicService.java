@@ -47,7 +47,7 @@ import orion.users.model.User;
 import orion.users.util.JavaMailUtil;
 
 @RequestScoped
-@Path("/api/v1/public")
+@Path("/api/v1/")
 public class PublicService {
 
     @Inject
@@ -70,7 +70,7 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User createUser(@FormParam("name") final String name, @FormParam("email") final String email,
+    public User createUser(@FormParam("id") final long id, @FormParam("name") final String name, @FormParam("email") final String email,
             @FormParam("password") final String password) throws WebApplicationException, NotFoundException {
 
         final User usr = new User();
@@ -85,6 +85,7 @@ public class PublicService {
                 throw new NotFoundException(message);
             }
                
+                usr.setId(id);
                 usr.setName(name);
                 usr.setEmail(email);
                 usr.setPassword(password);
@@ -225,10 +226,10 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/list/{id}")
+    @Path("/listTest/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User read(@PathParam("id") final long id) {
+    public User readTest(@PathParam("id") final long id) {
         return userDAO.find(id);
     }
 
@@ -241,11 +242,11 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/delete")
+    @Path("/deleteTest")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void delete(@FormParam("id") final long id) {
+    public void deleteTest(@FormParam("id") final long id) {
         // find the id and delete the user data
 
        
@@ -269,11 +270,11 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/update")
+    @Path("/updateTest")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User update(@FormParam("id") final long id, @FormParam("name") final String name,
+    public User updateTest(@FormParam("id") final long id, @FormParam("name") final String name,
             @FormParam("email") final String email, @FormParam("password") final String password) {
 
         final User usr = userDAO.find(id);

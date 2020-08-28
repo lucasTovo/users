@@ -46,7 +46,7 @@ public class PublicServiceIT {
 
     public static PublicService publicSvc;
 
-    private static String API = "/orion-users-service/users/api/v1/public/";
+    private static String API = "/orion-users-service/users/api/v1/";
 
     private String host;
     private Integer port;
@@ -99,7 +99,7 @@ public class PublicServiceIT {
         try {
 
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "update";
+            String url = "http://" + host + ":" + port + API + "updateTest";
 
             HttpPost post = new HttpPost(url);
 
@@ -132,7 +132,7 @@ public class PublicServiceIT {
 
             String id = "1";
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "list" + id;
+            String url = "http://" + host + ":" + port + API + "listTest" + id;
 
 
            
@@ -161,7 +161,7 @@ public class PublicServiceIT {
 
           
            // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "delete";
+           String url = "http://" + host + ":" + port + API + "deleteTest";
 
 
           
