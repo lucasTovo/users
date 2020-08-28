@@ -47,7 +47,7 @@ import orion.users.model.User;
 import orion.users.util.JavaMailUtil;
 
 @RequestScoped
-@Path("/api/v1/")
+@Path("/api/v1/public")
 public class PublicService {
 
     @Inject
@@ -70,7 +70,7 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User createUser(@FormParam("id") final Long id, @FormParam("name") final String name, @FormParam("email") final String email,
+    public User createUser(@FormParam("name") final String name, @FormParam("email") final String email,
             @FormParam("password") final String password) throws WebApplicationException, NotFoundException {
 
         final User usr = new User();
@@ -84,7 +84,7 @@ public class PublicService {
                 String message = "No fields can be left empty";
                 throw new NotFoundException(message);
             }
-                usr.setId(id);
+               
                 usr.setName(name);
                 usr.setEmail(email);
                 usr.setPassword(password);
@@ -225,7 +225,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/public/list/{id}")
+    @Path("/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User read(@PathParam("id") final long id) {
@@ -241,7 +241,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/public/delete")
+    @Path("/delete")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -269,7 +269,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/public/update")
+    @Path("/update")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

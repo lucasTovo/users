@@ -1,13 +1,11 @@
 package orion.users.util;
 
-import org.apache.commons.io.IOUtils;
-import java.io.FileInputStream;
+
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;

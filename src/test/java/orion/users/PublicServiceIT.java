@@ -17,24 +17,18 @@
 package orion.users;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.BadRequestException;
 
-import org.apache.commons.httpclient.URI;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -52,7 +46,7 @@ public class PublicServiceIT {
 
     public static PublicService publicSvc;
 
-    private static String API = "/orion-users-service/users/api/v1/";
+    private static String API = "/orion-users-service/users/api/v1/public/";
 
     private String host;
     private Integer port;
@@ -105,14 +99,14 @@ public class PublicServiceIT {
         try {
 
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "/public/update";
+            String url = "http://" + host + ":" + port + API + "update";
 
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", "1"));
             params.add(new BasicNameValuePair("name", "marcus"));
-            params.add(new BasicNameValuePair("email", "emaillll"));
+            params.add(new BasicNameValuePair("email", "othermail"));
             params.add(new BasicNameValuePair("password", "passe"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
@@ -138,7 +132,7 @@ public class PublicServiceIT {
 
             String id = "1";
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "/public/list/" + id;
+            String url = "http://" + host + ":" + port + API + "list" + id;
 
 
            
@@ -167,7 +161,7 @@ public class PublicServiceIT {
 
           
            // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "/public/delete/";
+           String url = "http://" + host + ":" + port + API + "delete";
 
 
           
@@ -185,6 +179,7 @@ public class PublicServiceIT {
            HttpEntity entity = response.getEntity();
            String content = EntityUtils.toString(entity);
            System.out.println("testDelete >>>>>>>>>>>>" + content);
+           System.out.println("testDelete code >>>>>>>>>>>>" + response.getStatusLine().getStatusCode() );
 
            assertEquals(response.getStatusLine().getStatusCode(), 200);
            

@@ -37,7 +37,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import orion.users.data.UserDAO;
 import orion.users.model.User;
 
-@Path("/api/v1/")
+@Path("/api/v1/protected")
 @RequestScoped
 
 public class ProtectedService {
