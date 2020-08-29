@@ -33,7 +33,7 @@ import javax.persistence.criteria.Root;
 
 public abstract class Repository<T> {
 
-    @PersistenceContext(name = "OrionUsersServiceDS")
+    @PersistenceContext(name = "UsersDS")
     private EntityManager em;
 
     public T create(final T obj) {

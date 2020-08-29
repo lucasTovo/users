@@ -34,9 +34,10 @@ import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 
-@Data
+
 @Entity
-@Table(name = "USERS")
+@Data
+@Table(name = "USER")
 public class User {
 
     @Id

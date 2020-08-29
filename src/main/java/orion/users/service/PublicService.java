@@ -16,7 +16,7 @@
  */
 package orion.users.service;
 
-import javax.annotation.security.RolesAllowed;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
@@ -66,7 +66,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/create")
+    @Path("create")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -102,7 +102,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="FORGOTTEN")
-    @Path("/forgot")
+    @Path("forgot")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -132,7 +132,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="FORGOTTEN")
-    @Path("/retrieve")
+    @Path("retrieve")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -173,7 +173,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/login")
+    @Path("login")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.TEXT_PLAIN)
     @Transactional
@@ -226,7 +226,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/listTest/{id}")
+    @Path("listTest/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User readTest(@PathParam("id") final long id) {
@@ -242,7 +242,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/deleteTest")
+    @Path("deleteTest")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
@@ -270,7 +270,7 @@ public class PublicService {
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("/updateTest")
+    @Path("updateTest")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional

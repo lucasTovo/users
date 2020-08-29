@@ -19,7 +19,7 @@
   </dependencyManagement>
 
   <properties>
-    <openliberty.maven.version>3.1</openliberty.maven.version>
+    <openliberty.maven.version>3.3-M2</openliberty.maven.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -72,7 +72,7 @@
     <dependency>
       <groupId>org.eclipse.microprofile</groupId>
       <artifactId>microprofile</artifactId>
-      <version>3.3</version>
+      <version>3.2</version>
       <type>pom</type>
       <scope>provided</scope>
     </dependency>
@@ -134,7 +134,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.21</version>
+      <version>8.0.19</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -147,22 +147,30 @@
 
 
   </dependencies>
+
   <build>
     <finalName>orion-users-service</finalName>
   </build>
+
   <profiles>
+    
     <profile>
       <id>liberty</id>
+      
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
+      
       <build>
         <plugins>
+
+          
           <plugin>
             <groupId>io.openliberty.tools</groupId>
             <artifactId>liberty-maven-plugin</artifactId>
-            <version>${openliberty.maven.version}</version>
+            <version>3.2.2</version>
             <executions>
+              
               <execution>
                 <id>package-server</id>
                 <phase>package</phase>
@@ -176,20 +184,16 @@
                   <outputDirectory>target/wlp-package</outputDirectory>
                 </configuration>
               </execution>
+
             </executions>
-            <configuration>
-              <include>runnable</include>
-              <serverName>${final.name}</serverName>
-              <bootstrapProperties>
-                <project.name>${final.name}</project.name>
-                <jwt.issuer>https://server.example.com</jwt.issuer>
-              </bootstrapProperties>
-            </configuration>
+          
+
         </plugin>
+        <!-- Plugin to run integration tests -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
-            <version>2.22.0</version>
+            <version>3.0.0-M5</version>
             <executions>
               <execution>
                 <goals>
@@ -199,7 +203,9 @@
               </execution>
             </executions>
         </plugin>
+
         </plugins>
+
       </build>
     </profile>
   </profiles>

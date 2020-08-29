@@ -42,7 +42,7 @@
     </library>
 
     <!-- Declare the Worklight Server project database -->
-    <dataSource jndiName="jdbc/OrionUsersServiceDS">
+    <dataSource jndiName="jdbc/UsersDS">
         <jdbcDriver libraryRef="MySQLLib" />
         <!-- Development mode: serverName="localhost" portNumber="3307"  -->
         <!-- Continuous integration and production: serverName="db" portNumber="3306"  -->

@@ -72,7 +72,7 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("id", "1"));
+            params.add(new BasicNameValuePair("id", "10"));
             params.add(new BasicNameValuePair("name", "John"));
             params.add(new BasicNameValuePair("email", "emaillll"));
             params.add(new BasicNameValuePair("password", "pass"));
@@ -104,7 +104,7 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("id", "1"));
+            params.add(new BasicNameValuePair("id", "10"));
             params.add(new BasicNameValuePair("name", "marcus"));
             params.add(new BasicNameValuePair("email", "othermail"));
             params.add(new BasicNameValuePair("password", "passe"));
@@ -130,7 +130,7 @@ public class PublicServiceIT {
      public void testRead() {
         try {
 
-            String id = "1";
+            String id = "10";
             // Mounting URL, create
             String url = "http://" + host + ":" + port + API + "listTest" + id;
 
@@ -168,7 +168,7 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", "1"));
+           params.add(new BasicNameValuePair("id", "10"));
            post.setEntity(new UrlEncodedFormEntity(params));
 
            // execute and getting the response
