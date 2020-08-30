@@ -72,9 +72,8 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("id", "10"));
-            params.add(new BasicNameValuePair("name", "John"));
-            params.add(new BasicNameValuePair("email", "emaillll"));
+            params.add(new BasicNameValuePair("name", "mike - testCreate"));
+            params.add(new BasicNameValuePair("email", "mailC1"));
             params.add(new BasicNameValuePair("password", "pass"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
@@ -104,9 +103,9 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("id", "10"));
-            params.add(new BasicNameValuePair("name", "marcus"));
-            params.add(new BasicNameValuePair("email", "othermail"));
+            params.add(new BasicNameValuePair("id", "1"));
+            params.add(new BasicNameValuePair("name", "jonas - updateTest"));
+            params.add(new BasicNameValuePair("email", "mailU1"));
             params.add(new BasicNameValuePair("password", "passe"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
@@ -130,9 +129,9 @@ public class PublicServiceIT {
      public void testRead() {
         try {
 
-            String id = "10";
+            
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "listTest" + id;
+            String url = "http://" + host + ":" + port + API + "listTest/" + 1;
 
 
            
@@ -168,7 +167,7 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", "10"));
+           params.add(new BasicNameValuePair("id", "51"));
            post.setEntity(new UrlEncodedFormEntity(params));
 
            // execute and getting the response
