@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 
-package orion.user.data;
+package orion.users.data;
 
 import java.lang.reflect.ParameterizedType;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,9 +29,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+
+
 public abstract class Repository<T> {
 
-    @PersistenceContext(name = "OrionUserDS")
+    @PersistenceContext(name = "UsersDS")
     private EntityManager em;
 
     public T create(final T obj) {
@@ -65,6 +70,14 @@ public abstract class Repository<T> {
         return em.createQuery(criteria).getSingleResult();
     }
 
+    public T find(String column, String value) {
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<T> criteria = builder.createQuery(this.genericClass());
+        Root<T> root = criteria.from(this.genericClass());
+        criteria.select(root).where(builder.equal(root.get(column), value));
+        return em.createQuery(criteria).getSingleResult();
+    }
+
     public T find(String column1, String value1, String column2, String value2) {
         final CriteriaBuilder builder = em.getCriteriaBuilder();
         final CriteriaQuery<T> criteria = builder.createQuery(this.genericClass());
@@ -73,6 +86,43 @@ public abstract class Repository<T> {
                                    (builder.equal(root.get(column2), value2)));
         return em.createQuery(criteria).getSingleResult();
     }
+
+
+    public T findUser(String value1, String value2) {
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<T> criteria = builder.createQuery(this.genericClass());
+        Root<T> root = criteria.from(this.genericClass());
+        criteria.select(root).where((builder.equal(root.get("value1"), value1)),
+                                   (builder.equal(root.get("value2"), value2)));
+        return em.createQuery(criteria).getSingleResult();
+    }
+
+    public String MD5(String md5) {
+        try {
+             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+             byte[] array = md.digest(md5.getBytes());
+             StringBuffer sb = new StringBuffer();
+             for (int i = 0; i < array.length; ++i) {
+               sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+            }
+             return sb.toString();
+         } catch (java.security.NoSuchAlgorithmException e) {
+         }
+         return null;
+     }
+
+     public String generateHash() {
+        SecureRandom random = new SecureRandom();
+            byte bytes[] = new byte[6];
+            random.nextBytes(bytes);
+            Encoder encoder = Base64.getUrlEncoder().withoutPadding();
+            String hash = encoder.encodeToString(bytes);
+        return hash;
+    }
+
+     
+
+
 
     @SuppressWarnings("unchecked")
     private Class<T> genericClass() {

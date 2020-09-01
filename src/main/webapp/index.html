@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>Password Validator</title>
+
+  
+</head>
+<body>   
+
+
+  <form id="app" action="http://localhost:9080/users/api/v1/retrieve" method="POST">
+          
+
+ 
+    <br>
+    <label>password :
+      <input name="password" id="pw1" type="password" onkeyup='check();' required/>
+    </label>
+    <br>
+    <label>confirm password:
+      <input type="password" name="confirm_password" id="pw2"  onkeyup='check();' required/> 
+      <span id='message'></span>
+    </label>
+    <button type="submit" class="btn btn-warning" id="btSubmit" disabled>Submit</button>
+
+
+</form>
+
+
+
+
+</body>
+</html>

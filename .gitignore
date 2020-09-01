@@ -1,9 +1,9 @@
 target/
 .settings/
-.project/
 .vscode/
+.project/
 .factorypath/
 .classpath
 .github
-.DS_Store
 .factorypath
+.DS_Store

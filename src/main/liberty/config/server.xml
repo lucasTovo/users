@@ -5,7 +5,12 @@
         <feature>microProfile-3.2</feature>
         <feature>jpa-2.2</feature>
         <feature>mpJwt-1.1</feature>
+        <feature>javaMail-1.5</feature>
+        <feature>ejb-3.2</feature>
+        
     </featureManager>
+
+
 
     <applicationManager autoExpand="true" />
 
@@ -37,9 +42,11 @@
     </library>
 
     <!-- Declare the Worklight Server project database -->
-    <dataSource jndiName="jdbc/OrionUsersDS">
+    <dataSource jndiName="jdbc/UsersDS">
         <jdbcDriver libraryRef="MySQLLib" />
-        <properties databaseName="orion-users-service" serverName="localhost" portNumber="3306" user="orion-users-service" password="orion-users-service" />
+        <!-- Development mode: serverName="localhost" portNumber="3307"  -->
+        <!-- Continuous integration and production: serverName="db" portNumber="3306"  -->
+        <properties serverName="db" portNumber="3306" databaseName="orion-users-service" user="orion-users-service" password="orion-users-service" />
     </dataSource>
 
 </server>

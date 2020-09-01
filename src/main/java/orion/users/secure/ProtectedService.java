@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package orion.user.secure;
+package orion.users.secure;
 
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -29,13 +29,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.eclipse.microprofile.jwt.JsonWebToken;
 
-import orion.user.data.UserDAO;
-import orion.user.model.User;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+import orion.users.data.UserDAO;
+import orion.users.model.User;
 
 @Path("/api/v1/")
 @RequestScoped
+
 public class ProtectedService {
 
     @Inject
@@ -44,6 +48,7 @@ public class ProtectedService {
     @Inject
     private JsonWebToken jwt;
 
+
     /**
      * Retrieves a user from the database
      * 
@@ -51,9 +56,12 @@ public class ProtectedService {
      * @return An user object
      */
     @GET
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({ "users" })
+    @RolesAllowed({"users"})
     @Transactional
     public User read(@PathParam("id") final long id) {
         return userDAO.find(id);
@@ -65,13 +73,17 @@ public class ProtectedService {
      * @param id The user's id
      */
     @POST
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/delete")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({ "users" })
+    @RolesAllowed({"users"})
     @Transactional
     public void delete(@FormParam("id") final long id) {
         // find the id and delete the user data
+        
         userDAO.delete(id);
     }
 
@@ -85,10 +97,13 @@ public class ProtectedService {
      * @return
      */
     @POST
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
+    @Tag(name="CRUD")
     @Path("/update")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({ "users" })
+    @RolesAllowed({"users"})
     @Transactional
     public User update(@FormParam("id") final long id, @FormParam("name") final String name,
             @FormParam("email") final String email, @FormParam("password") final String password) {
@@ -96,6 +111,7 @@ public class ProtectedService {
         final User usr = userDAO.find(id);
         usr.setName(name);
         usr.setEmail(email);
+        usr.setPassword(password);
         userDAO.update(usr);
         return usr;
     }

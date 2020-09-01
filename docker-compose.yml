@@ -25,10 +25,12 @@ services:
                 - 80:80
             volumes:
                 - /sessions
-
     service:
             # image: rodrigoprestesmachado/orion-talk-image:version-0.1
             build: .
+            depends_on: 
+                - "db"
+                - "phpMyAdmin"
             container_name: users-service
             ports:
                 - 9080:9080
