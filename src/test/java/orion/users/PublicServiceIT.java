@@ -61,6 +61,18 @@ public class PublicServiceIT {
 
     //4 correct codes, 4 incorrect codes
 
+    //The test can be done with the service's database or one generated specially for each test. 
+    //The ID generated in the create method is random, so it is recommended to test it in the service 
+    //database, in which you can know which IDs can be tested in the other methods
+
+    // docker-compose up -d
+    // mvn liberty:dev
+    // enter
+    //
+    //or
+    //
+    // mvn verify
+
     //SHOULD WORK
     @Test
     public void testCreate() {
@@ -103,7 +115,9 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("id", "1"));
+
+            //insert below an id already registered in the database
+            params.add(new BasicNameValuePair("id", " "));
             params.add(new BasicNameValuePair("name", "jonas - updateTest"));
             params.add(new BasicNameValuePair("email", "mailU1"));
             params.add(new BasicNameValuePair("password", "passe"));
@@ -131,7 +145,9 @@ public class PublicServiceIT {
 
             
             // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "listTest/" + 1;
+
+            //insert below an id already registered in the database
+            String url = "http://" + host + ":" + port + API + "listTest/" +  " ";
 
 
            
@@ -167,7 +183,9 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", "51"));
+
+           //insert below an id already registered in the database
+           params.add(new BasicNameValuePair("id", " "));
            post.setEntity(new UrlEncodedFormEntity(params));
 
            // execute and getting the response
@@ -198,7 +216,7 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", ""));
+
            params.add(new BasicNameValuePair("name", ""));
            params.add(new BasicNameValuePair("email", ""));
            params.add(new BasicNameValuePair("password", ""));
@@ -230,7 +248,7 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", "1"));
+
            params.add(new BasicNameValuePair("name", "philip"));
 
            post.setEntity(new UrlEncodedFormEntity(params));
@@ -261,7 +279,7 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", "2"));
+
            params.add(new BasicNameValuePair("name", "mike"));
            params.add(new BasicNameValuePair("email", "sameemail"));
            params.add(new BasicNameValuePair("password", "pass"));
@@ -293,7 +311,7 @@ public class PublicServiceIT {
            HttpPost post = new HttpPost(url);
 
            List<NameValuePair> params = new ArrayList<NameValuePair>();
-           params.add(new BasicNameValuePair("id", "2"));
+
            params.add(new BasicNameValuePair("name", "tyson"));
            params.add(new BasicNameValuePair("email", "sameemail"));
            params.add(new BasicNameValuePair("password", "pass"));
