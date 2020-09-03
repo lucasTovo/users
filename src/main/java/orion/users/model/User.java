@@ -24,11 +24,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotEmpty;
 
 
@@ -40,8 +43,10 @@ import lombok.Data;
 @Table(name = "USER")
 public class User {
 
-    @Id
-    @GeneratedValue
+@TableGenerator(name = "id_generator", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_value",
+pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
+@Id
+@GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
     private long id;
     
     @NotEmpty(message = "Email is required.")

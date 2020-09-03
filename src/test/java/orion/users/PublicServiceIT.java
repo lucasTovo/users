@@ -22,7 +22,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -36,21 +39,31 @@ import org.apache.http.util.EntityUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import orion.users.service.PublicService;
+import orion.users.model.User;
 
 /**
  * Integration test
+ * 
+ * The test can be done with the service's database or one generated specially
+ * for each test. The ID generated in the create method is random, so it is
+ * recommended to test it in the service database, in which you can know which
+ * IDs can be tested in the other methods
+ * 
+ *
+ * docker-compose up -d mvn liberty:dev enter
+ *
+ * or
+ *
+ * mvn verify
  */
+
 @ExtendWith({ DockerCompose.class })
 public class PublicServiceIT {
 
-    public static PublicService publicSvc;
 
     private static String API = "/orion-users-service/users/api/v1/";
-
     private String host;
     private Integer port;
-
     private CloseableHttpClient client;
 
     public PublicServiceIT() {
@@ -59,33 +72,15 @@ public class PublicServiceIT {
         port = DockerCompose.users.getFirstMappedPort();
     }
 
-    //4 correct codes, 4 incorrect codes
-
-    //The test can be done with the service's database or one generated specially for each test. 
-    //The ID generated in the create method is random, so it is recommended to test it in the service 
-    //database, in which you can know which IDs can be tested in the other methods
-
-    // docker-compose up -d
-    // mvn liberty:dev
-    // enter
-    //
-    //or
-    //
-    // mvn verify
-
-    //SHOULD WORK
     @Test
     public void testCreate() {
         try {
-
             // Mounting URL, create
             String url = "http://" + host + ":" + port + API + "create";
-
             HttpPost post = new HttpPost(url);
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("name", "mike - testCreate"));
-            params.add(new BasicNameValuePair("email", "mailC1"));
+            params.add(new BasicNameValuePair("email", "emailcm"));
             params.add(new BasicNameValuePair("password", "pass"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
@@ -95,29 +90,52 @@ public class PublicServiceIT {
             // Get response body
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
+
+            // Jsonb jsonb = JsonbBuilder.create();
+            // this.user = jsonb.fromJson(content, User.class);
+
             System.out.println("testCreate >>>>>>>>>>>>" + content);
 
             assertEquals(response.getStatusLine().getStatusCode(), 200);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //SHOULD WORK
+  
+
+    @Test   
+     public void testRead() {
+        try {
+            
+            String url = "http://" + host + ":" + port + API + "listTest/1010";
+            HttpGet get = new HttpGet(url);
+
+            // execute and getting the response
+            HttpResponse response = this.client.execute(get);
+
+            //Get response body
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+
+            System.out.println("testRead >>>>>>>>>>>>" + content);
+            assertEquals(response.getStatusLine().getStatusCode(), 200); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+ 
     @Test
     public void testUpdate() {
         try {
-
-            // Mounting URL, create
+            
             String url = "http://" + host + ":" + port + API + "updateTest";
-
             HttpPost post = new HttpPost(url);
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            //insert below an id already registered in the database
-            params.add(new BasicNameValuePair("id", " "));
+            
+            params.add(new BasicNameValuePair("id", "1000"));
             params.add(new BasicNameValuePair("name", "jonas - updateTest"));
             params.add(new BasicNameValuePair("email", "mailU1"));
             params.add(new BasicNameValuePair("password", "passe"));
@@ -129,207 +147,13 @@ public class PublicServiceIT {
             // Get response body
             HttpEntity entity = response.getEntity();
             String content = EntityUtils.toString(entity);
+
             System.out.println("testUpdate >>>>>>>>>>>>" + content);
-
             assertEquals(response.getStatusLine().getStatusCode(), 200);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    //SHOULD WORK
-    @Test   
-     public void testRead() {
-        try {
-
-            
-            // Mounting URL, create
-
-            //insert below an id already registered in the database
-            String url = "http://" + host + ":" + port + API + "listTest/" +  " ";
-
-
-           
-            HttpGet get = new HttpGet(url);
-
-            // execute and getting the response
-            HttpResponse response = this.client.execute(get);
-
-
-            //Get response body
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-            System.out.println("testRead >>>>>>>>>>>>" + content);
-
-            assertEquals(response.getStatusLine().getStatusCode(), 200);
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //SHOULD WORK
-    @Test   
-    public void testDelete() {
-       try {
-
-          
-           // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "deleteTest";
-
-
-          
-           HttpPost post = new HttpPost(url);
-
-           List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-           //insert below an id already registered in the database
-           params.add(new BasicNameValuePair("id", " "));
-           post.setEntity(new UrlEncodedFormEntity(params));
-
-           // execute and getting the response
-           HttpResponse response = this.client.execute(post);
-
-
-           //Get response body
-           HttpEntity entity = response.getEntity();
-           String content = EntityUtils.toString(entity);
-           System.out.println("testDelete >>>>>>>>>>>>" + content);
-           System.out.println("testDelete code >>>>>>>>>>>>" + response.getStatusLine().getStatusCode() );
-
-           assertEquals(response.getStatusLine().getStatusCode(), 200);
-           
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
-
-   //SHOULD SHOW ERROR
-   @Test
-   public void testNullCreate() {
-       try {
-
-           // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "create";
-
-           HttpPost post = new HttpPost(url);
-
-           List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-           params.add(new BasicNameValuePair("name", ""));
-           params.add(new BasicNameValuePair("email", ""));
-           params.add(new BasicNameValuePair("password", ""));
-           post.setEntity(new UrlEncodedFormEntity(params));
-
-           // execute and getting the response
-           HttpResponse response = this.client.execute(post);
-
-           // Get response body
-           HttpEntity entity = response.getEntity();
-           String content = EntityUtils.toString(entity);
-           System.out.println("testNullCreate >>>>>>>>>>>>" + content);
-
-           assertEquals(response.getStatusLine().getStatusCode(), 200);
-
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
-
-   //SHOULD SHOW ERROR
-   @Test
-   public void testWithoutParamsCreate() {
-       try {
-
-           // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "create";
-
-           HttpPost post = new HttpPost(url);
-
-           List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-           params.add(new BasicNameValuePair("name", "philip"));
-
-           post.setEntity(new UrlEncodedFormEntity(params));
-
-           // execute and getting the response
-           HttpResponse response = this.client.execute(post);
-
-           // Get response body
-           HttpEntity entity = response.getEntity();
-           String content = EntityUtils.toString(entity);
-           System.out.println("testWithoutParamsCreate >>>>>>>>>>>>" + content);
-
-           assertEquals(response.getStatusLine().getStatusCode(), 200);
-
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
-
-   //SHOULD SHOW ERROR
-   @Test
-   public void testSameEmailCreate_A() {
-       try {
-
-           // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "create";
-
-           HttpPost post = new HttpPost(url);
-
-           List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-           params.add(new BasicNameValuePair("name", "mike"));
-           params.add(new BasicNameValuePair("email", "sameemail"));
-           params.add(new BasicNameValuePair("password", "pass"));
-           post.setEntity(new UrlEncodedFormEntity(params));
-
-           // execute and getting the response
-           HttpResponse response = this.client.execute(post);
-
-           // Get response body
-           HttpEntity entity = response.getEntity();
-           String content = EntityUtils.toString(entity);
-           System.out.println("testSameEmailCreate_A >>>>>>>>>>>>" + content);
-
-           assertEquals(response.getStatusLine().getStatusCode(), 200);
-
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
-
-   //SHOULD SHOW ERROR
-   @Test
-   public void testSameEmailCreate_B() {
-       try {
-
-           // Mounting URL, create
-           String url = "http://" + host + ":" + port + API + "create";
-
-           HttpPost post = new HttpPost(url);
-
-           List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-           params.add(new BasicNameValuePair("name", "tyson"));
-           params.add(new BasicNameValuePair("email", "sameemail"));
-           params.add(new BasicNameValuePair("password", "pass"));
-           post.setEntity(new UrlEncodedFormEntity(params));
-
-           // execute and getting the response
-           HttpResponse response = this.client.execute(post);
-
-           // Get response body
-           HttpEntity entity = response.getEntity();
-           String content = EntityUtils.toString(entity);
-           System.out.println("testSameEmailCreate_B >>>>>>>>>>>>" + content);
-
-           assertEquals(response.getStatusLine().getStatusCode(), 200);
-
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-   }
+ 
 
 }
