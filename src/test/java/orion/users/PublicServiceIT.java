@@ -104,27 +104,6 @@ public class PublicServiceIT {
 
   
 
-    @Test   
-     public void testRead() {
-        try {
-            
-            String url = "http://" + host + ":" + port + API + "listTest/1000";
-            HttpGet get = new HttpGet(url);
-
-            // execute and getting the response
-            HttpResponse response = this.client.execute(get);
-
-            //Get response body
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-
-            System.out.println("testRead >>>>>>>>>>>>" + content);
-            assertEquals(response.getStatusLine().getStatusCode(), 200); 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
  
     @Test
     public void testUpdate() {
