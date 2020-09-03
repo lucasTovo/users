@@ -133,6 +133,60 @@ public class PublicServiceIT {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testWithoutCreate() {
+        try {
+            
+            String url = "http://" + host + ":" + port + API + "create";
+            HttpPost post = new HttpPost(url);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            
+            params.add(new BasicNameValuePair("email", "mailU1"));
+            params.add(new BasicNameValuePair("password", "passe"));
+            post.setEntity(new UrlEncodedFormEntity(params));
+
+            // execute and getting the response
+            HttpResponse response = this.client.execute(post);
+
+            // Get response body
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+
+            System.out.println("testWithoutCreate >>>>>>>>>>>>" + content);
+            assertEquals(response.getStatusLine().getStatusCode(), 500);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testNullCreate() {
+        try {
+            
+            String url = "http://" + host + ":" + port + API + "create";
+            HttpPost post = new HttpPost(url);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            params.add(new BasicNameValuePair("name", ""));
+            params.add(new BasicNameValuePair("email", ""));
+            params.add(new BasicNameValuePair("password", ""));
+            post.setEntity(new UrlEncodedFormEntity(params));
+
+            // execute and getting the response
+            HttpResponse response = this.client.execute(post);
+
+            // Get response body
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+
+            System.out.println("testNullCreate >>>>>>>>>>>>" + content);
+            assertEquals(response.getStatusLine().getStatusCode(), 500);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
  
 
 }
