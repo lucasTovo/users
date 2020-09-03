@@ -108,7 +108,7 @@ public class PublicServiceIT {
      public void testRead() {
         try {
             
-            String url = "http://" + host + ":" + port + API + "listTest/1010";
+            String url = "http://" + host + ":" + port + API + "listTest/1000";
             HttpGet get = new HttpGet(url);
 
             // execute and getting the response
