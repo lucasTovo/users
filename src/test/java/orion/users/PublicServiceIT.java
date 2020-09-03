@@ -80,7 +80,7 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("name", "mike - testCreate"));
-            params.add(new BasicNameValuePair("email", "emailcm"));
+            params.add(new BasicNameValuePair("email", "emailcsm"));
             params.add(new BasicNameValuePair("password", "pass"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
@@ -114,7 +114,7 @@ public class PublicServiceIT {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
             
-            params.add(new BasicNameValuePair("id", "1000"));
+            params.add(new BasicNameValuePair("id", "1010"));
             params.add(new BasicNameValuePair("name", "jonas - updateTest"));
             params.add(new BasicNameValuePair("email", "mailU1"));
             params.add(new BasicNameValuePair("password", "passe"));
@@ -182,7 +182,7 @@ public class PublicServiceIT {
             String content = EntityUtils.toString(entity);
 
             System.out.println("testNullCreate >>>>>>>>>>>>" + content);
-            assertEquals(response.getStatusLine().getStatusCode(), 500);
+            assertEquals(response.getStatusLine().getStatusCode(), 404);
         } catch (IOException e) {
             e.printStackTrace();
         }
