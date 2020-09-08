@@ -80,7 +80,7 @@ public class PublicServiceIT {
             HttpPost post = new HttpPost(url);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("name", "mike - testCreate"));
-            params.add(new BasicNameValuePair("email", "emailcsm"));
+            params.add(new BasicNameValuePair("email", "mike@gmail.com"));
             params.add(new BasicNameValuePair("password", "pass"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
@@ -114,9 +114,9 @@ public class PublicServiceIT {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
             
-            params.add(new BasicNameValuePair("id", "1010"));
-            params.add(new BasicNameValuePair("name", "jonas - updateTest"));
-            params.add(new BasicNameValuePair("email", "mailU1"));
+            params.add(new BasicNameValuePair("id", "1000"));
+            params.add(new BasicNameValuePair("name", "tyson - updateTest"));
+            params.add(new BasicNameValuePair("email", "tyson@gmail.com"));
             params.add(new BasicNameValuePair("password", "passe"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
