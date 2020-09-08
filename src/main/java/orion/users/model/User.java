@@ -32,8 +32,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -49,7 +50,8 @@ pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
 @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
     private long id;
     
-    @NotEmpty(message = "Email is required.")
+    @Email(message = "{user.email.invalid}")
+    @NotEmpty(message = "Please enter email")
     @Column(name = "EMAIL", unique = true)
     private String email;
   
@@ -58,12 +60,29 @@ pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
     @Column(name = "PASSWORD")
     private String password;
 
-    @NotEmpty(message = "Name is required.")
+    @Size(max = 20, min = 3, message = "{user.name.invalid}")
+    @NotEmpty(message = "Please enter name")
     @Column(name = "NAME")
     private String name;
 
     @Column(name = "HASH", unique = true)
     private String hash = null;
+
+    public User(String name, String email, String password) {
+        super();
+        this.password = password;
+        this.name = name;
+        this.email = email;
+    }
+
+    public User(String email) {
+        super();
+        this.email = email;
+    }
+
+    public User() {
+        super();
+    }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "EMAIL_ROLES", joinColumns = {

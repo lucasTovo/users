@@ -45,6 +45,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import orion.users.data.UserDAO;
 import orion.users.model.User;
 import orion.users.util.JavaMailUtil;
+import orion.users.util.ValidateEmail;
 
 @RequestScoped
 @Path("/api/v1/")
@@ -85,11 +86,18 @@ public class PublicService {
                 throw new NotFoundException(message);
             }
                
-              
+              else if( ValidateEmail.validateMail(email) == false){
+                String message = "Invalid email";
+                throw new NotFoundException(message);
+              }
+
+              else {
                 usr.setName(name);
                 usr.setEmail(email);
                 usr.setPassword(password);
                 userDAO.create(usr);
+              }
+
                     return usr;
 
         } else {
