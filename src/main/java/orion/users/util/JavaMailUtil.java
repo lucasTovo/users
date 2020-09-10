@@ -1,6 +1,5 @@
 package orion.users.util;
 
-
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,22 +13,29 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
 public class JavaMailUtil {
+
+
+
     public static void sendMail(String recepient, String hash) throws Exception {
+        
         System.out.println("Preparing to sent");
-        Properties properties = new Properties();
+        Properties props = new Properties();
+        /** Parâmetros de conexão com servidor Hotmail */
 
-        properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.starttls.enable", true);
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp-mail.outlook.com");
+        props.put("mail.smtp.ssl.trust", "smtp-mail.outlook.com");
+        props.put("mail.smtp.port", "587");
 
 
-        String myAccountEmail = "guilhermemoreiramex@gmail.com";
-        String password = "taturanaLOL171";
 
-        Session session = Session.getInstance(properties, new Authenticator() {
+        String myAccountEmail = "testorionservice@outlook.com";
+        String password = "MICROservices2020";
+
+        Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(myAccountEmail, password);
@@ -49,10 +55,10 @@ public class JavaMailUtil {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("oi, eu sou Goku");
+            message.setSubject("oi, eu sou o Orion");
            
            
-            String htmlCode ="Your code, don't sent to nobody: ";
+            String htmlCode ="http://localhost:9080/orion-users-service/?hash=";
             htmlCode = htmlCode + hashcode;
             message.setContent(htmlCode, "text/html");
             
@@ -63,3 +69,7 @@ public class JavaMailUtil {
     return null;
     } 
 }
+
+
+
+
