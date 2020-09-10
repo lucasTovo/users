@@ -44,7 +44,7 @@ import lombok.Data;
 @Table(name = "USER")
 public class User {
 
-@TableGenerator(name = "id_generator", table = "id_gen", pkColumnName = "gen_name", valueColumnName = "gen_value",
+@TableGenerator(name = "id_generator", table = "ID_GEN", pkColumnName = "gen_name", valueColumnName = "gen_value",
 pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
 @Id
 @GeneratedValue(strategy = GenerationType.TABLE, generator = "id_generator")
@@ -60,13 +60,15 @@ pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
     @Column(name = "PASSWORD")
     private String password;
 
-    @Size(max = 20, min = 3, message = "{user.name.invalid}")
     @NotEmpty(message = "Please enter name")
     @Column(name = "NAME")
     private String name;
 
     @Column(name = "HASH", unique = true)
-    private String hash = null;
+    private String hash;
+
+    @Column(name = "VERIFIED")
+    private boolean verified = false;
 
     public User(String name, String email, String password) {
         super();

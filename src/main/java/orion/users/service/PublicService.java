@@ -72,14 +72,14 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User createUser(@FormParam("name") final String name, @FormParam("email") final String email,
-            @FormParam("password") final String password) throws WebApplicationException, NotFoundException {
+            @FormParam("password") final String password) throws WebApplicationException, NotFoundException, Exception {
 
         final User usr = new User();
 
-        // in quickMail method, email is checked, if it is equal to one that already
+        // in checkMail method, email is checked, if it is equal to one that already
         // exists in the bank,
         // it does not create
-        if (quickMail(email).equals(false)) {
+        if (checkMail(email).equals(false)) {
 
             if(name.isEmpty() || email.isEmpty() || password.isEmpty()){
                 String message = "No fields can be left empty";
@@ -92,13 +92,17 @@ public class PublicService {
               }
 
               else {
+                String hashcode = usr.setHash(userDAO.generateHash());
+                JavaMailUtil.sendMail(email, hashcode);
+
                 usr.setName(name);
                 usr.setEmail(email);
                 usr.setPassword(password);
                 userDAO.create(usr);
               }
+                  
 
-                    return usr;
+                return usr;
 
         } else {
                 String message = "The informed e-mail already exist in the service";
@@ -106,15 +110,49 @@ public class PublicService {
         }
     }
 
+
+
     @POST
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
-    @Tag(name="FORGOTTEN")
-    @Path("forgot")
+    @Tag(name="AUTH")
+    @Path("confirmHash")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public String forgot(@FormParam("email") final String email) throws Exception {
+    public String confirmHash(@FormParam("hash") final String hash)
+            throws Exception {
+
+        String mail;
+
+        try {
+            // check if there is a hash in the database
+            final User usr = userDAO.find("hash", hash);
+            // send email to user
+
+            // if atribute users's hash is false, cancel change
+            usr.getHash().equals(hash);
+
+            usr.setVerified(true);
+            userDAO.update(usr);
+            mail = "complete!";
+            usr.setHash(null);
+
+        } catch (NoResultException e) {
+            mail = "failed, try again";
+        }
+        return mail;
+    }
+
+    @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="FORGOT")
+    @Path("forgotPass")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public String forgotPass(@FormParam("email") final String email) throws Exception {
 
         String mail;
 
@@ -139,12 +177,12 @@ public class PublicService {
     @POST
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
-    @Tag(name="FORGOTTEN")
-    @Path("retrieve")
+    @Tag(name="FORGOT")
+    @Path("changePass")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public String retrieve(@FormParam("hash") final String hash, @FormParam("password") final String password)
+    public String changePass(@FormParam("hash") final String hash, @FormParam("password") final String password)
             throws Exception {
 
         String mail;
@@ -167,6 +205,8 @@ public class PublicService {
         }
         return mail;
     }
+
+  
 
     /**
      * Authenticates the user in the service
@@ -214,7 +254,7 @@ public class PublicService {
      * @param email
      * @return
      */
-    private Boolean quickMail(@FormParam("email") final String email) {
+    private Boolean checkMail(@FormParam("email") final String email) {
         Boolean message;
         try {
             // check if there is a email in the database
@@ -257,11 +297,7 @@ public class PublicService {
     public void deleteTest(@FormParam("id") final long id) {
         // find the id and delete the user data
 
-       
-           userDAO.delete(id);
-       
-            
-        
+           userDAO.delete(id);    
         
     }
 

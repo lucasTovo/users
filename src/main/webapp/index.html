@@ -9,26 +9,18 @@
   <script src="script.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 
-  <title>Password Validator</title>
+  <title>Orion</title>
 
   
 </head>
 <body>   
 
 
-  <form id="app" action="http://localhost:9080/users/api/v1/retrieve" method="POST">
+  <form id="app" action="http://localhost:9080/orion-users-service/users/api/v1/confirmHash?hash=" method="POST">
           
 
  
-    <br>
-    <label>password :
-      <input name="password" id="pw1" type="password" onkeyup='check();' required/>
-    </label>
-    <br>
-    <label>confirm password:
-      <input type="password" name="confirm_password" id="pw2"  onkeyup='check();' required/> 
-      <span id='message'></span>
-    </label>
+
     <button type="submit" class="btn btn-warning" id="btSubmit" disabled>Submit</button>
 
 
