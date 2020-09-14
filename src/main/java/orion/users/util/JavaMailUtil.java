@@ -58,7 +58,7 @@ public class JavaMailUtil {
             message.setSubject("oi, eu sou o Orion");
            
            
-            String htmlCode ="http://localhost:9080/orion-users-service/isvalid/?hash=";
+            String htmlCode ="http://localhost:9080/orion-users-service/isvalid.html?hash=";
             htmlCode = htmlCode + hashcode;
             message.setContent(htmlCode, "text/html");
             

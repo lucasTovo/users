@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -34,26 +35,44 @@
 
     
 <script>
-    var http = new XMLHttpRequest();
-    var url = 'window.location.href';
-    
-    new URL(location.href).searchParams.get('hash')
 
-    const param = new URL(location.href).searchParams;
-    const year = param.get('hash');
+// const axios = require('axios')
+ 
+// axios.post('window.location.href', {
+//   params = new URLSearchParams({
+//         hash: this.hash
+//       })
+//   })
+//   .then(function (response) {
+//     console.log(response);
+//   })
 
-    var params = 'hash=' + year;
-    http.open('POST', url, true);
+//   let url= new URL('https://javascriptjeep.com?mode=night&page=2');
+// let params = new URLSearchParams(url.search);
 
-    //Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    http.onreadystatechange = function() {//Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-            alert(http.responseText);
-        }
+
+var http = new XMLHttpRequest();
+var urlnow = window.location.href;
+var url = 'http://localhost:9080/orion-users-service/users/api/v1/confirmHash/?hash=';
+
+let par = (new URL(urlnow)).searchParams;
+let hash = par.get("hash");
+
+var params = 'hash='+hash;
+http.open('POST', url, true);
+
+//Send the proper header information along with the request
+http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
     }
-    http.send(params);
+}
+http.send(params);
+
+
 </script>
 
 </body>
