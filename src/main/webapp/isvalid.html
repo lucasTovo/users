@@ -23,41 +23,37 @@
             width="200" height="200"></a>
       
   
-
-       <form onsubmit="return redirect()">
-            <br>
-            <label>Hash :
-              <input name="hash" id="hash" type="name" disabled/>
-            </label>
-            <br>
-            <div class="bottomSubmit">
-                <button type="submit" class="btn btn-warning" id="btSubmit" onclick="validNow()" >Confirm your validation</button>
-            </div>
-       </form>
+           
+              <input name="hash" id="hs" type="hash" hidden/> 
+              <span id='message'></span>
+        
+ 
 
 
   </div>
 
     
 <script>
-  let displayResults = ( results ) => {
-  let ul = document.getElementById( 'responseOut' );
-  ul.innerHTML = '';
-  for( item of results.results ){
-    let li = document.createElement( 'li' );
-    li.innerHTML = item.name;
-    ul.appendChild( li );
-  } //end for
-} // end displayResults
+    var http = new XMLHttpRequest();
+    var url = 'window.location.href';
+    
+    new URL(location.href).searchParams.get('hash')
 
-  javascript: (function () {
-    function F1(ele, val) {
-        if (document.getElementById(ele) && val != "") {
-            document.getElementById(ele).value = val;
+    const param = new URL(location.href).searchParams;
+    const year = param.get('hash');
+
+    var params = 'hash=' + year;
+    http.open('POST', url, true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    http.onreadystatechange = function() {//Call a function when the state changes.
+        if(http.readyState == 4 && http.status == 200) {
+            alert(http.responseText);
         }
     }
-    F1("hash", "aDwn7ahP");   
-})();
+    http.send(params);
 </script>
 
 </body>

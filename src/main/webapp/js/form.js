@@ -17,14 +17,6 @@ let searchNow = () =>{
     });
 } // end searchNow
 
-let validNow = () =>{
-  let hash = document.getElementById( 'hash' ).value;
-  axios.post( 'http://localhost:9080/orion-users-service/users/api/v1/confirmHash/?hash=' + hash)
-    .then( function( response ){
-      displayResults( response.data );
-    });
-} // end searchNow
-
 function redirect() {
   window.location.replace("index.html");
   return false;
