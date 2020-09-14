@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="google-signin-client_id" content="605691741466-oe31n29gcsnqkcbcgq0hagm7m4dlrce3.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="js/main.js"></script>
+  <title>Social Auth</title>
+</head>
+<body>
+  <div class="g-signin2" data-onsuccess="onSignIn">
+    <a href="#" onclick="signIn();">Sign In</a>
+  </div>
+
+  <div class="g-signout2" data-onsuccess="onSignOut">
+    <a href="#" onclick="signOut();">Sign out</a>
+  </div>
+  
+</body>
+</html>

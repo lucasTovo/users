@@ -27,3 +27,13 @@ During development, you can use Liberty's development mode (dev mode) to code wh
 
     mvn clear package
     mvn liberty:dev
+
+## Help scripts
+
+To delete and restart all containers, as well as clean, package and run the service    
+    
+    ./build.sh
+
+To delete and restart only the containers for users_service, as well as clean, package and run the service   
+    
+    ./rservice.sh

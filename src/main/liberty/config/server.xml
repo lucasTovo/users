@@ -7,9 +7,12 @@
         <feature>mpJwt-1.1</feature>
         <feature>javaMail-1.6</feature>
         <feature>ejb-3.2</feature>
+        <feature>socialLogin-1.0</feature>
+        <feature>appSecurity-2.0</feature>
     </featureManager>
 
-
+    <googleLogin clientId="605691741466-oe31n29gcsnqkcbcgq0hagm7m4dlrce3.apps.googleusercontent.com" clientSecret="r7D-Mem4Q0y-lRm734R16FnG" />
+    <keyStore id="defaultKeyStore" password="keyspass" />
 
     <applicationManager autoExpand="true" />
 

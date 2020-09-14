@@ -16,11 +16,11 @@ html {
 	letter-spacing: 1px;
   }
   
-  input[type="password"],[type="email"]::-webkit-input-placeholder {
+  input[type="password"],[type="email"],[type="name"]::-webkit-input-placeholder {
 	color: rgba(71, 87, 98, 0.8);
   }
   
-  input[type="password"],[type="email"]::input-placeholder {
+  input[type="password"],[type="email"],[type="name"]::input-placeholder {
 	color: rgba(71, 87, 98, 0.8);
   }
   
@@ -54,7 +54,7 @@ html {
 	margin-bottom: 10px;
   }
   
-  #app input[type="password"],[type="email"] {
+  #app input[type="password"],[type="email"],[type="name"] {
 	width: 320px;
 	height: auto;
 	border: 1px solid transparent;
@@ -69,11 +69,11 @@ html {
 	transition: all .1s;
   }
   
-  #app input[type="password"],[type="email"]:focus {
+  #app input[type="password"],[type="email"],[type="name"]:focus {
 	border: 1px solid #2196F3;
   }
   
-  .password_length,.email_length {
+  .password_length,.email_length,.name_length {
 	padding: 2px 10px;
 	position: absolute;
 	top: 50%;
@@ -89,12 +89,12 @@ html {
 	transition: all .1s;
   }
   
-  .valid_password_length,.valid_email_length  {
+  .valid_password_length,.valid_email_length,.valid_name_length  {
 	background: #00AD7C;
   color: rgba(255, 255, 255, 0.9);
   }
   
-  .show_password_length,.show_email_length {
+  .show_password_length,.show_email_length,.show_name_length {
 	display: block;
   }
   
@@ -134,11 +134,11 @@ html {
 	color: rgba(255, 255, 255, 0.9) !important;
   }
   
-  .valid_password_container,.valid_email_container {
+  .valid_password_container,.valid_email_container,.valid_name_container {
 	display: block;
 	margin: 10px auto;
 	border-radius: 4px;
-  position: relative;
+    position: relative;
 	background: #00AD7C;
 	width: 20px;
 	height: 20px;
@@ -146,7 +146,7 @@ html {
 	opacity: 0;
   }
   
-  .show_valid_password_container,.show_valid_email_container  {
+  .show_valid_password_container,.show_valid_email_container,.show_valid_name_container   {
 	visibility: visible;
 	opacity: 1;
   }
@@ -178,3 +178,31 @@ html {
 	  stroke-dashoffset: 0;
 	}
   }
+
+ .imgHead {
+	max-width: 100%;
+	height: auto;
+ }
+
+ .textHead {
+	font-family: 'Courier New', Courier, monospace;
+	margin-top: 300px;
+	margin-bottom: 20px;
+ }
+
+ .bottomSubmit {
+	margin-top: 30px;
+	margin-bottom: 30px;
+ }
+
+.mainBox {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+	text-align: center;
+}
+
+.sonBox {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
