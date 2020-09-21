@@ -17,12 +17,14 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailUtil {
 
 
-
-    public static void sendMail(String recepient, String hash) throws Exception {
+    
+    public static void sendMail(String recepient, String hash, String link) throws Exception {
         
         System.out.println("Preparing to sent");
         Properties props = new Properties();
         /** Parâmetros de conexão com servidor Hotmail */
+
+
 
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -35,6 +37,7 @@ public class JavaMailUtil {
         String myAccountEmail = "testorionservice@outlook.com";
         String password = "MICROservices2020";
 
+
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -42,14 +45,14 @@ public class JavaMailUtil {
             }
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recepient, hash);
+        Message message = prepareMessage(session, myAccountEmail, recepient, hash, link);
 
         Transport.send(message);
         System.out.println("Message sent");
 
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient, String hashcode) {
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient, String hashcode, String link) {
         
         try {
             Message message = new MimeMessage(session);
@@ -58,9 +61,9 @@ public class JavaMailUtil {
             message.setSubject("oi, eu sou o Orion");
            
            
-            String htmlCode ="http://localhost:9080/orion-users-service/isvalid.html?hash=";
-            htmlCode = htmlCode + hashcode;
-            message.setContent(htmlCode, "text/html");
+ 
+            link = link + hashcode;
+            message.setContent(link, "text/html");
             
             return message;
         } catch (Exception ex) {

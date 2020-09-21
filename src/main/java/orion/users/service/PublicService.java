@@ -93,7 +93,8 @@ public class PublicService {
 
               else {
                 String hashcode = usr.setHash(userDAO.generateHash());
-                JavaMailUtil.sendMail(email, hashcode);
+                String link = "http://localhost:9080/orion-users-service/isvalid.html?hash=";
+                JavaMailUtil.sendMail(email, hashcode, link);
 
                 usr.setName(name);
                 usr.setEmail(email);
@@ -165,7 +166,8 @@ public class PublicService {
 
             // send email to user
             usr.getEmail().equals(email);
-            JavaMailUtil.sendMail(email, hashcode);
+            String link = "http://localhost:9080/orion-users-service/retrieve.html?hash=";
+            JavaMailUtil.sendMail(email, hashcode, link);
             mail = "connection complete";
 
         } catch (NoResultException | JwtException | InvalidBuilderException | InvalidClaimException e) {

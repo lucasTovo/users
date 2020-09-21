@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>orion.users</groupId>
   <artifactId>orion-users-service</artifactId>
-  <version>0.0.1</version>
+  <version>1.0</version>
   <packaging>war</packaging>
 
   <dependencyManagement>
@@ -188,6 +188,22 @@
             <groupId>io.openliberty.tools</groupId>
             <artifactId>liberty-maven-plugin</artifactId>
             <version>${openliberty.maven.version}</version>
+
+            <executions>
+              <execution>
+                <id>package-server</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>create</goal>
+                  <goal>install-feature</goal>
+                  <goal>deploy</goal>
+                  <goal>package</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>target/wlp-package</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
        
         </plugin>
         <!-- Plugin to run integration tests -->

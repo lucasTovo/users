@@ -42,31 +42,31 @@
 
           <br>
           <label>Email :
-            <input name="email" placeholder="name@example.com" id="em1" type="email" v-model="form.email" onkeyup='check();' required/>
+            <input name="email" placeholder="name@example.com" id="em1" type="email" v-model="form.email" onkeyup='checkCreate();' required/>
           </label>
           <br>
 
           <br>
           <label>Confirm Email :
-            <input name="email" placeholder="name@example.com" id="em2" type="email" v-model="form.email" onkeyup='check();' required/>
+            <input name="email" placeholder="name@example.com" id="em2" type="email" v-model="form.email" onkeyup='checkCreate();' required/>
           </label>
           <br>
 
           <br>
           <label>Password :
-            <input name="password" placeholder="Your security password" id="pw1" type="password" v-model="form.password" onkeyup='check();' required/>
+            <input name="password" placeholder="Your security password" id="pw1" type="password" v-model="form.password" onkeyup='checkCreate();' required/>
           </label>
           <br>
 
           <br>
           <label>Confirm Password:
-            <input name="password" placeholder="Your security password" id="pw2" type="password"  v-model="form.password"  onkeyup='check();' required/> 
+            <input name="password" placeholder="Your security password" id="pw2" type="password"  v-model="form.password"  onkeyup='checkCreate();' required/> 
             <span id='message'></span>
           </label>
           <br>
           
         <div class="bottomSubmit">
-          <button type="submit" class="btn btn-warning" id="btSubmit" onclick="searchNow()" disabled>Submit</button>
+          <button type="submit" class="btn btn-warning" id="btSubmit" onclick="sendCreate()" disabled>Submit</button>
         </div>
         
      </div>
