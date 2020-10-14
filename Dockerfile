@@ -2,7 +2,7 @@ FROM open-liberty:20.0.0.3-full-java8-openj9
 
 LABEL \
     org.opencontainers.image.authors="Orion-Services" \
-    description="This image for Orion Talk Service"
+    description="This image for Orion Users Service"
 
 # Waiting a new server.xml feature to use a better solution
 # https://github.com/OpenLiberty/ci.maven/issues/705
@@ -15,4 +15,6 @@ COPY --chown=1001:0 src/main/liberty/config /config/
 COPY --chown=1001:0 target/orion-users-service.war /config/dropins/
 
 # Executing 
+
+
 RUN configure.sh

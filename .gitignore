@@ -7,3 +7,6 @@ target/
 .github
 .factorypath
 .DS_Store
+reimage.sh
+revolume.sh
+ui

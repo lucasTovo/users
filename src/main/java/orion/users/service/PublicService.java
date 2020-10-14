@@ -187,7 +187,7 @@ public class PublicService {
     public String changePass(@FormParam("hash") final String hash, @FormParam("password") final String password)
             throws Exception {
 
-        String mail;
+        String text;
 
         try {
             // check if there is a hash in the database
@@ -196,16 +196,20 @@ public class PublicService {
 
             // if atribute users's hash is false, cancel change
             usr.getHash().equals(hash);
-
             usr.setPassword(password);
+            String email = usr.getEmail();
             userDAO.update(usr);
-            mail = "complete!";
+
+            text = "Change password complete!";             
+            JavaMailUtil.sendMail(email, null, text);
+
             usr.setHash(null);
 
+
         } catch (NoResultException e) {
-            mail = "failed to recover password, try again";
+            text = "failed to recover password, try again";
         }
-        return mail;
+        return text;
     }
 
   

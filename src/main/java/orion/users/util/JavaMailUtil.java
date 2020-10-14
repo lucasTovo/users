@@ -45,7 +45,10 @@ public class JavaMailUtil {
             }
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recepient, hash, link);
+    Message message;
+
+             message = prepareMessage(session, myAccountEmail, recepient, hash, link);
+
 
         Transport.send(message);
         System.out.println("Message sent");
@@ -61,16 +64,21 @@ public class JavaMailUtil {
             message.setSubject("oi, eu sou o Orion");
            
            
- 
-            link = link + hashcode;
-            message.setContent(link, "text/html");
-            
+    if(hashcode != null){
+        link = link + hashcode;
+        message.setContent(link, "text/html");
+    }else{
+        message.setContent(link, "text/html");
+    }
+             
             return message;
         } catch (Exception ex) {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);
       }
     return null;
     } 
+
+
 }
 
 
