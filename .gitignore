@@ -9,4 +9,3 @@ target/
 .DS_Store
 reimage.sh
 revolume.sh
-ui

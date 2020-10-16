@@ -67,7 +67,7 @@ export default {
     },
   },
   methods: {
-    sendData(e) {
+    sendData() {
       this.submitted = true
       // stop here if form is invalid
       this.$v.$touch()
@@ -75,7 +75,7 @@ export default {
       }
       const email = document.getElementById('email').value
       this.$axios
-        .post('create/?email=' + email)
+        .post('forgotPass/?email=' + email)
         .then((response) => {
           // If request is good...
           console.log(response.data)
