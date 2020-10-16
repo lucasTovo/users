@@ -93,7 +93,7 @@ public class PublicService {
 
               else {
                 String hashcode = usr.setHash(userDAO.generateHash());
-                String link = "http://localhost:9080/orion-users-service/isvalid.html?hash=";
+                String link = "http://localhost:9080/orion-users-service/isvalid?hash=";
                 JavaMailUtil.sendMail(email, hashcode, link);
 
                 usr.setName(name);
