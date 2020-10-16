@@ -1,0 +1,37 @@
+{
+    "links": {
+      "home": "Home",
+      "about": "About",
+      "english": "English version",
+      "french": "French version",
+      "portuguese": "Portuguese version"
+   },
+    "home": {
+      "account": "Account",
+      "introduction": "This is an introduction in English.",
+      "signup": "Sign up",
+      "signin": "Sign in",
+      "forgot": "I forgot the password",
+      "footer": "👆 click links above 👆",
+      "changer": "Change language",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "submit": "Submit",
+      "required": " is required"
+    },
+    "required": {
+      "password": "Password is required",
+      "confirm_password": "Confirm Password is required",
+      "name": "Name is required",
+      "email": "Email is required",
+      "pass_match":"Passwords must match",
+      "pass_char":"Password must be at least 6 characters",
+      "email_invalid":"Email is invalid"
+    },
+    "about": {
+      "title": "About",
+      "introduction": "This page is made to give you more informations."
+    }
+  }

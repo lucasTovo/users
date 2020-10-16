@@ -1,0 +1,36 @@
+{
+    "links": {
+      "home": "Accueil",
+      "about": "À propos",
+      "english": "Version Anglaise",
+      "french": "Version Française",
+      "portuguese": "Version portugaise"
+    },
+    "home": {
+      "account": "Compte",
+      "introduction": "Ceci est un texte d'introduction en Français.",
+      "signup": "S'inscrire",
+      "signin": "Se connecter",
+      "forgot": "J'ai oublié le mot de passe",
+      "footer": "👆 cliquez sur les liens ci-dessus 👆",
+      "changer": "Changer de langue",
+      "name": "Nom",
+      "email": "Email",
+      "password": "Mot de passe",
+      "confirm_password": "Confirmez le mot de passe",
+      "submit": "Soumettre"
+    },
+    "required": {
+      "password": "Mot de passe requis",
+      "confirm_password": "Confirmer le mot de passe est requis",
+      "name": "Le nom est requis",
+      "email": "Email est requis",
+      "pass_match":"les mots de passe doivent correspondre",
+      "pass_char":"Le mot de passe doit être au moins de 6 caractères",
+      "email_invalid":"Le courriel est invalide"
+    },
+    "about": {
+      "title": "À propos",
+      "introduction": "Cette page est faite pour vous donner plus d'informations."
+    }
+  } 

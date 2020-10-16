@@ -1,0 +1,36 @@
+{
+    "links": {
+      "home": "Início",
+      "about": "Sobre",
+      "english": "Versão em inglês",
+      "french": "Versão em francês",
+      "portuguese": "Versão em português"
+   },
+    "home": {
+      "account": "Conta",
+      "introduction": "Esta é uma introdução em português.",
+      "signup": "Criar conta",
+      "signin": "Login",
+      "forgot": "Esqueci a senha",
+      "footer": "👆 clique nos links acima 👆",
+      "changer": "Mudar idioma",
+      "name": "Nome",
+      "email": "Email",
+      "password": "Senha",
+      "confirm_password": "Confirmar Senha",
+      "submit": "Enviar"
+    },
+    "required": {
+        "password": "Senha é necessária",
+        "confirm_password": "Confirmação de senha é necessária",
+        "name": "Nome é necessário",
+        "email": "Email é necessário",
+        "pass_match":"As senhas devem corresponder",
+        "pass_char":"A senha deve ter pelo menos 6 caracteres",
+        "email_invalid":"Email inválido"
+      },
+    "about": {
+      "title": "Sobre",
+      "introduction": "Esta página foi feita para lhe dar mais informações."
+    }
+  }
