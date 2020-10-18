@@ -275,17 +275,15 @@ public class PublicService {
         }
         return message;
     }
-///////////////////////////////////////
-    //METHODS from ProtectedService
-///////////////////////////////////////
+
     @GET
-    @APIResponse(responseCode = "200", description = "successfully")
-    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("listTest/{id}")
+    @Path("/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User readTest(@PathParam("id") final long id) {
+    public User read(@PathParam("id") final long id) {
         return userDAO.find(id);
     }
 
@@ -295,18 +293,17 @@ public class PublicService {
      * @param id The user's id
      */
     @POST
-    @APIResponse(responseCode = "200", description = "successfully")
-    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("deleteTest")
+    @Path("/delete")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void deleteTest(@FormParam("id") final long id) {
+    public void delete(@FormParam("id") final long id) {
         // find the id and delete the user data
-
-           userDAO.delete(id);    
         
+        userDAO.delete(id);
     }
 
     /**
@@ -319,14 +316,14 @@ public class PublicService {
      * @return
      */
     @POST
-    @APIResponse(responseCode = "200", description = "successfully")
-    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
     @Tag(name="CRUD")
-    @Path("updateTest")
+    @Path("/update")
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public User updateTest(@FormParam("id") final long id, @FormParam("name") final String name,
+    public User update(@FormParam("id") final long id, @FormParam("name") final String name,
             @FormParam("email") final String email, @FormParam("password") final String password) {
 
         final User usr = userDAO.find(id);
