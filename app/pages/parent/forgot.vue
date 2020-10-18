@@ -73,11 +73,12 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) {
       }
-      const email = document.getElementById('email').value
+      const u = new URLSearchParams({ ...this.user }).toString()
       this.$axios
-        .post('forgotPass/?email=' + email)
+        .post('forgotPass/?' + u)
         .then((response) => {
           // If request is good...
+          this.$router.push({ name: 'fback-forgot' })
           console.log(response.data)
         })
         .catch((error) => {

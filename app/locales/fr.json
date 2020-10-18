@@ -18,7 +18,12 @@
       "email": "Email",
       "password": "Mot de passe",
       "confirm_password": "Confirmez le mot de passe",
-      "submit": "Soumettre"
+      "submit": "Soumettre",
+      "error_page": "Oups ... Il semble que vous ne devriez pas être sur cette page",
+      "signup-feedback": "Bienvenue sur Orion, compte créé avec succès, vérifiez votre messagerie",
+      "signin-feedback": "La zone utilisateur enregistrée viendra dans les futures mises à jour",
+      "forgot-feedback": "Email envoyé avec succès pour la récupération du compte, vérifiez votre email",
+      "retrieve-feedback": "Nouveau mot de passe enregistré avec succès"
     },
     "required": {
       "password": "Mot de passe requis",

@@ -113,6 +113,8 @@ public class PublicService {
 
 
 
+    
+
     @POST
     @APIResponse(responseCode = "200", description = "successfully")
     @APIResponse(responseCode = "409", description = "a conflict has occurred")
@@ -166,7 +168,7 @@ public class PublicService {
 
             // send email to user
             usr.getEmail().equals(email);
-            String link = "http://localhost:9080/orion-users-service/retrieve.html?hash=";
+            String link = "http://localhost:9080/orion-users-service/retrieve?hash=";
             JavaMailUtil.sendMail(email, hashcode, link);
             mail = "connection complete";
 

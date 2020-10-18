@@ -19,7 +19,12 @@
       "password": "Password",
       "confirm_password": "Confirm Password",
       "submit": "Submit",
-      "required": " is required"
+      "required": " is required",
+      "error_page": "Oops ... It looks like you shouldn't be on this page",
+      "signup-feedback": "Welcome to Orion, account created successfully, check your email",
+      "signin-feedback": "Logged user area will come in future updates",
+      "forgot-feedback": "Email sent successfully for account recovery, check your email",
+      "retrieve-feedback": "New password successfully registered"
     },
     "required": {
       "password": "Password is required",

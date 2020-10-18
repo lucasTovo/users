@@ -99,12 +99,12 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) {
       }
-      const email = document.getElementById('email').value
-      const password = document.getElementById('password').value
+      const u = new URLSearchParams({ ...this.user }).toString()
       this.$axios
-        .post('login/?email=' + email + '&password=' + password)
+        .post('login/?' + u)
         .then((response) => {
           // If request is good...
+          this.$router.push({ name: 'fback-signin' })
           console.log(response.data)
         })
         .catch((error) => {

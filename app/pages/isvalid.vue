@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1></h1>
+    <button @click="exit">Return to homepage</button>
     <input id="hs" name="hash" type="hash" hidden />
     <span id="message"></span>
   </div>
@@ -30,6 +30,11 @@ export default {
       }
     }
     http.send(params)
+  },
+  methods: {
+    exit() {
+      this.$router.push({ name: 'index' })
+    },
   },
 }
 </script>

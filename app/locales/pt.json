@@ -18,7 +18,12 @@
       "email": "Email",
       "password": "Senha",
       "confirm_password": "Confirmar Senha",
-      "submit": "Enviar"
+      "submit": "Enviar",
+      "error_page": "Ops... Parece que você não deveria estar nesta página",
+      "signup-feedback": "Bem-vindo ao Orion, conta criada com sucesso, cheque seu email",
+      "signin-feedback": "Área de usuário logado virá em futuros updates",
+      "forgot-feedback": "Email enviado com sucesso para a recuperação de conta, cheque seu email",
+      "retrieve-feedback": "Nova senha cadastrada com sucesso"
     },
     "required": {
         "password": "Senha é necessária",

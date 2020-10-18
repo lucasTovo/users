@@ -10,7 +10,9 @@
         {{ lang }}
       </option>
     </select>
-    {{ $t('home.changer') }}
+    <div class="style-name">
+      {{ $t('home.changer') }}
+    </div>
   </div>
 </template>
 
@@ -41,10 +43,21 @@ export default {
   text-transform: uppercase;
   cursor: pointer;
   transition: 0.3s;
+  position: fixed;
+  left: 2em;
+  bottom: 2em;
 }
 
 .change:hover {
   background: black;
   color: orange;
+}
+
+.style-name {
+  position: fixed;
+  left: 2em;
+  bottom: 4em;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
 }
 </style>
