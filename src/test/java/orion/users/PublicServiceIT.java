@@ -79,9 +79,9 @@ public class PublicServiceIT {
             String url = "http://" + host + ":" + port + API + "create";
             HttpPost post = new HttpPost(url);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", "mike - testCreate"));
-            params.add(new BasicNameValuePair("email", "mike@gmail.com"));
-            params.add(new BasicNameValuePair("password", "pass"));
+            params.add(new BasicNameValuePair("name", "mike"));
+            params.add(new BasicNameValuePair("email", "testorionservice@outlook.com"));
+            params.add(new BasicNameValuePair("password", "thepassword"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
             // execute and getting the response
@@ -109,15 +109,15 @@ public class PublicServiceIT {
     public void testUpdate() {
         try {
             
-            String url = "http://" + host + ":" + port + API + "updateTest";
+            String url = "http://" + host + ":" + port + API + "update";
             HttpPost post = new HttpPost(url);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
             
             params.add(new BasicNameValuePair("id", "1000"));
-            params.add(new BasicNameValuePair("name", "tyson - updateTest"));
-            params.add(new BasicNameValuePair("email", "tyson@gmail.com"));
-            params.add(new BasicNameValuePair("password", "passe"));
+            params.add(new BasicNameValuePair("name", "tyson"));
+            params.add(new BasicNameValuePair("email", "testorionservice@outlook.com"));
+            params.add(new BasicNameValuePair("password", "pass12245"));
             post.setEntity(new UrlEncodedFormEntity(params));
 
             // execute and getting the response

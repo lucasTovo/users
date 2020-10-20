@@ -20,7 +20,7 @@
 export default {
   name: 'LocaleChanger',
   data() {
-    return { langs: ['fr', 'en', 'pt'] }
+    return { langs: ['esp', 'fr', 'en', 'pt'] }
   },
 }
 </script>
@@ -30,10 +30,10 @@ export default {
   display: inline-block;
   margin: 0.2em 0;
   padding: 0.2em 0.5em;
-  background: #fff;
-  border: 2px solid orange;
+  background: rgb(255, 250, 250);
+  border: 2px solid black;
   border-radius: 3px;
-  color: orange;
+  color: black;
   font-family: 'Quicksand', sans-serif;
   font-size: 1em;
   font-weight: 700;
@@ -50,7 +50,7 @@ export default {
 
 .change:hover {
   background: black;
-  color: orange;
+  color: white;
 }
 
 .style-name {

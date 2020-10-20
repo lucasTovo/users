@@ -15,13 +15,13 @@ header {
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  background-color: #fff;
+  background-color: rgb(255, 250, 250);
   transition: 0.3s;
   font-family: 'Quicksand', sans-serif;
 }
 
 header:hover {
   background: black;
-  color: orange;
+  color: rgb(255, 250, 250);
 }
 </style>

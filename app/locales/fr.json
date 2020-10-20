@@ -4,7 +4,8 @@
       "about": "À propos",
       "english": "Version Anglaise",
       "french": "Version Française",
-      "portuguese": "Version portugaise"
+      "portuguese": "Version portugaise",
+      "spanish": "version espagnole"
     },
     "home": {
       "account": "Compte",
@@ -12,7 +13,7 @@
       "signup": "S'inscrire",
       "signin": "Se connecter",
       "forgot": "J'ai oublié le mot de passe",
-      "footer": "👆 cliquez sur les liens ci-dessus 👆",
+      "footer": "👆 Cliquez sur les liens ci-dessus 👆",
       "changer": "Changer de langue",
       "name": "Nom",
       "email": "Email",
@@ -30,7 +31,7 @@
       "confirm_password": "Confirmer le mot de passe est requis",
       "name": "Le nom est requis",
       "email": "Email est requis",
-      "pass_match":"les mots de passe doivent correspondre",
+      "pass_match":"Les mots de passe doivent correspondre",
       "pass_char":"Le mot de passe doit être au moins de 6 caractères",
       "email_invalid":"Le courriel est invalide"
     },

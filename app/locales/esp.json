@@ -1,0 +1,43 @@
+{
+    "links": {
+      "home": "Inicio",
+      "about": "Sobre",
+      "english": "Versión en inglés",
+      "french": "versión francesa",
+      "portuguese": "Versión portuguesa",
+      "spanish": "versión en español"
+   },
+    "home": {
+      "account": "Cuenta",
+      "introduction": "Esta es una introducción en inglés.",
+      "signup": "Regístrate",
+      "signin": "Iniciar sesión",
+      "forgot": "Olvidé la contraseña",
+      "footer": "👆 haga clic en los enlaces de arriba 👆",
+      "changer": "Cambiar idioma",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirm_password": "Confirmar contraseña",
+      "submit": "Enviar",
+      "required": " es requerido",
+      "error_page": "Vaya ... Parece que no deberías estar en esta página",
+      "signup-feedback": "Bienvenido a Orion, cuenta creada con éxito, revise su correo electrónico",
+      "signin-feedback": "El área de usuario registrada vendrá en futuras actualizaciones",
+      "forgot-feedback": "Correo electrónico enviado con éxito para la recuperación de la cuenta, revise su correo electrónico",
+      "retrieve-feedback": "Nueva contraseña registrada correctamente"
+    },
+    "required": {
+      "password": "Se requiere contraseña",
+      "confirm_password": "Se requiere confirmación de contraseña",
+      "name": "Se requiere el nombre",
+      "email": "Correo electronico es requerido",
+      "pass_match":"Las contraseñas deben coincidir",
+      "pass_char":"La contraseña debe tener al menos 6 caracteres",
+      "email_invalid":"El correo electrónico es invalido"
+    },
+    "about": {
+      "title": "Acerca de",
+      "introduction": "Esta página está hecha para brindarle más información."
+    }
+  }

@@ -4,7 +4,8 @@
       "about": "Sobre",
       "english": "Versão em inglês",
       "french": "Versão em francês",
-      "portuguese": "Versão em português"
+      "portuguese": "Versão em português",
+      "spanish": "versão em espanhol"
    },
     "home": {
       "account": "Conta",
@@ -12,7 +13,7 @@
       "signup": "Criar conta",
       "signin": "Login",
       "forgot": "Esqueci a senha",
-      "footer": "👆 clique nos links acima 👆",
+      "footer": "👆 Clique nos links acima 👆",
       "changer": "Mudar idioma",
       "name": "Nome",
       "email": "Email",

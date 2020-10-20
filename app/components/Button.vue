@@ -25,10 +25,10 @@ export default {
   display: inline-block;
   margin: 0.5em 0;
   padding: 1em 2em;
-  background: #fff;
-  border: 2px solid orange;
+  background: rgb(255, 250, 250);
+  border: 2px solid black;
   border-radius: 3px;
-  color: orange;
+  color: black;
   font-family: 'Quicksand', sans-serif;
   font-size: 1em;
   font-weight: 700;
@@ -42,6 +42,6 @@ export default {
 
 .button:hover {
   background: black;
-  color: orange;
+  color: rgb(255, 250, 250);
 }
 </style>
