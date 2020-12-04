@@ -68,7 +68,7 @@ pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
     private String hash;
 
     @Column(name = "VERIFIED")
-    private boolean verified = false;
+    private Boolean verified = false;
 
     public User(String name, String email, String password) {
         super();
@@ -145,6 +145,11 @@ pkColumnValue="user_gen", initialValue=1000, allocationSize=10)
     public String getHash() {
         
         return this.hash;
+    }
+
+    public Boolean getVerified(){
+
+        return this.verified;
     }
 
    

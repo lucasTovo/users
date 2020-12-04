@@ -111,7 +111,29 @@ public class PublicService {
         }
     }
 
+    /**
+     * Method created exclusively to be used in integration tests, in situations
+     * where you need to change the Verified attribute to TRUE state
+     * @param email
+     * @return
+     */
 
+    @POST
+    @APIResponse(responseCode = "200", description = "successfully")
+    @APIResponse(responseCode = "409", description = "a conflict has occurred")
+    @Tag(name="AUTH")
+    @Path("autoConfirm")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public User autoConfirmForTest(@FormParam("email") final String email) {
+
+        final User usr = userDAO.find("email", email);
+            usr.setVerified(true);
+            userDAO.update(usr);
+            usr.setHash(null);
+        return usr;
+    }
 
     
 
@@ -163,6 +185,7 @@ public class PublicService {
             // check if there is a email in the database
             final User usr = userDAO.find("email", email);
 
+            usr.getVerified().equals(true);
             // generate the hash
             String hashcode = usr.setHash(userDAO.generateHash());
 
@@ -241,7 +264,7 @@ public class PublicService {
         try {
             // check if password is correct
             final User user = userDAO.find("email", email);
-            if (user != null && user.getPassword().equals(userDAO.MD5(password))) {
+            if (user != null && user.getPassword().equals(userDAO.MD5(password)) && user.getVerified() == true) {
                 // generates the token
                 jwt = JwtBuilder.create("jwtBuilder").jwtId(true).claim(Claims.SUBJECT, user.getEmail())
                         .claim("email", user.getEmail()).claim("groups", "users").buildJwt().compact();
@@ -300,10 +323,12 @@ public class PublicService {
     @Consumes("application/x-www-form-urlencoded")
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public void delete(@FormParam("id") final long id) {
+    public User delete(@FormParam("id") final long id) {
         // find the id and delete the user data
-        
-        userDAO.delete(id);
+        final User usr = userDAO.find(id);
+        usr.setVerified(false);
+        userDAO.delete(usr);
+        return usr;
     }
 
     /**
@@ -324,14 +349,31 @@ public class PublicService {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public User update(@FormParam("id") final long id, @FormParam("name") final String name,
-            @FormParam("email") final String email, @FormParam("password") final String password) {
+            @FormParam("email") final String email, @FormParam("password") final String password)   {
 
-        final User usr = userDAO.find(id);
-        usr.setName(name);
-        usr.setEmail(email);
-        usr.setPassword(password);
-        userDAO.update(usr);
-        return usr;
-    }
+            final User usr = userDAO.find(id);
+
+            if (usr.getVerified() == true) {
+    
+                if(name.isEmpty() || email.isEmpty() || password.isEmpty()){
+                    String message = "error";
+                    throw new NotFoundException(message);
+                }
+                  
+                  else {
+                    usr.setName(name);
+                    usr.setEmail(email);
+                    usr.setPassword(password);
+                    userDAO.update(usr);
+                  }
+    
+                    return usr;
+    
+            } else {
+                    String message = "error";
+                    throw new WebApplicationException(message, Response.Status.CONFLICT);
+            }
+        }
+    
 
 }

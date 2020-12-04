@@ -55,5 +55,66 @@ public class ProtectedService {
      * @param id The user's id
      * @return An user object
      */
- 
+    @GET
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
+    @Tag(name="CRUD")
+    @Path("/readProtected/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"users"})
+    @Transactional
+    public User readProtected(@PathParam("id") final long id) {
+        return userDAO.find(id);
+    }
+
+    /**
+     * Deletes an user from the database
+     * 
+     * @param id The user's id
+     */
+    @POST
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
+    @Tag(name="CRUD")
+    @Path("/deleteProtected")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"users"})
+    @Transactional
+    public User deleteProtected(@FormParam("id") final long id) {
+        // find the id and delete the user data
+        
+        final User usr = userDAO.find(id);
+        userDAO.delete(usr);
+        return usr;
+    }
+
+    /**
+     * Updates an user in database
+     * 
+     * @param id       The user's id
+     * @param name     The user's name
+     * @param email    The user's e-mail
+     * @param password The user's password
+     * @return
+     */
+    @POST
+    @APIResponse(responseCode ="200", description ="successfully")
+    @APIResponse(responseCode ="409", description ="a conflict has occurred")
+    @Tag(name="CRUD")
+    @Path("/updateProtected")
+    @Consumes("application/x-www-form-urlencoded")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"users"})
+    @Transactional
+    public User updateProtected(@FormParam("id") final long id, @FormParam("name") final String name,
+            @FormParam("email") final String email, @FormParam("password") final String password) {
+
+        final User usr = userDAO.find(id);
+        usr.setName(name);
+        usr.setEmail(email);
+        usr.setPassword(password);
+        userDAO.update(usr);
+        return usr;
+    }
 }
