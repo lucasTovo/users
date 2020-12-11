@@ -167,7 +167,7 @@ export default {
 <style>
 @media (min-width: 416px) {
   .jumbotron {
-    background: rgb(255, 250, 250);
+    background: #242837;
     display: inline-block;
     width: 500px;
     margin: 0 auto;
@@ -176,7 +176,7 @@ export default {
 /*screen upto 400px*/
 @media (max-width: 415px) {
   .jumbotron {
-    background: rgb(255, 250, 250);
+    background: #242837;
     display: inline-block;
     width: 300px;
     margin: 0 auto;
@@ -185,7 +185,7 @@ export default {
 
 .bbutton:hover {
   background: black;
-  color: rgb(255, 250, 250);
+  color: #242837;
   variant: 'outline-primary';
 }
 </style>

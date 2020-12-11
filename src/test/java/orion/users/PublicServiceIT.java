@@ -22,10 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -36,14 +32,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import orion.users.model.User;
 
 /**
  * Integration test
@@ -286,122 +280,6 @@ public class PublicServiceIT {
         }
     }
 
-//     @Test   
-//     @Order(9)
-//     public void testDelete() {
-//        try {
 
-          
-//            // Mounting URL, create
-//            String url = "http://" + host + ":" + port + API + "delete";
-
-
-          
-//            HttpPost post = new HttpPost(url);
-
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-//            //insert below an id already registered in the database
-//            params.add(new BasicNameValuePair("id", "1001"));
-//            post.setEntity(new UrlEncodedFormEntity(params));
-
-//            // execute and getting the response
-//            HttpResponse response = this.client.execute(post);
-
-
-//            //Get response body
-//            HttpEntity entity = response.getEntity();
-//            String content = EntityUtils.toString(entity);
-//            System.out.println("testDelete >>>>>>>>>>>>" + content);
-//            System.out.println("testDelete code >>>>>>>>>>>>" + response.getStatusLine().getStatusCode() );
-
-//            assertEquals(response.getStatusLine().getStatusCode(), 200);
-           
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    /*
-    @Test
-    @Order(10)
-    public void testFailCreate() {
-        try {
-            // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "create";
-            HttpPost post = new HttpPost(url);
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", ""));
-            params.add(new BasicNameValuePair("email", ""));
-            params.add(new BasicNameValuePair("password", ""));
-            post.setEntity(new UrlEncodedFormEntity(params));
-            // execute and getting the response
-            HttpResponse response = this.client.execute(post);
-            // Get response body
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-            // Jsonb jsonb = JsonbBuilder.create();
-            // this.user = jsonb.fromJson(content, User.class);
-            System.out.println("testFailCreate >>>>>>>>>>>>" + content);
-
-            assertEquals(response.getStatusLine().getStatusCode(), 404);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    @Order(11)
-    public void testFailCreate2() {
-        try {
-            // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "create";
-            HttpPost post = new HttpPost(url);
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", "tyson"));
-            params.add(new BasicNameValuePair("email", "testorionservice@outlook.com"));
-            params.add(new BasicNameValuePair("password", "password"));
-            post.setEntity(new UrlEncodedFormEntity(params));
-            // execute and getting the response
-            HttpResponse response = this.client.execute(post);
-            // Get response body
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-            // Jsonb jsonb = JsonbBuilder.create();
-            // this.user = jsonb.fromJson(content, User.class);
-            System.out.println("testFailCreate2 >>>>>>>>>>>>" + content);
-
-            assertEquals(response.getStatusLine().getStatusCode(), 409);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    @Order(12)
-    public void testFailCreate3() {
-        try {
-            // Mounting URL, create
-            String url = "http://" + host + ":" + port + API + "create";
-            HttpPost post = new HttpPost(url);
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", "tyson"));
-            params.add(new BasicNameValuePair("password", "password"));
-            post.setEntity(new UrlEncodedFormEntity(params));
-            // execute and getting the response
-            HttpResponse response = this.client.execute(post);
-            // Get response body
-            HttpEntity entity = response.getEntity();
-            String content = EntityUtils.toString(entity);
-            // Jsonb jsonb = JsonbBuilder.create();
-            // this.user = jsonb.fromJson(content, User.class);
-            System.out.println("testFailCreate3 >>>>>>>>>>>>" + content);
-
-            assertEquals(response.getStatusLine().getStatusCode(), 500);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 
 }

@@ -30,7 +30,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -45,8 +44,8 @@ public class ProtectedService {
     @Inject
     private UserDAO userDAO;
 
-    @Inject
-    private JsonWebToken jwt;
+    // @Inject
+    // private JsonWebToken jwt;
 
 
     /**
