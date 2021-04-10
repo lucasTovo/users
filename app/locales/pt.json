@@ -1,0 +1,42 @@
+{
+    "links": {
+      "home": "Início",
+      "about": "Sobre",
+      "english": "Versão em inglês",
+      "french": "Versão em francês",
+      "portuguese": "Versão em português",
+      "spanish": "versão em espanhol"
+   },
+    "home": {
+      "account": "Conta",
+      "introduction": "Esta é uma introdução em português.",
+      "signup": "Criar conta",
+      "signin": "Login",
+      "forgot": "Esqueci a senha",
+      "footer": "👆 Clique nos links acima 👆",
+      "changer": "Mudar idioma",
+      "name": "Nome",
+      "email": "Email",
+      "password": "Senha",
+      "confirm_password": "Confirmar Senha",
+      "submit": "Enviar",
+      "error_page": "Ops... Parece que você não deveria estar nesta página",
+      "signup-feedback": "Bem-vindo ao Orion, conta criada com sucesso, cheque seu email",
+      "signin-feedback": "Área de usuário logado virá em futuros updates",
+      "forgot-feedback": "Email enviado com sucesso para a recuperação de conta, cheque seu email",
+      "retrieve-feedback": "Nova senha cadastrada com sucesso"
+    },
+    "required": {
+        "password": "Senha é necessária",
+        "confirm_password": "Confirmação de senha é necessária",
+        "name": "Nome é necessário",
+        "email": "Email é necessário",
+        "pass_match":"As senhas devem corresponder",
+        "pass_char":"A senha deve ter pelo menos 6 caracteres",
+        "email_invalid":"Email inválido"
+      },
+    "about": {
+      "title": "Sobre",
+      "introduction": "Esta página foi feita para lhe dar mais informações."
+    }
+  }
